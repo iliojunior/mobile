@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+    <link rel="manifest" href="manifest.json">
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+
+  <body ng-app="app">
+    <ion-nav-view></ion-nav-view>
+  </body>
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <script src="cordova.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/rotas.js"></script>
+
+  <!-- Módulo EXEMPLO -->
+  <script src="modules/exemplo/exemploController.js"></script>
+  <script src="modules/exemplo/exemploFactory.js"></script>
+  <script src="modules/exemplo/exemploDirective.js"></script>
+
+  <!-- modulos (páginas) -->
+  <script src="modules/index/indexController.js"></script>
+  <script src="modules/login/loginController.js"></script>
+  <script src="modules/login/loginFactory.js"></script>
+  <script src="modules/home/homeController.js"></script>
+  <script src="modules/cadastro-usuario/cadastroController.js"></script>
+  <script src="modules/cadastro-usuario/cadastroFactory.js"></script>
+
+
+
+  <!-- util (coisas genéricas para serem reaproveitadas em várias páginas) -->
+  <script src="util/redirecionador.js"></script>
+  <script src="util/popup.js"></script>
+</html>

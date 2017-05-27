@@ -1,0 +1,72 @@
+<ion-view>
+  <ion-header-bar align-title="left" class="bar-calm">
+      <button class="button" ng-click="redirecionar('/')" style="border-color: #11c1f3; font-size: 20px">
+        <i class="ion-arrow-left-c"></i>
+        <span>   Voltar</span>
+      </button>
+  </ion-header-bar>
+  <ion-content>
+    <style>
+    .cor-label-errou {
+      color: red
+    }
+    .linha-input-errou {
+      border-color: #fd0015
+    }
+    </style>
+    <h1 class="text-center" style="font-weight: bolder; margin-top: 20%; padding-bottom: 5%; font-size: 70px"> NOME </h1>
+    <form ng-submit="logar(usuario)" name="formLogin">
+      <div class="list" style="margin: 0 7% 0 7%">
+        <label class="item-input item-stacked-label" style="margin-bottom: 5%">
+          <span class="input-label" style="font-size: 20px">E-mail:</span>
+          <input type="text" placeholder="exemplo@exemplo.com.br" name="email" ng-model="usuario.email"
+                 style="border-bottom: 3px solid #ddd; width: 95%; font-size: 20px" required>
+          <h3 ng-if="formLogin.email.$dirty" class="cor-label-errou">E-mail Inválido</h3>
+        </label>
+        <label class="item-input item-stacked-label" style="margin-bottom: 5%">
+          <span class="input-label" style="font-size: 20px">Senha:</span>
+          <input type="password" ng-model="usuario.senha"
+                 style="border-bottom: 3px solid #ddd; width: 95%; font-size: 20px">
+        </label>
+      </div>
+      <div align="center">
+        <button class="button button-calm button-large"
+          style="width: 60%; font-size: 30px;font-weight: bolder; margin-top: 5%"
+          type="submit">
+          ENTRAR
+          <i class="ion-arrow-right-c"></i>
+        </button>
+      </div>
+    <div align="center" style="margin: 10% 12% 0 12%; font-size: 20px">
+      <a ng-click="requisitarNovaSenha()">Esqueci minha senha</a>
+    </div>
+    </form>
+
+  </ion-content>
+</ion-view>
+
+<!-- <ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Login</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeLogin()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="doLogin()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input type="text" ng-model="loginData.username">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="loginData.password">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Log in</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view> -->
