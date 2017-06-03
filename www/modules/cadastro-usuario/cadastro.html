@@ -17,6 +17,56 @@
           </label>
           <label class="item-input item-stacked-label">
             <span class="input-label">Senha</span>
+            <input type="password" ng-model="usuario.senha" style="border-bottom: 3px solid #ddd; width: 95%; font-size: 20px" id="senha1">
+          </label>
+          <label class="item-input item-stacked-label">
+            <span class="input-label">Repita sua senha</span>
+            <input type="password" ng-model="usuario.senha2" style="border-bottom: 3px solid #ddd; width: 95%; font-size: 20px" id="senha2">
+          </label>
+          <label class="item-input item-stacked-label">
+            <span class="input-label">Mostrar senhas</span>
+            <label class="toggle toggle-calm">
+               <input type="checkbox" ng-click="mostrarEsconderSenha()">
+               <div class="track">
+                 <div class="handle"></div>
+               </div>
+            </label>
+          </label>
+          <div align="center">
+            <button class="button button-calm button-large"
+              style="width: 60%; font-size: 30px;font-weight: bolder; margin-top: 5%"
+              type="submit">
+              ENTRAR
+              <i class="ion-arrow-right-c"></i>
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </ion-content>
+</ion-view>
+
+
+<!-- <ion-view>
+  <ion-header-bar align-title="left" class="bar-calm">
+    <button class="button" ng-click="redirecionar('/')" style="border-color: #11c1f3; font-size: 20px">
+      <i class="ion-arrow-left-c"></i>
+      <span>   Voltar</span>
+    </button>
+  </ion-header-bar>
+
+  <ion-content>
+    <h1 class="text-center" style="font-weight: bolder; margin-top: 20%; font-size: 60px">Cadastro</h1>
+    <div class="">
+      <form ng-submit="cadastrar(usuario)">
+        <div class="list">
+          <label class="item-input item-stacked-label">
+            <span class="input-label">E-mail</span>
+            <input type="text" placeholder="exemplo@exemplo.com.br" ng-model="usuario.email" style="border-bottom: 3px solid #ddd; width: 95%; font-size: 20px">
+          </label>
+          <label class="item-input item-stacked-label">
+            <span class="input-label">Senha</span>
             <input type="password" ng-model="usuario.senha" style="border-bottom: 3px solid #ddd; width: 95%; font-size: 20px">
           </label>
           <label class="item-input item-stacked-label">
@@ -47,4 +97,4 @@
   </ion-content>
 
 
-</ion-view>
+</ion-view> -->

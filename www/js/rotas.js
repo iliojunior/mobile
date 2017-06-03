@@ -46,6 +46,16 @@ angular.module('app')
     controller: 'homeController'
   })
 
+  .state('menu.lista-anuncios-por-setor', {         /* Na hora de chamar a rota é: /menu/home   */
+    url: '/lista-anuncios-por-setor/:index',
+    views: {
+      'menuContent': {
+        templateUrl: 'modules/anuncios/lista-anuncios-por-setor.html'
+      }
+    },
+    controller: 'anunciosController'
+  })
+
 
 /*________________________________________________________________________________________________________________________*/
 

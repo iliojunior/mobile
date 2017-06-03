@@ -1,5 +1,11 @@
-<ion-view view-title="Home">
+<ion-view ng-controller="homeController">
   <ion-content class="has-header">  <!-- TEM QUE TER O CONTENT PQ SE NAO O HEADER DO MENU TAMPA -->
-    <h1 class="text-center"> Tela da HOME </h1>
+    <h4 class="text-center" style="margin: 10px 20px"> Em que setor está o tipo de maquinário que você procura? </h4>
+    <div class="card" style="height: 20%" ng-repeat="setor in listaDeSetores">
+      <div class="item item-text-wrap text-center" style="border: 3px solid #eae40b; height: 100%; font-size: 30px">
+        <!-- <img src="{{setor.imagem}}" style="width: 25%"> -->
+        <span style="line-height: 75px" ng-click="redirecionar('/menu/lista-anuncios-por-setor/{{$index}}')">{{setor.nome}}</span>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

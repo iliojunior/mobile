@@ -1,12 +1,22 @@
 <ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content>
-    <ion-nav-bar class="bar-stable">
+    <!-- <ion-nav-bar class="bar-stable"> -->
+    <ion-nav-bar class="bar-dark">
       <ion-nav-back-button>
       </ion-nav-back-button>
-
-      <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-        </button>
+      <ion-nav-buttons>
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        <!-- <div class="bar bar-header item-input-inset" style="width: 60%"> -->
+        <div class="bar bar-header item-input-inset bar-energized">
+           <label class="item-input-wrapper textbox-search"
+                  style="margin-bottom: 3%; background-color: #e2e2c2;
+                         border: solid 3px #eae40b; width: 100%;
+                         font-size: 20px">
+               <input type="search" placeholder="Pesquisar">
+               <i class="icon ion-search placeholder-icon"></i>
+           </label>
+        </div>
+        <!-- <button class="button button-icon button-clear ion-arrow-right-a" menu-toggle="right">  Pesquisar</button> -->
       </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>

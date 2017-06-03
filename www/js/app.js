@@ -1,7 +1,8 @@
 /*        ATENÇÃO:
   O módulo APP é o módulo global do projetos, todos os itens dependentes (na array de injeção de dependência) são os módulos usados
 */
-angular.module('app', ['ionic', 'exemplo', 'util', 'index', 'login', "home", 'cadastroUsuario'])
+angular.module('app', ['ionic', 'exemplo', 'util', 'index', 'login', "home", 'cadastroUsuario',
+                      'anuncios'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
