@@ -1,0 +1,58 @@
+<ion-view>
+  <ion-header-bar allign-title="left" class="bar-calm">
+    <button class="button" ng-click="redirecionar('/')" style="border-color: #11c1f3; font-size: 20px">
+      <i class="ion-arrow-left-c"></i>
+      <span>   Voltar</span>
+    </button>
+  </ion-header-bar>
+
+
+  <ion-content>
+    <h1 class="text-center" style="margin-top: 10%">Cadastro de Pessoa</h1>
+    <div class="">
+      <ion-radio ng-model="tipoPessoa" ng-value="PF"> Pessoa Física </ion-radio>
+      <ion-radio ng-model="tipoPessoa" ng-value="PJ"> Pessoa Jurídica </ion-radio>
+    </div>
+
+    <div ng-if="fisica" style="margin-left: 5%; margin-top: 10%">
+      <h3><i class="ion-plus-circled"></i>   Dados Gerais</h3>
+
+      <form>
+        <div class="list">
+          <label>
+            <span class="input-label" style="width: 100%">Nome Completo</span>
+            <input type="text"style="border-bottom: 3px solid #ddd; width: 95%; font-size: 20px; margin-bottom: 3%" ng-model="usuario.nome">
+          </label>
+          <label>
+            <span class="input-label" style="width: 100%">Data de nascimento</span>
+            <input type="date"style="border-bottom: 3px solid #ddd; width: 95%; font-size: 20px; margin-bottom: 3%" ng-model="usuario.nascimento">
+          </label>
+          <label>
+            <span class="input-label" style="width: 100%">CPF</span>
+            <input type="number"style="border-bottom: 3px solid #ddd; width: 95%; font-size: 20px; margin-bottom: 3%" ng-model="usuario.cpf">
+          </label>
+          <label>
+            <span class="input-label" style="width: 100%">RG</span>
+            <input type="number"style="border-bottom: 3px solid #ddd; width: 95%; font-size: 20px; margin-bottom: 3%" ng-model="usuario.rg">
+          </label>
+          <label>
+            <span class="input-label" style="width: 100%">Nome de Usuário</span>
+            <input type="text"style="border-bottom: 3px solid #ddd; width: 95%; font-size: 20px; margin-bottom: 3%" ng-model="usuario.login">
+          </label>
+          <label>
+            <span class="input-label" style="width: 100%">Senha</span>
+            <input type="password"style="border-bottom: 3px solid #ddd; width: 95%; font-size: 20px; margin-bottom: 3%" ng-model="usuario.senha">
+          </label>
+          <label>
+            <span class="input-label" style="width: 100%">Confirmar senha</span>
+            <input type="password"style="border-bottom: 3px solid #ddd; width: 95%; font-size: 20px; margin-bottom: 3%" ng-model="usuario.senha2">
+          </label>
+        </div>
+
+      </form>
+    </div>
+
+
+
+  </ion-content>
+</ion-view>
