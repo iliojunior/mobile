@@ -30,6 +30,12 @@ angular.module('app')
     controller: 'cadastroUsuarioController'
   })
 
+  .state('/perfil-usuario', {
+    url: '/perfil-usuario',
+    templateUrl: 'modules/perfil-usuario/perfil.html',
+    controller: 'perfilUsuarioController'
+  })
+
   .state('menu', {
     url: '/menu',
     abstract: true,       /* Não pode ser instanciada (não pode acessar diretamente)*/
