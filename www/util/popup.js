@@ -23,8 +23,29 @@ angular.module('util')
     })
   }
 
+  var _cadastroSucesso = function () {
+    return $ionicPopup.alert({
+     title: 'Bem Vindo!',
+     template: 'Seu cadastro foi realizado com sucesso! Você será redirecionado...',
+     okText: '  OK',
+     okType: 'button-balanced ion-checkmark-round'
+   });
+  }
+
+  var _cadastroErro = function () {
+    $ionicPopup.alert({
+     title: 'Ops!',
+     template: 'Cadastro Inválido! Verifique suas informações.',
+     okText: '  Entendi',
+     okType: 'button-assertive ion-close-round'
+
+   });
+  }
+
   return {
     pedirEmailDeAlteracaoDeSenha: _pedirEmailDeAlteracaoDeSenha,
+    cadastroSucesso: _cadastroSucesso,
+    cadastroErro: _cadastroErro,
   }
 
 })

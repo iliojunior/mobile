@@ -1,0 +1,89 @@
+<ion-view>
+
+  <ion-nav-buttons side="left">
+      <a ng-click="$ionicGoBack()" class="button back-button buttons button-clear header-item nav-back-btn">
+          <i class="ion-android-arrow-back"></i> Voltar
+      </a>
+  </ion-nav-buttons>
+
+  <!--cloth shop section-->
+  <ion-content id="cloth-shop-content" scroll="false">
+
+      <!--toolbar section-->
+      <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium toolbar-in-content">
+          <div>
+              <h1>PESQUISA</h1>
+              <h2>Utilize os filtros para facilitar a busca</h2>
+              <!-- <h2>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+              </h2> -->
+          </div>
+      </md-toolbar><!--end toolbar section-->
+
+      <div class="has-header" style="padding-top: 20px;background-color: #f6f6f6" id="contract-details-content">
+        <form name="formPesquisa">
+          <div style="border: 3px solid #1c561d">
+            <md-input-container md-no-float style="padding-bottom: 10px !important">
+                <i class="ion-search" style="font-size: 30px"></i>
+                <input ng-model="pesquisa.texto" name="pesquisaTexto" required placeholder="O que você procura?"
+                        style="font-size: 30px">
+            </md-input-container>
+            <div id="push-notification">
+              <div class="notification-option row">
+                <md-input-container md-no-float style="padding-bottom: 10px !important">
+                    <i class="ion-erlenmeyer-flask" style="font-size: 30px"></i>
+                    <span style="font-size: 26px; margin-top: 10px; margin-left: 10px">Setor:</span>
+                </md-input-container>
+                <md-input-container md-no-float="" class="col-50" style="padding-bottom: 10px !important; font-size: 20px">
+                  <md-select ng-model="pesquisa.setor" aria-label="md-option" style="text-align: left">
+                      <md-option ng-repeat="setor in setores track by $index" value="{{setor.id}}">{{setor.nome}}</md-option>
+                  </md-select>
+                </md-input-container>
+              </div>
+            </div>
+          </div>
+          <h2 class="text-center" style="margin-top: 10px"><i class="ion-funnel"></i> Filtros Opicionais</h2>
+          <div id="push-notification">
+            <div class="notification-option row">
+              <md-input-container md-no-float>
+                  <i class="ion-waterdrop" style="font-size: 25px"></i>
+                  <span style="font-size: 20px; margin-top: 10px">Filtro 1:</span>
+              </md-input-container>
+              <md-input-container md-no-float="" class="col-50">
+                <md-select ng-model="pesquisa.filtro1" aria-label="md-option" style="text-align: left">
+                    <md-option value="1">Opção 1</md-option>
+                    <md-option value="2">Opção 2</md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+            <div class="notification-option row">
+              <md-input-container md-no-float>
+                  <i class="ion-lightbulb" style="font-size: 25px"></i>
+                  <span style="font-size: 20px; margin-top: 10px">Filtro 2:</span>
+              </md-input-container>
+              <md-input-container md-no-float="" class="col-50">
+                <md-select ng-model="pesquisa.filtro2" aria-label="md-option" style="text-align: left">
+                    <md-option value="A">Opção A</md-option>
+                    <md-option value="B">Opção B</md-option>
+                    <md-option value="C">Opção C</md-option>
+                    <md-option value="D">Opção D</md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+
+            <a class="md-raised social-button md-button md-default-theme material-background"
+               ng-click="pesquisar(pesquisa)" style="font-size: 20px; font-weight: 600; background-color: #8de624 !important">
+                Pesquisar!
+            </a>
+
+          </div>
+        </form><!--end contract detail section-->
+      </div>
+
+  </ion-content><!--end cloth shop section-->
+
+</ion-view>

@@ -1,0 +1,148 @@
+<ion-view>
+    <!--cube feed section-->
+    <ion-nav-buttons side="left">
+        <a ng-click="$ionicGoBack()" class="button back-button buttons button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i> Voltar
+        </a>
+    </ion-nav-buttons>
+
+    <ion-content id="cube-feed-content">
+        <!--cube feed list section-->
+
+        <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium toolbar-in-content">
+            <div>
+                <h1>AGRÍCOLA</h1>
+                <h2>Maquinários</h2>
+                <h2>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </h2>
+            </div>
+        </md-toolbar><!--end toolbar section-->
+
+        <!-- ==================================================================== -->
+        <!-- <div class="feed-list row" ng-repeat="anuncio in listaDeAnuncios track by $index" ng-switch="$even">
+          <h1 ng-switch-when="true"> PAR {{anuncio.id}}</h1>
+          <h1 ng-switch-when="false"> IMPAR {{anuncio.id}}</h1>
+        </div> -->
+        <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
+        <!-- <div class="feed-list row" ng-repeat="num in numeros" ng-switch="$even">
+          <div class="row">
+            <div class="col col-50" style="background-color: #ff2; float: left">
+             <h1 ng-if="$even"> par - {{num}} </h1>
+            </div>
+            <div class="col col-50" style="background-color: #45f; float: right">
+              <h1 ng-if="$odd"> impar - {{num}} </h1>
+            </div>
+          </div>
+       </div> -->
+        <!-- ==================================================================== -->
+
+        <!-- <div  ng-repeat="anuncio in listaDeAnuncios track by $index" ng-switch="$even">
+
+          <div class="feed-list row"  ng-switch-when="true">
+
+            <div class="feed-item">
+                <div class="feed-img" style="background-image: url('img/cube_feed_03.png')"></div>
+                <div class="feed-content row">
+                  <div class="col middle">
+                    <h3 style="text-align: center">{{anuncio.nome}}</h3>
+                  </div>
+                </div>
+                <div class="feed-content row">
+                    <div class="col left">
+                        <i class="ion-cash"></i>
+                        {{anuncio.preco}}
+                    </div>
+                    <div class="col right">
+                        <i class="ion-android-pin"></i>
+                        {{anuncio.cidade}}
+                    </div>
+                </div>
+            </div>
+
+          </div>
+
+          <div class="feed-list row"  ng-switch-when="false">
+
+            <div class="feed-item">
+                <div class="feed-img" style="background-image: url('img/cube_feed_03.png')"></div>
+                <div class="feed-content row">
+                  <div class="col middle">
+                    <h3 style="text-align: center">{{anuncio.nome}}</h3>
+                  </div>
+                </div>
+                <div class="feed-content row">
+                    <div class="col left">
+                        <i class="ion-cash"></i>
+                        {{anuncio.preco}}
+                    </div>
+                    <div class="col right">
+                        <i class="ion-android-pin"></i>
+                        {{anuncio.cidade}}
+                    </div>
+                </div>
+            </div>
+
+          </div>
+
+        </div> -->
+
+
+
+        <div class="feed-list row col" >
+            <div class="" ng-repeat="anuncio in listaDeAnuncios track by $index">
+              <div class="feed-item" ng-click="getAnuncio(anuncio.id)">
+                  <div class="feed-img" style="background-image: url('img/cube_feed_03.png')"></div>
+                  <div class="feed-content row">
+                    <div class="col middle">
+                      <h3 style="text-align: center">{{anuncio.nome}}</h3>
+                    </div>
+                  </div>
+                  <div class="feed-content row" style="font-size: 25px">
+                      <div class="col left">
+                          <i class="ion-cash"  style="font-size: 25px"></i>
+                          {{anuncio.preco}}
+                      </div>
+                      <div class="col right">
+                          <i class="ion-android-pin"  style="font-size: 25px"></i>
+                          {{anuncio.cidade}}
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+
+        <!-- #$##$$$$%%&¨*&%¨%(*$%&$%¨$*) -->
+        <!-- <div class="feed-list row" ng-repeat="anuncio in listaDeAnuncios track by $index">
+            <div class="col" ng-if="$even">
+              <div class="feed-item">
+                  <div class="feed-img" style="background-image: url('img/cube_feed_03.png')"></div>
+                  <div class="feed-content row">
+                    <div class="col middle">
+                      <h3 style="text-align: center">{{anuncio.nome}}</h3>
+                    </div>
+                  </div>
+                  <div class="feed-content row">
+                      <div class="col left">
+                          <i class="ion-cash"></i>
+                          {{anuncio.preco}}
+                      </div>
+                      <div class="col right">
+                          <i class="ion-android-pin"></i>
+                          {{anuncio.cidade}}
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="col" ng-if="$odd">
+
+            </div>
+        </div> -->
+
+    </ion-content><!--end cube feed section-->
+</ion-view>

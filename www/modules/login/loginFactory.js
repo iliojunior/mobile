@@ -1,7 +1,8 @@
 angular.module('login')
 .factory('loginFactory', function () {
     var _validarLogin = function (usuarioDoFormularioDeLogin) {
-      alert("SUCESSO! BEM VINDO!");
+      console.log("não faz nada ainda");
+      // alert("SUCESSO! BEM VINDO!");
     };
 
     var _novaSenha = function (emailDeRecuperacao) {

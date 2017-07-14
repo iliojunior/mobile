@@ -1,0 +1,67 @@
+<ion-view title="Cadastro de Usuário">
+    <!--left button on navigation bar-->
+    <ion-nav-bar class="bar-balanced  material-background-nav-bar nav-bar-container">
+      <ion-nav-buttons side="left">
+          <a href="/" class="button back-button buttons button-clear header-item nav-back-btn">
+              <i class="ion-android-arrow-back"></i>
+          </a>
+      </ion-nav-buttons><!--end left button on navigation bar-->
+    </ion-nav-bar>
+
+    <!--social sign up section-->
+    <ion-content id="social-sign-up-content" class="has-header" style="margin-top: 10%" scroll="false">
+      <form name="formCadastrarUsuario">
+        <div class="app-icon">
+            <img src="img/app_icon.png" class="md-card-image">
+        </div>
+        <!--input section-->
+        <md-input-container md-no-float="">
+            <div>
+                <input type="email" class="user-name" placeholder="E-mail" name="email" ng-model="usuario.email">
+            </div>
+            <span style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
+                  ng-show="formCadastrarUsuario.email.$touched && formCadastrarUsuario.email.$invalid">
+                 E-mail Inválido!
+            </span>
+        </md-input-container>
+        <md-input-container md-no-float="">
+            <div>
+                <input type="password" class="user-name" placeholder="Senha" name="senha" ng-model="usuario.senha"
+                       id="senha" ng-minlength="6" ng-maxlength="10" password-verify="{{usuario.senhaConfirmada}}">
+                <div style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
+                      ng-messages="formCadastrarUsuario.senha.$error"
+                      ng-if="formCadastrarUsuario.senha.$dirty">
+                  <p ng-message="required">Campo obrigatório</p>
+                  <p ng-message="minlength">Sua senha deve ter de 6 a 10 caracteres</p>
+                  <p ng-message="maxlength">Sua senha deve ter no máximo 10 caracteres</p>
+                  <p ng-message="passwordVerify" ng-if="formCadastrarUsuario.senhaConfirmada.$dirty">Senhas diferentes!</p>
+                </div>
+            </div>
+        </md-input-container>
+        <md-input-container md-no-float="">
+            <div>
+              <input type="password" class="user-name" placeholder="Confirme sua senha" name="senhaConfirmada" ng-model="usuario.senhaConfirmada"
+                     id="senhaConfirmada" ng-minlength="6" ng-maxlength="10" password-verify="{{usuario.senha}}">
+                <div style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
+                      ng-messages="formCadastrarUsuario.senhaConfirmada.$error"
+                      ng-if="formCadastrarUsuario.senhaConfirmada.$dirty">
+                  <p ng-message="required">Campo obrigatório</p>
+                  <p ng-message="minlength">Sua senha deve ter de 6 a 10 caracteres</p>
+                  <p ng-message="maxlength">Sua senha deve ter no máximo 10 caracteres</p>
+                  <p ng-message="passwordVerify" ng-if="formCadastrarUsuario.senha.$dirty">Senhas diferentes!</p>
+                </div>
+            </div>
+        </md-input-container>
+        <md-switch class="md-primary" md-no-ink aria-label="Esconder Senhas" ng-click="mostrarEsconderSenha()">
+          Mostrar senhas
+        </md-switch>
+        <!-- <md-checkbox aria-label="CheckboxTerms">
+            I accept terms and conditions.
+        </md-checkbox> -->
+        <!--end input section-->
+        <button type="button" ng-click="cadastrar(usuario)" class="md-raised social-button md-button md-default-theme material-background"
+            ng-disabled="formCadastrarUsuario.$invalid" style="width: 95%">
+            Cadastrar
+        </button>
+    </ion-content><!--end social sign up section-->
+</ion-view>

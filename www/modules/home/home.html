@@ -1,11 +1,30 @@
-<ion-view ng-controller="homeController">
-  <ion-content class="has-header">  <!-- TEM QUE TER O CONTENT PQ SE NAO O HEADER DO MENU TAMPA -->
-    <h4 class="text-center" style="margin: 10px 20px"> Em que setor está o tipo de maquinário que você procura? </h4>
-    <div class="card" style="height: 20%" ng-repeat="setor in listaDeSetores">
-      <div class="item item-text-wrap text-center" style="border: 3px solid #eae40b; height: 100%; font-size: 30px">
-        <!-- <img src="{{setor.imagem}}" style="width: 25%"> -->
-        <span style="line-height: 75px" ng-click="redirecionar('/menu/lista-anuncios-por-setor/{{$index}}')">{{setor.nome}}</span>
-      </div>
-    </div>
-  </ion-content>
+<ion-view>
+    <!--location feed section-->
+    <ion-content id="location-feed-content">
+        <!--list section-->
+        <h1 style="font-size: 30px; font-weight: 400; text-align: center; margin: 20px 0 10px 0">Qual a categoria?</h1>
+        <h4 style="font-weight: 400; text-align: center; margin: 0 0 25px 0; font-size: 15px">
+          Selecione a categoria do maquinário desejado para ver todos os anúncios daquela área.
+        </h4>
+        <div class="location-list">
+          <!--location item section-->
+          <!-- <div class="location-item" ng-repeat="setor in listaDeSetores track by $index" ng-click="redirecionar('/teste/'+setor.id)"> -->
+          <div class="location-item" ng-repeat="setor in listaDeSetores track by $index" ng-click="redirecionar('/menu/anuncios-por-setor/'+setor.id)">
+              <div class="location-img" style="background-image:url('img/location_feed_01.png')"></div>
+              <!-- <div class="location-img" style="background-image:url({{setor.imagem}})"></div> -->
+              <div class="location-content row">
+                  <div class="col-90">
+                      <h1 style="font-size: 20px">{{setor.nome}}</h1>
+                      <p>
+                          <i class="fa fa-flag"></i>{{setor.frase}}
+                      </p>
+                  </div>
+                  <div class="col-10">
+                      <span class="text-add">{{setor.quantidade}}+</span>
+                  </div>
+              </div>
+          </div>
+          <!--end location item section-->
+        </div><!--end list section-->
+    </ion-content><!--end location feed section-->
 </ion-view>

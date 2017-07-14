@@ -1,5 +1,13 @@
 {
-  "name": "ionic-app-base",
+  "name": "testematerial",
   "app_id": "",
-  "type": "ionic1"
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*",
+    "!www/**/*.map"
+  ]
 }
