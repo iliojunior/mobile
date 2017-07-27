@@ -22,15 +22,15 @@ angular.module('app')
   .state('/cadastro-usuario', {
     url: '/cadastro-usuario',
     templateUrl: 'modules/cadastro-usuario/cadastro-usuario.html',
-    controller: 'cadastroUsuarioController'
+    controller: 'cadastroUsuarioController',
   })
-  //
+
   // .state('/perfil-usuario', {
   //   url: '/perfil-usuario',
   //   templateUrl: 'modules/perfil-usuario/perfil.html',
   //   controller: 'perfilUsuarioController'
   // })
-  //
+
   .state('menu', {
     url: '/menu',
     abstract: true,       /* Não pode ser instanciada (não pode acessar diretamente)*/
@@ -51,8 +51,7 @@ angular.module('app')
     },
   })
 
-  .state('menu.anuncios-por-setor', {         /* Na hora de chamar a rota é: /menu/home   */
-    // url: '/lista-anuncios-por-setor/:index',
+  .state('menu.anuncios-por-setor', {
     url: '/anuncios-por-setor/:index',
     params: {
       isAnimated: false
@@ -65,7 +64,7 @@ angular.module('app')
     },
   })
 
-  .state('menu.anuncio-detalhes', {         /* Na hora de chamar a rota é: /menu/home   */
+  .state('menu.anuncio-detalhes', {
     // url: '/lista-anuncios-por-setor/:index',
     url: '/anuncio-detalhes/:index',
     params: {
@@ -74,12 +73,12 @@ angular.module('app')
     views: {
       'menuContent': {
         templateUrl: 'modules/anuncios/anuncio-detalhes.html',
-        controller: 'listaAnunciosController'
+        controller: 'anuncioController'
       }
     },
   })
 
-  .state('menu.busca', {         /* Na hora de chamar a rota é: /menu/home   */
+  .state('menu.busca', {
     // url: '/lista-anuncios-por-setor/:index',
     url: '/busca',
     params: {
@@ -94,7 +93,7 @@ angular.module('app')
     },
   })
 
-  .state('menu.anuncios-filtrados', {         /* Na hora de chamar a rota é: /menu/home   */
+  .state('menu.anuncios-filtrados', {
     // url: '/lista-anuncios-por-setor/:index',
     url: '/anuncios-filtrados',
     params: {
@@ -104,6 +103,19 @@ angular.module('app')
       'menuContent': {
         templateUrl: 'modules/anuncios/anuncios-filtrados.html',
         // controller: 'anunciosFiltradosController'
+        controller: 'listaAnunciosController'
+      }
+    },
+  })
+
+  .state('menu.meus-anuncios', {
+    url: '/meus-anuncios',
+    params: {
+      isAnimated: false,
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'modules/anuncios/meus-anuncios.html',
         controller: 'listaAnunciosController'
       }
     },

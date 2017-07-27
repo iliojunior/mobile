@@ -1,15 +1,5 @@
 <ion-view>
-  <!--left button on navigation bar-->
-  <!-- <ion-nav-buttons side="left">
-      <a ng-click="$ionicGoBack()" class="button back-button buttons button-clear header-item nav-back-btn">
-          <i class="ion-android-arrow-back"></i>
-      </a>
-  </ion-nav-buttons> -->
-  <!--end left button on navigation bar-->
-
-  <!--login content section-->
   <ion-content id="social-login" class="bg-white" scroll="false">
-      <!--fake login form section-->
       <form class="fakeLogin-form" name="formLogin">
           <div>
               <img src="img/app_icon.png"/>
@@ -19,12 +9,20 @@
 
           <div id="fakeLogin">
               <md-input-container md-no-float="">
-                  <input type="email" placeholder="E-mail" name="email" ng-model="usuario.email"
-                         class="user-name" required>
+                <span style="margin: 20px 0px -10px; text-align: initial">Email:</span>
+                  <input type="email" placeholder="Seu e-mail de acesso" name="email" ng-model="usuario.email"
+                         class="user-name" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required>
               </md-input-container>
+              </md-input-container>
+              <div ng-messages="formLogin.email.$error">
+                <small style="color: #ff0000; font-weight: 600; margin-left: -40px" ng-message="pattern">
+                  O formato do e-mail está inválido!
+                </small>
+              </div>
               <hr/>
               <md-input-container md-no-float="">
-                  <input type="password" placeholder="Senha" name="senha" ng-model="usuario.senha"
+                <span style="text-align: initial">Senha:</span>
+                  <input type="password" placeholder="Sua senha de acesso" name="senha" ng-model="usuario.senha"
                          class="user-password" required>
               </md-input-container>
               <div>
@@ -53,12 +51,12 @@
                   Exemplo
               </a>
           </div> -->
-      </form> <!--end fake login form section-->
+      </form>
 
       <div class="row" style="padding-left: 16%; margin-top: 15%; font-size: 18px">
         <div> Não tem uma conta?</div>
         <a href="#/cadastro-usuario" style="margin-left: 3%"> Cadastre-se</a>
       </div>
 
-  </ion-content><!--end login content section-->
+  </ion-content>
 </ion-view>

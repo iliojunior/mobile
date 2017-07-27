@@ -1,36 +1,43 @@
 angular.module('anuncios', [])
-.controller('listaAnunciosController', function ($scope, anunciosFactory, Redirecionador, $state) {
+.controller('listaAnunciosController', function ($scope, anunciosFactory, Redirecionador, $state, toastFactory, popUpFactory) {
 
   $scope.redirecionar = function (rota) {
     Redirecionador.irPara(rota);
   }
 
-  if ($state.current.name === 'menu.anuncios-por-setor') {
-    $scope.listaDeAnuncios = anunciosFactory.getAnunciosPorSetor();
-    console.log('está listando todos')
-  } else if ($state.current.name === 'menu.anuncios-filtrados'){
-    console.log('filtrado');
-  } else {
-    console.log($state.current.name)
-    console.log('foda-se')
-  }
-
-
-  // $scope.listaDeAnuncios = anunciosFactory.getAnunciosPorSetor();
+  $scope.listaDeAnuncios = anunciosFactory.getAnunciosPorSetor();
+  $scope.meusAnunciosAtivos = anunciosFactory.getAnunciosPorStatus(1);
+  $scope.meusAnunciosExpirados = anunciosFactory.getAnunciosPorStatus(0);
+  $scope.meusAnunciosAguardando = anunciosFactory.getAnunciosPorStatus(2);
 
   $scope.setores = anunciosFactory.getAllSetores();
 
-
-  $scope.getAnuncio = function (id) {
-    $scope.redirecionar('/menu/anuncio-detalhes/'+id);
-    $scope.anuncio = anunciosFactory.getAnuncioPorId();
-  }
-
   $scope.pesquisar = function (pesquisa) {
     pesquisa.setor = parseInt(pesquisa.setor);
+    alert('Você pesquisou por: \n Texto: '+pesquisa.texto+'\n Num. Setor: '+pesquisa.setor+'\n Filtro 1: '+pesquisa.filtro1+'\n Filtro 2: '+pesquisa.filtro2+'\n (Esse alerta n vai existir)')
     $scope.redirecionar('/menu/anuncios-por-setor/'+pesquisa.setor);
-    // $scope.redirecionar('/menu/anuncios-filtrados');
-    $scope.listaDeAnuncios = anunciosFactory.getAnunciosFiltrados(pesquisa);
+  }
+
+  $scope.excluirAnuncio = function (idDoAnuncio) {
+    var popUpConfirmacao = popUpFactory.excluirAnuncioConfirmacao();
+    popUpConfirmacao.then( function (resposta) {
+      if(resposta) { // se apertar no OK
+        anunciosFactory.excluirAnuncio(idDoAnuncio);
+        toastFactory.mostrarToastEmbaixo("Anúncio excluído!");
+        // atualiza lista:
+        $scope.meusAnunciosExpirados = anunciosFactory.getMeusAnunciosExpirados(1);
+        $scope.meusAnunciosAtivos = anunciosFactory.getMeusAnunciosAtivos(1);
+      }
+    })
+
+  }
+
+  $scope.ativarAnuncio = function (idDoAnuncioExpirado) {
+    anunciosFactory.ativarAnuncioExpirado(idDoAnuncioExpirado);
+    toastFactory.mostrarToastEmbaixo("Seu anúncio foi reativado!");
+    // atualiza lista;
+    $scope.meusAnunciosExpirados = anunciosFactory.getMeusAnunciosExpirados(1);
+    $scope.meusAnunciosAtivos = anunciosFactory.getMeusAnunciosAtivos(1);
   }
 
 })

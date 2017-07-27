@@ -1,16 +1,24 @@
 angular.module("login", [])
 
-.controller("loginController", function ($scope, Redirecionador, loginFactory, popUpFactory, $ionicPopup) {
+.controller("loginController", function ($scope, Redirecionador, loginFactory, popUpFactory, $ionicPopup, toastFactory) {
   $scope.usuario = {};
 
   $scope.redirecionar = function (rota) {
     Redirecionador.irPara(rota);
   }
 
+
   $scope.logar = function (usuarioDoFormularioDeLogin) {
-    // Tive que usar o <a> no html porq o button (por algum motivo) estava disparando o evento 2x
     loginFactory.validarLogin(usuarioDoFormularioDeLogin);
-    $scope.redirecionar('/menu/home')
+    $scope.usuario = {}
+    $scope.redirecionar('/menu/home');
+    toastFactory.mostrarToastEmbaixo('Seja Bem vindo!');
+  }
+
+  $scope.deslogar = function () {
+    loginFactory.deslogar();
+    $scope.redirecionar('/');
+    toastFactory.mostrarToastEmbaixo('Você decidiu sair do sistema.');
   }
 
   $scope.requisitarNovaSenha = function () {
@@ -19,7 +27,12 @@ angular.module("login", [])
     $ionicPopup.show({
       title: 'Informe seu e-mail de cadastro para receber as instruções.',
       scope: $scope,
-      template: "<input type='text' placeholder='seuemail@email.com' autofocus='true' ng-model='data.emailDeRecuperacao'>",
+      template: "<form name='recuperarSenhaForm'>"+
+                "<input ng-minlength='5' type='text' placeholder='seuemail@email.com' autofocus='true' name='emailDeRecuperacao' ng-model='data.emailDeRecuperacao' id='inputRecuperarSenha' ng-pattern='/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/' required>"+
+                "<div ng-messages='recuperarSenhaForm.emailDeRecuperacao.$error' style='margin-top: 10px'>"+
+                "<span style='color: #f22' ng-message='pattern'>E-mail fornecido é inválido.</span>"+
+                "<span style='color: #f22' ng-message='required'>Campo obrigatório</span>"+
+                "</div></form>",
       buttons: [
         {
             text: "  Cancelar",
@@ -29,47 +42,24 @@ angular.module("login", [])
           text: "  Ok!",
           type: 'ion-checkmark-round button-balanced',
           onTap: function (e) {
-            loginFactory.novaSenha($scope.data.emailDeRecuperacao);
+            var inputEmailRecuperarSenha = document.getElementById('inputRecuperarSenha')
+            if (!$scope.data.emailDeRecuperacao) {  //não foi preenchido
+              e.preventDefault(); // botão OK fica bloquiado (não faz nada), só o cancelar funciona
+              // inputEmailRecuperarSenha.style.border = "3px solid #f00";
+              // toastFactory.mostrarToastEmailInvalido('Preencha o e-mail!')
+            } else {  // campo preenchido
+              if (loginFactory.validarEmail($scope.data.emailDeRecuperacao)) {
+                loginFactory.novaSenha($scope.data.emailDeRecuperacao);
+                toastFactory.mostrarToastRecuperarSenha('As intruções foram enviadas para o seu e-mail!');
+              } else {
+                  e.preventDefault(); // tem q preencher o campo
+                  toastFactory.mostrarToastEmailInvalido('E-mail inválido!')
+              }
+            }
           }
         }
       ]
     })
+
   }
 })
-
-
-// angular.module("login", [])
-//
-// .controller("loginController", function ($scope, Redirecionador, loginFactory, popUpFactory, $ionicPopup) {
-//   $scope.redirecionar = function (rota) {
-//     Redirecionador.irPara(rota);
-//   }
-//
-//   $scope.logar = function (usuarioDoFormularioDeLogin) {
-//     loginFactory.validarLogin(usuarioDoFormularioDeLogin);
-//     $scope.redirecionar('/menu/home')
-//   }
-//
-//   $scope.requisitarNovaSenha = function () {
-//     $scope.data = {}
-//     $scope.data.emailDeRecuperacao = '';
-//     $ionicPopup.show({
-//       title: 'Informe seu e-mail de cadastro para receber as instruções.',
-//       scope: $scope,
-//       template: "<input type='text' placeholder='seuemail@email.com' autofocus='true' ng-model='data.emailDeRecuperacao'>",
-//       buttons: [
-//         {
-//           text: "  Ok!",
-//           type: 'ion-checkmark-round button-balanced',
-//           onTap: function (e) {
-//             loginFactory.novaSenha($scope.data.emailDeRecuperacao);
-//           }
-//         },
-//         {
-//           text: "  Cancelar",
-//           type: 'ion-close button-assertive'
-//         }
-//       ]
-//     })
-//   }
-// })
