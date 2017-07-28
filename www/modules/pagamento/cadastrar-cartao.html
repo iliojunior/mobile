@@ -1,0 +1,40 @@
+<ion-view view-title="Formas de pagamento">
+    <ion-nav-buttons side="left">
+        <a ng-click="$ionicGoBack()" class="button back-button buttons  button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+    </ion-nav-buttons>
+
+    <ion-content id="contract-details-content" style="margin-top: 0px">
+      <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium toolbar-in-content">
+          <div>
+              <h1>
+                  <i class="ion-card"></i>
+              </h1>
+              <h3>Novo cartão de crédito</h3>
+          </div>
+      </md-toolbar>
+      <div id="product-checkout-content" style="margin-top:0px">
+        <form name="formNovoCartao">
+          <h4 class="text-center" style="margin-bottom: 25px">Adicione as informações abaixo para completar o cadastro.</h4>
+          <md-input-container md-no-float>
+              <i class="ion-card"></i>
+              <input ng-model="cartao.numero" name="numero" required placeholder="Número do cartão">
+          </md-input-container>
+          <md-input-container md-no-float>
+              <i class="ion-android-people"></i>
+              <input ng-model="cartao.nome" name="nome" required placeholder="Nome no cartão">
+          </md-input-container>
+          <md-input-container md-no-float>
+              <i class="ion-android-calendar"></i>
+              <input ng-model="cartao.dataExpiracao" name="dataExpiracao" placeholder="Data de expiração do cartão">
+          </md-input-container>
+          <md-input-container md-no-float>
+              <i class="ion-locked"></i>
+              <input ng-model="cartao.codigoSeguranca" numbers-only name="codigoSeguranca" placeholder="Código de Segurança" type="tel">
+          </md-input-container>
+        </form>
+      </div>
+    </ion-content>
+
+</ion-view>

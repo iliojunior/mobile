@@ -31,7 +31,7 @@ window.globalVariable = {
   O módulo APP é o módulo global do projetos, todos os itens dependentes (na array de injeção de dependência) são os módulos usados
 */
 angular.module('app', ['ionic','ngIOS9UIWebViewPatch', 'ngMaterial', 'ngMessages', 'ngCordova',
-                      'exemplo', 'util', 'login', 'home', 'cadastroUsuario', 'anuncios'])
+                      'exemplo', 'util', 'login', 'home', 'cadastroUsuario', 'anuncios', 'pagamento'])
 
 .run(function($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state, $mdDialog, $mdBottomSheet) {
 

@@ -121,4 +121,30 @@ angular.module('app')
     },
   })
 
+  .state('menu.selecionar-pagamento-impulsao', {
+    url: '/selecionar-pagamento-impulsao',
+    params: {
+      isAnimated: false,
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'modules/pagamento/selecionar-pagamento-impulsao.html',
+        controller: 'pagamentoController'
+      }
+    },
+  })
+
+  .state('menu.cadastrar-cartao', {
+    url: '/cadastrar-cartao',
+    params: {
+      isAnimated: false,
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'modules/pagamento/cadastrar-cartao.html',
+        controller: 'pagamentoController'
+      }
+    },
+  })
+
 });
