@@ -1,5 +1,6 @@
 angular.module("cadastroUsuario", [])
   .controller('cadastroUsuarioController', function ($scope, Redirecionador, cadastroFactory, popUpFactory) {
+    $scope.usuario = {};
     $scope.mostrarSenha = false;
 
     $scope.redirecionar = function (rota) {
@@ -7,7 +8,6 @@ angular.module("cadastroUsuario", [])
     }
 
     $scope.mostrarEsconderSenha = function () {
-      alert('2');
       var camposenha1 = document.getElementById("senha");
       var camposenha2 = document.getElementById("senhaConfirmada");
       if (!$scope.mostrarSenha) {
@@ -22,8 +22,11 @@ angular.module("cadastroUsuario", [])
     }
 
     $scope.cadastrar = function (usuarioDoFormularioDeCadastro) {
-      alert('3');
       if (cadastroFactory.validarCadastro(usuarioDoFormularioDeCadastro)) {
+        $scope.formCadastroUsuario.$setPristine();
+        $scope.usuario = {};
+        $scope.mostrarSenha = false;
+        // document.getElementById("checkBoxMostrarSenha").classList.remove('md-checked');
         popUpFactory.cadastroSucesso().then( function (resposta) {
           $scope.redirecionar('/menu/home');
         })
