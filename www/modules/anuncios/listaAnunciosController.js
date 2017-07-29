@@ -29,7 +29,6 @@ angular.module('anuncios', [])
         $scope.meusAnunciosAtivos = anunciosFactory.getMeusAnunciosAtivos(1);
       }
     })
-
   }
 
   $scope.ativarAnuncio = function (idDoAnuncioExpirado) {

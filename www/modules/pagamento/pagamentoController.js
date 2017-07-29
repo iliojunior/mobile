@@ -1,6 +1,26 @@
 angular.module('pagamento', [])
-.controller('pagamentoController', function ($scope) {
+.controller('pagamentoController', function ($scope, pagamentoFactory, toastFactory, popUpFactory) {
 
-  $scope.cartoesCadastrados = [{id:0, nome: 'cartao 1', final: 1234}, {id: 1, nome: 'cartao 2', final: 9876}];
+  $scope.cartoesCadastrados = pagamentoFactory.getAllCartoes();
+
+  $scope.cadastrarCartao = function (cartao) {
+    if (pagamentoFactory.cadastrarCartao(cartao)) {
+      toastFactory.mostrarToastEmbaixo('Seu cartão foi cadastrado!');
+    } else {
+      popUpFactory.cadastroErro()
+    }
+  }
+
+  $scope.excluirCartao = function (idDoCartao) {
+    var popUpConfirmacao = popUpFactory.excluirCartaoConfirmacao();
+    popUpConfirmacao.then( function (resposta) {
+      if(resposta) { // se apertar no OK
+        pagamentoFactory.excluirCartao(idDoCartao);
+        toastFactory.mostrarToastEmbaixo("Anúncio excluído!");
+        // atualiza lista:
+        $scope.cartoesCadastrados = pagamentoFactory.getAllCartoes();
+      }
+    })
+  }
 
 })

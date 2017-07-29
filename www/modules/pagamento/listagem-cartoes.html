@@ -1,0 +1,35 @@
+<ion-view view-title="Meus Cartões">
+    <ion-nav-buttons side="left">
+        <a ng-click="$ionicGoBack()" class="button back-button buttons  button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+    </ion-nav-buttons>
+
+    <ion-content id="contract-details-content" style="margin-top: 0px">
+      <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium toolbar-in-content">
+          <div>
+              <h1>
+                  <i class="ion-card"></i>
+              </h1>
+              <h3>Meus Cartões</h3>
+          </div>
+      </md-toolbar>
+      <div id="product-checkout-content" style="margin-top:0px">
+        <div class="list">
+          <div class="item item-button-right" ng-repeat="cartao in cartoesCadastrados">
+            <i class="ion-card" style="margin-right: 20px; font-size: 30px !important"></i>
+            <span class="card-number" style="font-size: 20px">{{cartao.numero}}</span>
+            <a class="button button-assertive" style="margin-top: 5px" ng-click="excluirCartao(cartao.id)">
+              <i class="ion-trash-a" style="font-size: 30px"></i>
+            </a>
+          </div>
+        </div>
+        <hr/>
+        <a class="md-raised social-button md-button md-default-theme material-background"
+           style="width: 100%; font-size: 20px" href="#/menu/cadastrar-cartao">
+           Adicionar novo cartão
+        </a>
+      </div>
+    </ion-content>
+
+</ion-view>

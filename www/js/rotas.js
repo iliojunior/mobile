@@ -121,6 +121,19 @@ angular.module('app')
     },
   })
 
+  .state('menu.listagem-cartoes', {
+    url: '/listagem-cartoes',
+    params: {
+      isAnimated: false,
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'modules/pagamento/listagem-cartoes.html',
+        controller: 'pagamentoController'
+      }
+    },
+  })
+
   .state('menu.selecionar-pagamento-impulsao', {
     url: '/selecionar-pagamento-impulsao',
     params: {
