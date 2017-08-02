@@ -160,4 +160,17 @@ angular.module('app')
     },
   })
 
+  .state('menu.finalizar-pagamento', {
+    url: '/finalizar-pagamento',
+    params: {
+      isAnimated: false,
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'modules/pagamento/finalizar-pagamento.html',
+        controller: 'pagamentoController'
+      }
+    },
+  })
+
 });

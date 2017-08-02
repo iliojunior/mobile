@@ -18,17 +18,17 @@
         <div class="col total-summary">
           Cartões de Crédito Cadastrado:
         </div>
-          <div>
+        <div>
           <md-radio-group ng-model="cartao.id">
             <md-radio-button value="{{cartao.id}}" ng-repeat="cartao in cartoesCadastrados"  class="row credit-card">
               <i class="ion-card" style="margin-right: 20px; font-size: 30px !important"></i>
-              <span class="card-number" style="font-size: 20px">{{cartao.numero}}</span>
+              <span class="card-number" style="font-size: 20px"> XXXX XXXX XXXX {{cartao.numero}}</span>
             </md-radio-button>
           </md-radio-group>
         </div>
         <a class="md-raised social-button md-button md-default-theme material-background"
            href="#/menu/finalizar-pagamento" style="width: 100%; font-size: 20px; background-color: #469c22 !important">
-           Finalizar Compra <i class="ion-checkmark-round" style="margin-left: 5px"></i>
+           Confirmar compra <i class="ion-arrow-right-a" style="margin-left: 5px"></i>
         </a>
         <hr/>
         <div class="text-center">

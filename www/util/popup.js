@@ -64,7 +64,7 @@ angular.module('util')
 
   var _excluirCartaoConfirmacao = function () {
       return $ionicPopup.confirm({
-        title: 'Excluir anúncio',
+        title: 'Excluir cartão de crédito',
         template: 'Você tem certeza que quer excluir este cartão? A operação não poderá ser desfeita.',
         okText: ' Excluir',
         okType: 'ion-checkmark-round button-balanced',

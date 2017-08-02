@@ -2,9 +2,13 @@ angular.module('pagamento')
 .factory('pagamentoFactory', function () {
 
   var _cartoes = [
-                  {id: 1, nome: 'cartao 1', numero: 111222333444555666, dataExpiracao: "08/2024", codigoSeguranca: 000},
-                  {id: 2, nome: 'cartao 2', numero: 999888777666555444, dataExpiracao: "03/2021", codigoSeguranca: 111}
+                  {id: 1, nome: 'João A. da Silva', numero: 1112223334445556, dataExpiracao: "08/2024", codigoSeguranca: 111},
+                  {id: 2, nome: 'João A. da Silva', numero: 9998887776665554, dataExpiracao: "03/2021", codigoSeguranca: 222}
                 ];
+
+  var _ultimosQuatroDigitos = function (todosOsDigitosDoCartao) {
+    return todosOsDigitosDoCartao.substr(todosOsDigitosDoCartao.length - 4);
+  }
 
   var _cadastrarCartao = function (cartaoObj) {
     _cartoes.push(cartaoObj);
@@ -13,6 +17,14 @@ angular.module('pagamento')
 
   var _getAllCartoes = function () {
     return _cartoes
+  };
+
+  var _getCartaoPorId = function (id) {
+    for (var i = 0; i < _cartoes.length; i++) {
+      if (_cartoes[i].id === id) {
+        return _cartoes[i]
+      }
+    }
   };
 
   var _excluirCartao = function (idDoCartaoPraRemover) {
@@ -24,8 +36,10 @@ angular.module('pagamento')
   }
 
   return {
+    ultimosQuatroDigitos: _ultimosQuatroDigitos,
     cadastrarCartao: _cadastrarCartao,
     getAllCartoes: _getAllCartoes,
+    getCartaoPorId: _getCartaoPorId,
     excluirCartao: _excluirCartao,
   }
 
