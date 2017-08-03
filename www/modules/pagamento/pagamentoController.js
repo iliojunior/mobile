@@ -1,26 +1,14 @@
 angular.module('pagamento', [])
-.controller('pagamentoController', function ($scope, pagamentoFactory, toastFactory, popUpFactory, $location, $mdBottomSheet) {
+.controller('pagamentoController', function ($scope, pagamentoFactory, anunciosFactory, toastFactory, popUpFactory, $location, $mdBottomSheet, $ionicHistory) {
 
   $scope.cartoesCadastrados = pagamentoFactory.getAllCartoes();
-  formatarUltimosNumeros();
-
-
-  function formatarUltimosNumeros () {
-    for (var i = $scope.cartoesCadastrados.length - 1; i >= 0; i--) {
-      $scope.cartoesCadastrados[i].numero = pagamentoFactory.ultimosQuatroDigitos($scope.cartoesCadastrados[i].numero.toString())
-    }
-  }
-
 
   $scope.cadastrarCartao = function (cartao) {
     if (pagamentoFactory.cadastrarCartao(cartao)) {
       toastFactory.mostrarToastEmbaixo('Seu cartão foi cadastrado!');
-      setTimeout( function () {
-        //Redirecionador.irPara(rota)
-        console.log('kkkk')        
-        
-      }, 2000)
-      $location.path('/menu/listagem-cartoes');
+      $ionicHistory.goBack();
+      $scope.cartoesCadastrados = pagamentoFactory.getAllCartoes(); 
+      //$location.path('/menu/listagem-cartoes');
     } else {
       popUpFactory.cadastroErro()
     }
@@ -28,7 +16,6 @@ angular.module('pagamento', [])
 
   $scope.showListBottomSheet = function ($event, IDdoCartao) {
     var cartaoDetalhes = pagamentoFactory.getCartaoPorId(IDdoCartao);
-    //console.log(cartaoDetalhes)
       $mdBottomSheet.show({
           templateUrl: 'detalhes-cartao',
           targetEvent: $event,
@@ -51,7 +38,10 @@ angular.module('pagamento', [])
     })
   }
 
-
+  $scope.selecionarCartao = function (idCartaoSelecionado) {
+    pagamentoFactory.setMetodoPagamento(idCartaoSelecionado);
+    $location.path('/menu/finalizar-pagamento');
+  }
 
 })
 .controller('detalhesDoCartaoCtrl', function($scope, $mdBottomSheet, detalhesDoCartao) {

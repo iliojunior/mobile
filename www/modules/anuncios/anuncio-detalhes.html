@@ -62,7 +62,7 @@
         </md-content>
       </md-tab>
 
-      <md-tab label="Impulsionar">
+      <md-tab label="Impulsionar" ng-if="anuncio.status == 1">
         <md-content  id="pricing-content">
           <h4 class="text-center price-detail">Impulsione seu anúncio para atingir novos clientes! Confira nossos pacotes:</h4>
           <hr/>
@@ -82,7 +82,8 @@
               <div class="col-33 package-subscribe">
                 R$ {{impulsao.preco}}
               </div>
-              <div class="col-33 subscribe-button" style="text-align: right" ng-click="teste()">
+              <div class="col-33 subscribe-button" style="text-align: right" 
+                   ng-click="selecionarPlanoDeImpulsao(impulsao.id, anuncio.id)">
                 <a class="md-raised md-button md-default-theme material-background" style="background-color: {{impulsao.cor}} !important">
                   ADQUIRIR
                 </a>

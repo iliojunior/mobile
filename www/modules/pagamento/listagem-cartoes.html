@@ -17,9 +17,12 @@
       </md-toolbar>
       <div id="product-checkout-content" style="margin-top:0px">
         <div class="list">
-          <div class="item item-button-right" ng-repeat="cartao in cartoesCadastrados" ng-click="showListBottomSheet($event, cartao.id)">
-            <i class="ion-card" style="margin-right: 20px; font-size: 30px !important"></i>
-            <span class="card-number" style="font-size: 20px"> XXXX XXXX XXXX {{cartao.numero}}</span>
+          <div class="item item-button-right" ng-repeat="cartao in cartoesCadastrados" 
+               >
+            <div ng-click="showListBottomSheet($event, cartao.id)">
+              <i class="ion-card" style="margin-right: 3%; font-size: 20px !important"></i>
+              <span class="card-number" style="font-size: 20px"> XXXX XXXX XXXX {{cartao.numero}}</span>
+            </div>  
             <a class="button button-assertive" style="margin-top: 5px" ng-click="excluirCartao(cartao.id)">
               <i class="ion-trash-a" style="font-size: 30px"></i>
             </a>

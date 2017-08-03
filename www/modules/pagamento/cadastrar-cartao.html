@@ -7,70 +7,70 @@
 
     <ion-content id="contract-details-content" style="margin-top: 0px">
       <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium toolbar-in-content">
-          <div>
-              <h1>
-                  <i class="ion-card"></i>
-              </h1>
-              <h3>Cadastrar Cartão de Crédito</h3>
-          </div>
+        <div>
+          <h1> <i class="ion-card"></i> </h1>
+          <h3>Cadastrar Cartão de Crédito</h3>
+        </div>
       </md-toolbar>
       <div id="social-sign-up-content">
         <h4 class="text-center" style="margin-top: -10px">Adicione as informações abaixo para completar o cadastro do seu cartão.</h4>
         <form name="formNovoCartao" ng-controller="pagamentoController">
           <md-input-container md-no-float="">
-              <span>Número do cartão:</span>
-              <div>
-                <i class="ion-card" style="margin-left: 10px"></i>
-                <input type="tel" limit-char limit="16" ng-model="cartao.numero"
-                       name="numero" required placeholder="Os dígitos do seu cartão">
-              </div>
-              <div style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
-                    ng-messages="formNovoCartao.numero.$error"
-                    ng-if="formNovoCartao.numero.$dirty">
-                <p ng-message="required">Campo obrigatório</p>
-              </div>
-              <small>Preencha apenas com números.</small>
+            <span>Número do cartão:</span>
+            <div>
+              <i class="ion-card" style="margin-left: 10px"></i>
+              <input type="tel" limit-char limit="16" ng-model="cartao.numero"
+                     name="numero" required placeholder="Os dígitos do seu cartão">
+            </div>
+            <div style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
+                  ng-messages="formNovoCartao.numero.$error"
+                  ng-if="formNovoCartao.numero.$dirty">
+              <p ng-message="required">Campo obrigatório</p>
+            </div>
+            <small>Apenas números.</small>
           </md-input-container>
           <md-input-container md-no-float>
-            <span>Nome no cartão:</span>
-              <div>
-                <i class="ion-android-people" style="margin-left: 10px"></i>
-                <input type="text" ng-model="cartao.nome" name="nome" required placeholder="Exemplo: João A. da Silva">
-              </div>
-              <div style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
-                    ng-messages="formNovoCartao.nome.$error"
-                    ng-if="formNovoCartao.nome.$dirty">
-                <p ng-message="required" style="margin-top: 15px">Campo obrigatório</p>
-              </div>
-              <small>O nome contido no cartão.</small>
+            <span>Nome do titular:</span>
+            <div>
+              <i class="ion-android-people" style="margin-left: 10px"></i>
+              <input type="text" ng-model="cartao.nome" limit-char limit="25" name="nome"
+                     required placeholder="Exemplo: João A. da Silva">
+            </div>
+            <div style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
+                  ng-messages="formNovoCartao.nome.$error"
+                  ng-if="formNovoCartao.nome.$dirty">
+              <p ng-message="required" style="margin-top: 15px">Campo obrigatório</p>
+            </div>
+            <small>O nome contido no cartão.</small>
           </md-input-container>
           <md-input-container md-no-float>
-            <span>Data de expiração:</span>
-              <div>
-                <i class="ion-android-calendar" style="margin-left: 10px"></i>
-                <input type="text" maxlength="7" ng-model="cartao.dataExpiracao"
-                       name="dataExpiracao" placeholder="Exemplo: 07/2023" required>
-                <small>Mês e ano.</small>
-              </div>
-              <div style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
-                    ng-messages="formNovoCartao.dataExpiracao.$error"
-                    ng-if="formNovoCartao.dataExpiracao.$dirty">
-                <p ng-message="required" style="margin-top: 15px">Campo obrigatório</p>
-              </div>
+            <span>Validade:</span>
+            <div>
+              <i class="ion-android-calendar" style="margin-left: 10px"></i>
+              <input type="text" limit-char limit="7" ng-model="cartao.dataExpiracao"
+                     name="dataExpiracao" placeholder="Exemplo: 07/2023" required>
+              
+            </div>
+            <small>Mês e ano.</small>
+            <div style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
+                  ng-messages="formNovoCartao.dataExpiracao.$error"
+                  ng-if="formNovoCartao.dataExpiracao.$dirty">
+              <p ng-message="required" style="margin-top: 15px">Campo obrigatório</p>
+            </div>
           </md-input-container>
           <md-input-container md-no-float>
             <span>Código de Segurança:</span>
-              <div>
-                <i class="ion-locked" style="margin-left: 10px"></i>
-                <input type="tel" limit-char limit="3" ng-model="cartao.codigoSeguranca"
-                       placeholder="Código de Segurança" name="codigoSeguranca">
-                <small>Os três dígitos contidos no verso do cartão.</small>
-              </div>
-              <div style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
-                    ng-messages="formNovoCartao.codigoSeguranca.$error"
-                    ng-if="formNovoCartao.codigoSeguranca.$dirty">
-                <p ng-message="required" style="margin-top: 15px">Campo obrigatório</p>
-              </div>
+            <div>
+              <i class="ion-locked" style="margin-left: 10px"></i>
+              <input type="tel" limit-char limit="3" ng-model="cartao.codigoSeguranca"
+                     placeholder="Código de Segurança" name="codigoSeguranca">
+              <small>Os três dígitos contidos no verso do cartão.</small>
+            </div>
+            <div style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
+                  ng-messages="formNovoCartao.codigoSeguranca.$error"
+                  ng-if="formNovoCartao.codigoSeguranca.$dirty">
+              <p ng-message="required" style="margin-top: 15px">Campo obrigatório</p>
+            </div>
           </md-input-container>
           <button type="button" ng-click="cadastrarCartao(cartao)" style="width: 95%; margin-top: -15px"
                   class="md-raised social-button md-button md-default-theme material-background"

@@ -1,4 +1,4 @@
-<ion-view view-title="Formas de pagamento">
+<ion-view view-title="Finalizar compra">
     <ion-nav-buttons side="left">
         <a ng-click="$ionicGoBack()" class="button back-button buttons  button-clear header-item nav-back-btn">
             <i class="ion-android-arrow-back"></i>
@@ -15,35 +15,45 @@
           </div>
       </md-toolbar>
       <div id="product-checkout-content" style="margin-top:0px">
+        <!--
         <div class="col total-summary">
           Confira os itens da sua compra:
         </div>
+        -->
         <div>
           <md-list id="device-information-content">
             <md-list-item class="row">
-                <div class="col-50 title">
+                <div class="col-25 title" style="font-weight: 700">
                     Anúncio :
                 </div>
-                <div class="col-50">
-                    Nome do anúncio (parametro)
+                <div class="col-75">
+                    {{compra.nomeAnuncio}}
                 </div>
             </md-list-item>
             <md-divider></md-divider>
-            <md-list-item class="row">
-                <div class="col-50 title">
+            <md-list-item class="row"> 
+                <div class="col-25 title"style="font-weight: 700">
                     Pacote :
                 </div>
-                <div class="col-50">
-                    Nome do pacote (parametro)
+                <div class="col-75">
+                    {{compra.nomePacote}}
                 </div>
             </md-list-item>
             <md-divider></md-divider>
             <md-list-item class="row">
-                <div class="col-50 title">
+                <div class="col-25 title" style="font-weight: 700">
+                    Cartão :
+                </div>
+                <div class="col-75">
+                     XXXX XXXX XXXX {{compra.cartao}}
+                </div>
+            </md-list-item>            <md-divider></md-divider>
+            <md-list-item class="row">
+                <div class="col-25 title" style="font-weight: 700">
                     Preço :
                 </div>
-                <div class="col-50">
-                    Preço do pacote (parametro)
+                <div class="col-75">
+                    {{compra.preco}}
                 </div>
             </md-list-item>
             <md-divider></md-divider>            
@@ -51,7 +61,7 @@
           </md-list>
         </div>
         <a class="md-raised social-button md-button md-default-theme material-background"
-           href="#/menu/finalizar-pagamento" style="width: 100%; font-size: 20px; background-color: #469c22 !important">
+           ng-click="finalizarCompra(compra)" style="width: 100%; font-size: 20px; background-color: #469c22 !important">
            Finalizar Compra <i class="ion-checkmark-round" style="margin-left: 5px"></i>
         </a>
         <hr/>

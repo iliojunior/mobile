@@ -1,5 +1,5 @@
 angular.module('anuncios')
-.controller('anuncioController', function ($scope, $state, anunciosFactory, $mdBottomSheet, $location) {
+.controller('anuncioController', function ($scope, $state, anunciosFactory, pagamentoFactory, $mdBottomSheet, $location) {
 
   $scope.anuncio = anunciosFactory.getAnuncioPorId($state.params.index);
   $scope.tiposDeImpulsao = anunciosFactory.getTiposDeImpulsao();
@@ -22,8 +22,9 @@ angular.module('anuncios')
       $mdBottomSheet.hide();
   }
 
-  $scope.teste = function () {
-    // alert('não faz nada ainda')
+  $scope.selecionarPlanoDeImpulsao = function (idDoPlano, idDoAnuncio) {
+    pagamentoFactory.setTipoImpulsaoDeAnuncio(idDoPlano);
+    pagamentoFactory.setAnuncioParaImpulsionar(idDoAnuncio);
     $location.path('/menu/selecionar-pagamento-impulsao')
   }
 

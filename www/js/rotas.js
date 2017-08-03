@@ -168,7 +168,7 @@ angular.module('app')
     views: {
       'menuContent': {
         templateUrl: 'modules/pagamento/finalizar-pagamento.html',
-        controller: 'pagamentoController'
+        controller: 'finalizarPagamentoController'
       }
     },
   })
