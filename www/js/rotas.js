@@ -173,4 +173,17 @@ angular.module('app')
     },
   })
 
+  .state('menu.opcoes', {
+    url: '/opcoes',
+    params: {
+      isAnimated: false,
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'modules/configuracao/opcoes.html',
+        controller: 'configuracaoController'
+      }
+    },
+  })
+
 });

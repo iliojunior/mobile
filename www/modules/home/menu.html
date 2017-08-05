@@ -2,7 +2,8 @@
     <ion-side-menu-content>
         <ion-nav-bar class="bar-balanced  material-background-nav-bar" style="opacity: 1">
             <ion-nav-buttons side="left">
-                <a class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="toggleLeft()"></a>
+                <a class="button button-icon button-clear ion-navicon" menu-toggle="left" 
+                    ng-click="toggleLeft()"></a>
             </ion-nav-buttons>
             <ion-nav-buttons side="right">
                 <a class="button button-icon button-clear ion-search" href="#/menu/busca"></a>
@@ -12,7 +13,7 @@
               <a class="button button-icon button-clear ion-search" href="#/menu/anuncio-detalhes/1"></a>
           </ion-nav-buttons> -->
         </ion-nav-bar>
-        <ion-nav-view name="menuContent"></ion-nav-view>
+        <ion-nav-view name="menuContent" ></ion-nav-view>
     </ion-side-menu-content>
     <md-sidenav md-component-id="left" on-swipe-left="closeSideNav()" on-drag-left="closeSideNav()">
         <!--menu section-->
@@ -20,7 +21,6 @@
             <!--menu header section-->
             <div class="menu-left-header">
                 <img class="user-img" src="img/profileAvatar.jpg">
-
                 <p>
                     <span class="title">Raphael Vizoni do Prado</span>
                     <br/>
@@ -29,13 +29,14 @@
             </div><!--end menu header section-->
         </div> <!--menu content section-->
         <ion-content id="toggle-menu-left-content">
-
             <!--If device is android application will present below code.-->
             <!--It will disable animation to better performance on android.-->
             <!--list section-->
-            <div ng-if="isAndroid" class="menu-list">
-                <md-subheader class="md-warn">Anúncios</md-subheader>
-                <div class="row menu-item"  ng-click="navigateTo('menu.home')" style="background-color: #e6e6dc">
+            <!--<div ng-if="isAndroid" class="menu-list">-->
+            <div class="menu-list">
+                <md-subheader class="md-warn"" >Anúncios</md-subheader>
+                <div class="row menu-item" ng-click="navigateTo('menu.home')" 
+                    style="background-color: #e6e6dc" id="menuHomeTour">
                     <div class="col-33" style="font-weight: 600; color: #206b38">
                         <i class="fa fa-newspaper-o"></i>
                     </div>
@@ -43,7 +44,7 @@
                         <span>HOME</span>
                     </div>
                 </div>
-                <div class="row menu-item"  ng-click="navigateTo('menu.meus-anuncios')">
+                <div class="row menu-item" ng-click="navigateTo('menu.meus-anuncios')" id="menuMeusAnunciosTour">
                     <div class="col-33">
                         <i class="fa fa-file-text-o"></i>
                     </div>
@@ -51,6 +52,7 @@
                         <span>Meus anúncios</span>
                     </div>
                 </div>
+                <!--
                 <div class="row menu-item" ng-click="navigateTo('app.notelist')">
                     <div class="col-33">
                         <i class="fa fa-truck"></i>
@@ -59,8 +61,10 @@
                         <span>Frete</span>
                     </div>
                 </div>
+                -->
                 <md-subheader class="md-warn">Perfil</md-subheader>
-                <div class="row menu-item"  ng-click="navigateTo('menu.listagem-cartoes')">
+                <div class="row menu-item"  ng-click="navigateTo('menu.listagem-cartoes')"
+                        id="menuMeusCartoesTour">
                     <div class="col-33">
                         <i class="ion-card"></i>
                     </div>
@@ -68,6 +72,7 @@
                         <span>Meus Cartões</span>
                     </div>
                 </div>
+                <!--
                 <div class="row menu-item"  ng-click="navigateTo('app.singlePushNotification')">
                     <div class="col-33">
                         <i class="fa fa-id-card-o"></i>
@@ -84,6 +89,7 @@
                         <span>Alterar Senha</span>
                     </div>
                 </div>
+
                 <md-subheader class="md-warn">Empresa</md-subheader>
                 <div class="row menu-item"  ng-click="navigateTo('app.wordpressLogin')">
                     <div class="col-33">
@@ -134,8 +140,9 @@
                         <span>Mensal</span>
                     </div>
                 </div>
+                -->
                 <md-subheader class="md-warn">Configurações</md-subheader>
-                <div class="row menu-item"  ng-click="navigateTo('app.iosMapConnect')">
+                <div class="row menu-item"  ng-click="navigateTo('menu.opcoes')">
                     <div class="col-33">
                         <i class="fa fa-cog"></i>
                     </div>
@@ -143,6 +150,7 @@
                         <span>Opções</span>
                     </div>
                 </div>
+                <!--
                 <div class="row menu-item"  ng-click="navigateTo('app.androidMapConnect')">
                     <div class="col-33">
                         <i class="fa fa-info-circle"></i>
@@ -151,8 +159,11 @@
                         <span>Ajuda</span>
                     </div>
                 </div>
+                <hr/>
+                -->
                 <!-- <md-subheader class="md-warn">SAIR</md-subheader> -->
-                <div ng-controller="loginController" class="row menu-item" ng-click="deslogar()" style="background-color: #e6e6dc">
+                <div ng-controller="loginController" class="row menu-item" ng-click="deslogar()"
+                     style="background-color: #e6e6dc" id="menuSairTour">
                     <div class="col-33">
                         <i class="fa fa-power-off" style="color: #f00"></i>
                     </div>

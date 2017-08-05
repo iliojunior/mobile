@@ -1,6 +1,25 @@
 angular.module('app')
-.controller('menuController', function ($scope, $timeout, $mdUtil, $mdSidenav, $log, $ionicHistory, $state, $ionicPlatform, $mdDialog, $mdBottomSheet, $mdMenu, $mdSelect) {
+.controller('menuController', function ($scope, $timeout, $mdUtil, $mdSidenav, $log, $ionicHistory,
+                                         $state, $ionicPlatform, $mdDialog, $mdBottomSheet,
+                                         $mdMenu, $mdSelect, tourFactory) {
   $scope.toggleLeft = buildToggler('left');
+
+  /*$timeout(function () {
+    $scope.toggleLeft();
+  });
+  */
+  $timeout(function () {
+    if (localStorage.getItem('tourFinalizado') === "false") {
+      $scope.toggleLeft();
+      //localStorage.setItem('tourFinalizado',"true");
+      console.log('vai ter tour');
+      tourFactory.iniciarTour()
+    }
+  },1500);
+
+
+
+
 
   // buildToggler is for create menu toggle.
   // Parameter :
