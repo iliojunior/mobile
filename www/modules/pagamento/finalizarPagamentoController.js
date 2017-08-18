@@ -6,7 +6,6 @@ angular.module('pagamento')
   var retornoCompra = pagamentoFactory.getCompra();
   var _pacoteComprado       = anunciosFactory.getTipoDeImpulsaoPorId(retornoCompra.tipoImpulsaoDeAnuncio);
   var _anuncioComprado      = anunciosFactory.getAnuncioPorId(retornoCompra.anuncio);
-  var _cartaoComprado       = pagamentoFactory.get
 
   $scope.compra.nomeAnuncio = _anuncioComprado.nome;
   $scope.compra.nomePacote = _pacoteComprado.nome;
@@ -15,8 +14,10 @@ angular.module('pagamento')
 
   $scope.finalizarCompra = function (compra) {
     if (pagamentoFactory.finalizarCompra(compra)) {
+      console.log(compra)
       toastFactory.mostrarToastEmbaixo("Compra realizada com sucesso!");
-      $location.path('/menu/meus-anuncios')
+      //$location.path('/menu/meus-anuncios')
+      $location.path('/menu/home')
     } else {
       toastFactory.mostrarToastEmbaixo("Ops... Algo deu errado. Tente novamente mais tarde!")
     }
