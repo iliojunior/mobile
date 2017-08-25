@@ -25,19 +25,26 @@ angular.module('anuncios', [])
         anunciosFactory.excluirAnuncio(idDoAnuncio);
         toastFactory.mostrarToastEmbaixo("Anúncio excluído!");
         // atualiza lista:
-        $scope.meusAnunciosExpirados = anunciosFactory.getMeusAnunciosExpirados(1);
-        $scope.meusAnunciosAtivos = anunciosFactory.getMeusAnunciosAtivos(1);
+        //$scope.meusAnunciosExpirados = anunciosFactory.getMeusAnunciosExpirados(1);
+        //$scope.meusAnunciosAtivos = anunciosFactory.getMeusAnunciosAtivos(1);
+        atualizarListagemDeAnuncios();
       }
     })
-
   }
 
   $scope.ativarAnuncio = function (idDoAnuncioExpirado) {
     anunciosFactory.ativarAnuncioExpirado(idDoAnuncioExpirado);
     toastFactory.mostrarToastEmbaixo("Seu anúncio foi reativado!");
     // atualiza lista;
-    $scope.meusAnunciosExpirados = anunciosFactory.getMeusAnunciosExpirados(1);
-    $scope.meusAnunciosAtivos = anunciosFactory.getMeusAnunciosAtivos(1);
+    //$scope.meusAnunciosExpirados = anunciosFactory.getMeusAnunciosExpirados(1);
+    //$scope.meusAnunciosAtivos = anunciosFactory.getMeusAnunciosAtivos(1);
+    atualizarListagemDeAnuncios();
+  }
+
+  function atualizarListagemDeAnuncios () { 
+    $scope.meusAnunciosAtivos = anunciosFactory.getAnunciosPorStatus(1);
+    $scope.meusAnunciosExpirados = anunciosFactory.getAnunciosPorStatus(0);
+    $scope.meusAnunciosAguardando = anunciosFactory.getAnunciosPorStatus(2);
   }
 
 })

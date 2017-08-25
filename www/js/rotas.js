@@ -121,6 +121,19 @@ angular.module('app')
     },
   })
 
+  .state('menu.listagem-cartoes', {
+    url: '/listagem-cartoes',
+    params: {
+      isAnimated: false,
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'modules/pagamento/listagem-cartoes.html',
+        controller: 'pagamentoController'
+      }
+    },
+  })
+
   .state('menu.selecionar-pagamento-impulsao', {
     url: '/selecionar-pagamento-impulsao',
     params: {
@@ -143,6 +156,32 @@ angular.module('app')
       'menuContent': {
         templateUrl: 'modules/pagamento/cadastrar-cartao.html',
         controller: 'pagamentoController'
+      }
+    },
+  })
+
+  .state('menu.finalizar-pagamento', {
+    url: '/finalizar-pagamento',
+    params: {
+      isAnimated: false,
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'modules/pagamento/finalizar-pagamento.html',
+        controller: 'finalizarPagamentoController'
+      }
+    },
+  })
+
+  .state('menu.opcoes', {
+    url: '/opcoes',
+    params: {
+      isAnimated: false,
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'modules/configuracao/opcoes.html',
+        controller: 'configuracaoController'
       }
     },
   })

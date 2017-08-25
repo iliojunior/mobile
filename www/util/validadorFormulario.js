@@ -21,7 +21,7 @@ angular.module('util')
           // values
           var val1 = ngModel.$viewValue;
           var val2 = attrs.passwordVerify;
-          // set validity
+          // set validityz
           ngModel.$setValidity('passwordVerify', val1 === val2);
         };
       }

@@ -30,11 +30,16 @@ window.globalVariable = {
 /*        ATENÇÃO:
   O módulo APP é o módulo global do projetos, todos os itens dependentes (na array de injeção de dependência) são os módulos usados
 */
-angular.module('app', ['ionic','ngIOS9UIWebViewPatch', 'ngMaterial', 'ngMessages', 'ngCordova',
-                      'exemplo', 'util', 'login', 'home', 'cadastroUsuario', 'anuncios', 'pagamento'])
+angular.module('app', ['ionic','ngIOS9UIWebViewPatch', 'ngMaterial', 'ngMessages', 'ngCordova', 'nzTour',
+                      'exemplo', 'util', 'login', 'home', 'cadastroUsuario', 'anuncios', 'pagamento',
+                      'configuracao'])
 
 .run(function($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state, $mdDialog, $mdBottomSheet) {
 
+
+  if (localStorage.getItem('tourFinalizado') === null) {
+    localStorage.setItem('tourFinalizado','false') /* Tem que ser em STRING pq o localStorage só armazena string*/
+  }
 
   // Create custom defaultStyle.
   function getDefaultStyle() {

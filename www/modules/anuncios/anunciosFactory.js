@@ -8,18 +8,18 @@ angular.module('anuncios')
   ];
 
   var _anunciosPorSetor = [ // ESTÁTICO
-    {id: 1, nome: 'Trator ABCD', id_setor: 1, imagem: 'img/bg_cover_01.png', cidade: 'Maringá', estado: 'PR', preco: 12.50, status: 1},
-    {id: 2, nome: 'Caminhão EFGH', id_setor: 2, imagem: 'img/bg_cover_01.png', cidade: 'Maringá', estado: 'PR', preco: 89.00, status: 0},
-    {id: 3, nome: 'Secadora IJKL', id_setor: 3, imagem: 'img/bg_cover_01.png', cidade: 'Cianorte', estado: 'PR', preco: 51.50, status: 2},
-    {id: 4, nome: 'Colheitadeira MNOP', id_setor: 1, imagem: 'img/bg_cover_01.png', cidade: 'Curitiba', estado: 'PR', preco: 159.00, status: 2},
-    {id: 5, nome: 'Carriola MNOP', id_setor: 2, imagem: 'img/bg_cover_01.png', cidade: 'Cianorte', estado: 'PR', preco: 27.10, status: 1},
+    {id: 1, nome: 'Trator F700', id_setor: 1, imagem: 'img/anuncios/trator_1.jpg', descricao: 'Trator em ótimo estado, bom para colheitas pequenas, motor poderoso e silencioso!', cidade: 'Maringá', estado: 'PR', preco: 12.50, status: 1, impulsao: 4, marca: 'Valtra', ano: 2001, cobranca: 'Por Dia'},
+    {id: 2, nome: 'Caminhão VOLVO', id_setor: 2, imagem: 'img/anuncios/caminhao.jpg', descricao: 'Disponibilizo meu caminhão para realizar diversas entregas, vamos negociar?', cidade: 'Maringá', estado: 'PR', preco: 89.00, status: 0, impulsao: 0, marca: 'Volvo', ano: 1997, cobranca: 'Por Dia'},
+    {id: 3, nome: 'Secadora Multi-Uso', id_setor: 3, imagem: 'img/anuncios/secadora.gif', descricao: 'Minha secadora de grãos está parada e preciso de dinheiro', cidade: 'Cianorte', estado: 'PR', preco: 51.50, status: 2, impulsao: 2, marca: 'Mediza', ano: 2001, cobranca: 'Por Hora'},
+    {id: 4, nome: 'Colheitadeira 50-50', id_setor: 1, imagem: 'img/anuncios/colheitadeira.jpg', descricao: 'Máquina perfeita para acelerar seu processo, você não pode perder!!!!', cidade: 'Curitiba', estado: 'PR', preco: 159.00, status: 2, impulsao: 0, marca: 'Massey Ferguson', ano: 2015, cobranca: 'Por Dia'},
+    {id: 5, nome: 'Carriola 50Kg', id_setor: 2, imagem: 'img/anuncios/carriola.jpg', descricao: 'Carriola novinha aguentando até 50kg, contato por whatsapp', cidade: 'Cianorte', estado: 'PR', preco: 27.10, status: 1, impulsao: 1, marca: 'Twenga', ano: 2017, cobranca: 'Por Hora'},
   ]
 
   var _tiposDeImpulsao = [
-    {id: 1, nome: 'Bronze', descricao: 'Com o pacote bronze, seu anúncio ficará no topo das pesquisas por 7 dias!', preco: 4.99, tempo: 7, cor: '#c38d4a'},
-    {id: 2, nome: 'Prata', descricao: 'Quer atingir novos clientes? O pacote prata vai te ajudar!', preco: 9.99, tempo: 15, cor: '#b4b7b2'},
-    {id: 3, nome: 'Ouro', descricao: 'Com o pacote ouro, o número de visualizações do seu anúncio vai triplicar!', preco: 14.99, tempo: 30, cor: '#e2cc2d'},
-    {id: 4, nome: 'Diamante', descricao: 'Turbine as visualizações do seu anúncio com o pacote diamante!', preco: 19.99, tempo: 90, cor: '#2de2b0'},
+    {id: 1, nome: 'Bronze', descricao: 'Seu anúncio ficará no topo do resultado das pesquisas a cada semana durante 3 meses. Lista de resultados da galeria por 7 dias!', preco: 10.99, tempo: 90, cor: '#c38d4a'},
+    {id: 2, nome: 'Prata', descricao: 'Seu anúncio ficará no topo do resultado das pesquisas a cada semana durante 3 meses. Lista de resultados da galeria por 14 dias!', preco: 16.99, tempo: 90, cor: '#b4b7b2'},
+    {id: 3, nome: 'Ouro', descricao: 'Seu anúncio ficará no topo do resultado das pesquisas a cada 4 dias durante 5 meses. Lista de resultados da galeria por 30 dias!', preco: 21.99, tempo: 150, cor: '#e2cc2d'},
+    {id: 4, nome: 'Diamante', descricao: 'Seu anúncio ficará no topo do resultado das pesquisas todo dia durante 7 meses. Lista de resultados da galeria por 30 dias!', preco: 30.99, tempo: 210, cor: '#2de2b0'},
   ]
 
   var _anuncio = {id: 1, nome: 'Trator ABCD', imagem: 'img/bg_cover_01.png', cidade: 'Maringá', estado: 'PR', preco: 12.50}

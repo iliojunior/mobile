@@ -62,12 +62,24 @@ angular.module('util')
       });
   }
 
+  var _excluirCartaoConfirmacao = function () {
+      return $ionicPopup.confirm({
+        title: 'Excluir cartão de crédito',
+        template: 'Você tem certeza que quer excluir este cartão? A operação não poderá ser desfeita.',
+        okText: ' Excluir',
+        okType: 'ion-checkmark-round button-balanced',
+        cancelText: ' Cancelar', // String (default: 'Cancel'). The text of the Cancel button.
+        cancelType: 'ion-close button-assertive'
+      });
+  }
+
   return {
     pedirEmailDeAlteracaoDeSenha: _pedirEmailDeAlteracaoDeSenha,
     cadastroSucesso: _cadastroSucesso,
     cadastroErro: _cadastroErro,
     novaSenhaEnviada: _novaSenhaEnviada,
     excluirAnuncioConfirmacao: _excluirAnuncioConfirmacao,
+    excluirCartaoConfirmacao: _excluirCartaoConfirmacao,
   }
 
 })
