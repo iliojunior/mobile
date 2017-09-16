@@ -1,4 +1,4 @@
-<ion-view view-title="{{anuncio.nome}}">
+<ion-view cache-view="false" view-title="{{anuncio.nome}}">
   <ion-nav-buttons side="left">
       <a ng-click="$ionicGoBack()" class="button back-button buttons button-clear header-item nav-back-btn">
           <i class="ion-android-arrow-back"></i>
@@ -34,11 +34,11 @@
             <div class="header">
               <h1>{{anuncio.nome}}</h1>
               <!--<p>Plain design shirt. Created by material team.</p>-->
-              <p>{{anuncio.descricao}}</p>
+              <p>Descrição do anúncio: {{anuncio.descricao}}</p>
             </div>
             <div class="product-detail-price" style="height: 40px">
               <div class="left">
-                <span class="font-hot-sale"> R$ {{anuncio.preco}} </span>
+                <span class="font-hot-sale">Preço R$ {{anuncio.preco}} </span>
               </div>
               <!--
               <div class="right">
@@ -71,9 +71,11 @@
               </div>
               -->
               <div class="col-50">
-                  <p>Marca : {{anuncio.marca}}</p>
-                  <p>Ano : {{anuncio.ano}}</p>
-                  <p>Estado : {{anuncio.estado}}</p>
+                  <p>Categoria: {{anuncio.categoria}}</p>
+                  <p>Subcategoria: {{anuncio.subcategoria}}</p>
+                  <p>Marca: {{anuncio.marca}}</p>
+                  <p>Ano: {{anuncio.ano}}</p>
+                  <p>Estado: {{anuncio.estado}}</p>
                   <p>Cidade: {{anuncio.cidade}}</p>
                   <p>Cobrança: {{anuncio.cobranca}}</p>
               </div>

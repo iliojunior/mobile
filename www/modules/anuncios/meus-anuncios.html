@@ -1,10 +1,11 @@
-<ion-view view-title="Meus Anúncios">
+<ion-view cache-view="false" view-title="Meus Anúncios">
   <ion-content>
     <md-tabs md-dynamic-height md-border-bottom>
       <md-tab label="Ativos">
         <md-content>
           <md-card style="width: 45%; display: inline-flex" ng-repeat="anuncio in meusAnunciosAtivos"
-                   ng-if="meusAnunciosAtivos.length > 0">
+                  ng-if="meusAnunciosAtivos.length > 0">
+
             <img ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)" ng-src="{{anuncio.imagem}}" class="md-card-image" alt="Card image">
             <md-card-content class="text-center" ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)"
                              style="padding-bottom: 0px; height: 110px; max-height: 110px; overflow: hidden">
@@ -16,7 +17,7 @@
                    style="color: #2246ff; border: 3px solid #2246ff; font-weight: 700">
                    Editar
                 </buton> -->
-                <button type="button" class="md-button md-default-theme"
+                <button type="button" ng-click="redirecionar('/menu/editar-anuncio/'+anuncio.id)" class="md-button md-default-theme"
                    style="color: #2246ff; font-weight: 700; font-size: 18px">
                    Editar
                 </buton>
@@ -29,8 +30,8 @@
                    Excluir
                 </button>
             </div>
-          </md-card>
-          <div class="text-center"ng-if="meusAnunciosAtivos.length <= 0" style="margin-top: 20px">
+          </md-card>          
+          <div class="text-center" ng-if="meusAnunciosAtivos.length <= 0" style="margin-top: 20px">
             <h3>Você não possui anúncios ativos.</h3>
             <span style="font-size: 14px">Verifique as outras abas acima para mais informações.</span>
             <button type="button" class="md-raised social-button md-button md-default-theme material-background"
@@ -46,14 +47,14 @@
           <md-content>
             <md-card style="width: 45%; display: inline-flex" ng-repeat="anuncio in meusAnunciosAguardando"
                       ng-if="meusAnunciosAguardando.length > 0">
-              <img ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)" ng-src="{{anuncio.imagem}}" class="md-card-image" alt="Card image">
+              <img ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)" ng-src="{{anuncio.imagem}}" class="md-card-image" alt="Sem imagem">
               <md-card-content class="text-center" ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)"
                                style="padding-bottom: 0px; height: 110px; max-height: 110px; overflow: hidden">
                   <h2 class="md-title">{{anuncio.nome}}</h2>
                   <h4>R$ {{anuncio.preco}}</h4>
               </md-card-content>
             </md-card>
-            <div class="text-center"ng-if="meusAnunciosAguardando.length <= 0" style="margin-top: 20px">
+            <div class="text-center" ng-if="meusAnunciosAguardando.length <= 0" style="margin-top: 20px">
               <h3>Você não possui anúncios aguardando aprovação.</h3>
             </div>
           </md-content>
@@ -95,4 +96,11 @@
       </md-tab>
     </md-tabs>
   </ion-content>
+
+<div class="footer-fab-bar">
+        <a style="background-color: #8bc34a;" class="md-button md-accent md-fab fab-footer" aria-label="Add" ng-click="redirecionar('/menu/criar-anuncio')">
+            <i class="ion ion-plus"></i>
+        </a>
+    </div>
+
 </ion-nav-view>

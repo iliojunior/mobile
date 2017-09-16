@@ -73,6 +73,17 @@ angular.module('util')
       });
   }
 
+  var _criarAnuncioConfirmacao = function () {
+      return $ionicPopup.confirm({
+        title: 'Criar anúncio',
+        template: 'Você tem certeza deseja criar este anúncio?',
+        okText: ' Sim',
+        okType: 'ion-checkmark-round button-balanced',
+        cancelText: ' Cancelar', // String (default: 'Cancel'). The text of the Cancel button.
+        cancelType: 'ion-close button-assertive'
+      });
+  }
+
   return {
     pedirEmailDeAlteracaoDeSenha: _pedirEmailDeAlteracaoDeSenha,
     cadastroSucesso: _cadastroSucesso,
@@ -80,6 +91,7 @@ angular.module('util')
     novaSenhaEnviada: _novaSenhaEnviada,
     excluirAnuncioConfirmacao: _excluirAnuncioConfirmacao,
     excluirCartaoConfirmacao: _excluirCartaoConfirmacao,
+    criarAnuncioConfirmacao: _criarAnuncioConfirmacao
   }
 
 })
