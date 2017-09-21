@@ -41,6 +41,19 @@ angular.module('util')
   }
 
   var _mostrarToastRecuperarSenha = function (mensagem) {
+
+    $mdToast.show({
+              controller: 'toastController',
+              templateUrl: 'toast.html',
+              hideDelay: 1000,
+              position: 'top',
+              locals: {
+                  displayOption: {
+                      title: mensagem
+                  }
+              }
+          });
+    /*
     if (!_gambiarraMostrarToastUmaVezRecuperarSenha) {
       _gambiarraMostrarToastUmaVezRecuperarSenha = true;  //seta variavel para true para poder mostrar o toast
     } else {
@@ -57,6 +70,9 @@ angular.module('util')
           });
       _gambiarraMostrarToastUmaVezRecuperarSenha = false; //seta variavel para false para não mostrar o toast
     }
+    */
+
+
   }
 
   var _mostrarToastEmailInvalido = function (mensagem) {

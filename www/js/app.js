@@ -36,7 +36,6 @@ angular.module('app', ['ionic','ngIOS9UIWebViewPatch', 'ngMaterial', 'ngMessages
 
 .run(function($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state, $mdDialog, $mdBottomSheet) {
 
-
   if (localStorage.getItem('tourFinalizado') === null) {
     localStorage.setItem('tourFinalizado','false') /* Tem que ser em STRING pq o localStorage só armazena string*/
   }
@@ -200,7 +199,7 @@ angular.module('app', ['ionic','ngIOS9UIWebViewPatch', 'ngMaterial', 'ngMessages
 
   // Add custom style while initial application.
   $rootScope.customStyle = createCustomStyle(window.globalVariable.startPage.state);
-  $ionicPlatform.ready(function() {
+  $ionicPlatform.ready(function($cordovaDevice) {
     ionic.Platform.isFullScreen = true;
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -210,6 +209,33 @@ angular.module('app', ['ionic','ngIOS9UIWebViewPatch', 'ngMaterial', 'ngMessages
       StatusBar.styleDefault();
     }
 
+    /*
+    var notificationOpenedCallback = function(jsonData) {
+      console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+    };
+
+    window.plugins.OneSignal
+      .startInit("84f75470-bcf3-46ab-9e7c-df626d35222e")
+      .handleNotificationOpened(notificationOpenedCallback)
+      .endInit();
+    */
+
+    document.addEventListener('deviceready', function () {
+      //alert("Entrou")  
+      //alert("Device: "+$cordovaDevice.getDevice()+'\n Uuid: '+$cordovaDevice.getUUID());    
+      var notificationOpenedCallback = function(jsonData) {
+        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      };
+
+      window.plugins.OneSignal
+        .startInit("84f75470-bcf3-46ab-9e7c-df626d35222e")
+        .handleNotificationOpened(notificationOpenedCallback)
+        .endInit();
+      
+      // Call syncHashedEmail anywhere in your app if you have the user's email.
+      // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.
+      // window.plugins.OneSignal.syncHashedEmail(userEmail);
+    }, false);
 
     initialRootScope();
     //Checking if view is changing it will go to this function.

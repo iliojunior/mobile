@@ -8,4 +8,11 @@ angular.module("home", [])
 	$scope.listaDeSetores = [];
   	$scope.listaDeSetores = anunciosFactory.getAllSetores();
 
+  	/*
+	anunciosFactory.getAllSetores().then( function (response) {
+		$scope.listaDeSetores = response;
+	})
+	*/
+  	
+
 })

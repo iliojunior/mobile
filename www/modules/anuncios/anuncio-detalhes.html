@@ -102,6 +102,16 @@
         </md-content>
       </md-tab>
 
+      <md-tab label="Fotos">
+        <ion-slide-box id="slide-catalog-content" active-slide="0" style="margin-top: -10%">
+          <ion-slide  ng-repeat="fotos in anuncio.fotos">
+            <div class="pin">
+              <img ng-src="{{fotos}}"/>
+            </div>
+          </ion-slide>
+        </ion-slide-box>
+      </md-tab>
+
       <md-tab label="Impulsionar" ng-if="anuncio.status == 1">
         <md-content  id="pricing-content">
           <h4 class="text-center price-detail">Impulsione seu anúncio para atingir novos clientes! Confira nossos pacotes:</h4>
@@ -133,6 +143,7 @@
           </div>
         </md-content>
       </md-tab>
+
     </md-tabs>
 
     <!-- ESTE SCRIPT INJETA A CAIXINHA DE TEXTO EMBAIXO DA TELA DO USUÁRIO AO CLICAR EM 'VER DETALHES' -->

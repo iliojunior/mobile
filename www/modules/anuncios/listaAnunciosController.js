@@ -11,6 +11,45 @@ angular.module('anuncios', [])
   $scope.meusAnunciosAguardando = anunciosFactory.getAnunciosPorStatus(2);
 
   $scope.setores = anunciosFactory.getAllSetores();
+  // O CÓDIGO DE CIMA FICARÁ ASSIM (EMBAIXO):
+  /*
+    anunciosFactory.getAnunciosPorSetor()
+      .then( function (response) {
+        $scope.listaDeAnuncios = response;
+      })
+      .catch( function (error) {
+        //
+      })  
+    anunciosFactory.getAnunciosPorStatus(1)
+      .then( function (response) {
+        $scope.meusAnunciosAtivos = response;
+      })
+      .catch( function (error) {
+        //
+      })  
+    anunciosFactory.getAnunciosPorStatus(0)
+      .then( function (response) {
+        $scope.meusAnunciosExpirados = response;
+      })
+      .catch( function (error) {
+        //
+      }) 
+    anunciosFactory.getAnunciosPorStatus(2)
+      .then( function (response) {
+        $scope.meusAnunciosAguardando = response;
+      })
+      .catch( function (error) {
+        //
+      })
+
+    anunciosFactory.getAllSetores()
+      .then( function (response) {
+        $scope.setores = response;
+      })
+      .catch( function (error) {
+        //
+      })
+  */
 
   $scope.pesquisar = function (pesquisa) {
     pesquisa.setor = parseInt(pesquisa.setor);
@@ -24,9 +63,6 @@ angular.module('anuncios', [])
       if(resposta) { // se apertar no OK
         anunciosFactory.excluirAnuncio(idDoAnuncio);
         toastFactory.mostrarToastEmbaixo("Anúncio excluído!");
-        // atualiza lista:
-        //$scope.meusAnunciosExpirados = anunciosFactory.getMeusAnunciosExpirados(1);
-        //$scope.meusAnunciosAtivos = anunciosFactory.getMeusAnunciosAtivos(1);
         atualizarListagemDeAnuncios();
       }
     })
@@ -35,9 +71,6 @@ angular.module('anuncios', [])
   $scope.ativarAnuncio = function (idDoAnuncioExpirado) {
     anunciosFactory.ativarAnuncioExpirado(idDoAnuncioExpirado);
     toastFactory.mostrarToastEmbaixo("Seu anúncio foi reativado!");
-    // atualiza lista;
-    //$scope.meusAnunciosExpirados = anunciosFactory.getMeusAnunciosExpirados(1);
-    //$scope.meusAnunciosAtivos = anunciosFactory.getMeusAnunciosAtivos(1);
     atualizarListagemDeAnuncios();
   }
 

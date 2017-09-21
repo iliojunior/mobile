@@ -10,17 +10,18 @@
           <!--location item section-->
           <!-- <div class="location-item" ng-repeat="setor in listaDeSetores track by $index" ng-click="redirecionar('/teste/'+setor.id)"> -->
           <div class="location-item" ng-repeat="setor in listaDeSetores track by $index" ng-click="redirecionar('/menu/anuncios-por-setor/'+setor.id)">
-              <div class="location-img" style="background-image:url('img/location_feed_01.png')"></div>
+              <!--<div class="location-img" style="background-image:url('img/location_feed_01.png')"></div>-->
+              <div class="location-img" style="background-image:url({{setor.imagem}})" ng-if="setor.imagem"></div>
               <!-- <div class="location-img" style="background-image:url({{setor.imagem}})"></div> -->
               <div class="location-content row">
                   <div class="col-90">
-                      <h1 style="font-size: 20px">{{setor.nome}}</h1>
-                      <p>
-                          <i class="fa fa-flag"></i>{{setor.frase}}
+                      <h1 style="font-size: 20px" ng-class="{'text-center': !setor.imagem}">{{setor.nome}}</h1>
+                      <p ng-if="setor.descricao">
+                          <i class="fa fa-flag"></i>{{setor.descricao}}
                       </p>
                   </div>
                   <div class="col-10">
-                      <span class="text-add">{{setor.quantidade}}+</span>
+                      <span class="text-add" ng-if="setor.quantidade">{{setor.quantidade}}+</span>
                   </div>
               </div>
           </div>

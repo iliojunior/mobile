@@ -9,10 +9,31 @@ angular.module("login", [])
 
 
   $scope.logar = function (usuarioDoFormularioDeLogin) {
-    loginFactory.validarLogin(usuarioDoFormularioDeLogin);
-    $scope.usuario = {}
-    $scope.redirecionar('/menu/home');
-    toastFactory.mostrarToastEmbaixo('Seja Bem vindo!');
+    /*
+    loginFactory.validarLogin(usuarioDoFormularioDeLogin)
+      .then(function (response) {
+        console.log(response);
+        $scope.usuario = {}
+        $scope.redirecionar('/menu/home');
+        toastFactory.mostrarToastEmbaixo('Seja Bem vindo!');
+      })  
+      */
+    /* AQUI EM BAIXO!!! */
+    loginFactory.validarLogin(usuarioDoFormularioDeLogin)
+      .then( function (response) {
+        if (response) {          
+          loginFactory.logarUsuario(usuarioDoFormularioDeLogin);
+          $scope.usuario = {}
+          $scope.redirecionar('/menu/home');
+          toastFactory.mostrarToastEmbaixo('Seja Bem vindo!');
+        } else {
+          toastFactory.mostrarToastEmbaixo('Login ou senha inválidos!');
+        }
+      })
+      .catch( function (error) {
+
+      })
+    
   }
 
   $scope.deslogar = function () {
