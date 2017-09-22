@@ -6,7 +6,7 @@
         </a>
     </ion-nav-buttons>
 -->
-    <ion-content id="contract-details-content" style="margin-top: 0px">
+    <ion-content id="contract-details-content" style="margin-top: 0px; background-color: #e8e8e8">
       <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium toolbar-in-content">
           <div>
               <h1>
@@ -17,8 +17,7 @@
       </md-toolbar>
       <div id="product-checkout-content" style="margin-top:0px">
         <div class="list">
-          <div class="item item-button-right" ng-repeat="cartao in cartoesCadastrados" 
-               >
+          <div class="item item-button-right" ng-repeat="cartao in cartoesCadastrados">
             <div ng-click="showListBottomSheet($event, cartao.id)">
               <i class="ion-card" style="margin-right: 3%; font-size: 20px !important"></i>
               <span class="card-number" style="font-size: 20px"> XXXX XXXX XXXX {{cartao.numero}}</span>
@@ -28,9 +27,9 @@
             </a>
           </div>
         </div>
-        <hr/>
+        <!-- <hr/> -->
         <a class="md-raised social-button md-button md-default-theme material-background"
-           style="width: 100%; font-size: 20px" href="#/menu/cadastrar-cartao">
+           style="width: 100%; font-size: 20px; margin: auto" href="#/menu/cadastrar-cartao">
            Adicionar novo cartão
         </a>
       </div>
