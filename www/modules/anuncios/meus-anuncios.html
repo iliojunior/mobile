@@ -50,8 +50,8 @@
               <img ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)" ng-src="{{anuncio.imagem}}" class="md-card-image" alt="Sem imagem">
               <md-card-content class="text-center" ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)"
                                style="padding-bottom: 0px; height: 110px; max-height: 110px; overflow: hidden">
-                  <h2 class="md-title">{{anuncio.nome}}</h2>
-                  <h4>R$ {{anuncio.preco}}</h4>
+                  <h2 class="md-title">{{anuncio.titulo}}</h2>
+                  <h4>R$ {{anuncio.valor}}</h4>
               </md-card-content>
             </md-card>
             <div class="text-center" ng-if="meusAnunciosAguardando.length <= 0" style="margin-top: 20px">

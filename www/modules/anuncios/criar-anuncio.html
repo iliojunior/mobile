@@ -127,16 +127,6 @@
     </md-bottom-sheet>
 </script>
 
-<!-- ID do anuncio -->
-<md-input-container md-no-floar>
-    <input readonly="readonly" style="display: none;" ng-model="novoAnuncio.id" name="id">
-</md-input-container>
-
-<!--Status do anuncio-->
-<md-input-container md-no-float>
-    <input type="" style="display: none;" ng-model="novoAnuncio.status" readonly="readonly" name="">
-</md-input-container>
-
 <md-input-container md-no-float>
 
     <!-- ng-class="{'has-error': formulario.titulo.$invalid && !formulario.titulo.$pristine}"   -->
@@ -144,11 +134,11 @@
         <span>Título do Anúncio</span>  
     </div>
     <div>
-        <input style="margin-left: 2px; width: 99%;" maxlength="40" ng-model="novoAnuncio.nome" name="nome" required placeholder="Nome que será exibido no anúncio">                
+        <input style="margin-left: 2px; width: 99%;" maxlength="40" ng-model="novoAnuncio.titulo" name="titulo" required placeholder="Nome que será exibido no anúncio">                
     </div>
     <div style="margin-right: 5px; color: #8bc34a;" align="right">
        <span>
-           {{(novoAnuncio.nome.length > 0 ? novoAnuncio.nome.length :0) | json}}/40
+           {{(novoAnuncio.titulo.length > 0 ? novoAnuncio.titulo.length :0) | json}}/40
        </span>        
    </div> 
    <small class="small-tit-des">Nome que será exibido no anúncio.</small>
@@ -177,18 +167,34 @@
 </div> 
 </md-input-container>
 
-<!-- Marca -->
+<!-- Telefone -->
 <md-input-container md-no-float>
     <div class="span1">
-        <span>Marca</span>  
+        <span>Telefone/Celular</span>  
     </div>
     <div>
-        <input style="margin-left: 2px; width: 99%;" maxlength="40" ng-model="novoAnuncio.marca" name="marca" required placeholder="Marca do maquinário">                
+        <input style="margin-left: 2px; width: 99%;" maxlength="15" minlength="10" ng-model="novoAnuncio.telefone" name="telefone" required placeholder="(DDD) Número de Telefone/Celular">
     </div>
-    <small>Inserir marca do maquinário.</small>
+    <small>Inserir número de telefone. Exemplo: (44) 4444-4444</small>
 
-    <div align="right" style="margin-bottom: 10%;" ng-messages="formulario.marca.$error" ng-if="formulario.marca.$dirty">
-       <p ng-message="required">O campo "Marca" deve ser preenchido!</p>
+    <div align="right" style="margin-bottom: 10%;" ng-messages="formulario.telefone.$error" ng-if="formulario.telefone.$dirty">
+       <p ng-message="required">O campo "Telefone/Celular" deve ser preenchido!</p>
+       <p ng-message="minlength">O campo "Telefone/Celular" deve conter no mínimo 10 caracteres!</p>
+   </div>    
+</md-input-container>
+
+<!-- Modelo -->
+<md-input-container md-no-float>
+    <div class="span1">
+        <span>Modelo</span>  
+    </div>
+    <div>
+        <input style="margin-left: 2px; width: 99%;" maxlength="40" ng-model="novoAnuncio.modelo" name="modelo" required placeholder="Modelo do maquinário">                
+    </div>
+    <small>Inserir modelo do maquinário.</small>
+
+    <div align="right" style="margin-bottom: 10%;" ng-messages="formulario.modelo.$error" ng-if="formulario.modelo.$dirty">
+       <p ng-message="required">O campo "Modelo" deve ser preenchido!</p>
    </div>    
 </md-input-container>
 
@@ -207,36 +213,6 @@
    </div>      
 </md-input-container>
 
-<!-- Estado -->
-<md-input-container md-no-float>
-    <div class="span1">
-        <span>Estado</span>  
-    </div>
-    <div>
-        <input style="margin-left: 2px; width: 99%;" maxlength="20" ng-model="novoAnuncio.estado" name="estado" required placeholder="Estado de localização">                
-    </div>
-    <small>Estado de localização do anúncio.</small>
-
-    <div align="right" style="margin-bottom: 10%;" ng-messages="formulario.estado.$error" ng-if="formulario.estado.$dirty">
-       <p ng-message="required">O campo "Estado" deve ser preenchido!</p>
-   </div>    
-</md-input-container>
-
-
-<!-- Cidade -->
-<md-input-container md-no-float>
-    <div class="span1">
-        <span>Cidade</span>  
-    </div>
-    <div>
-        <input style="margin-left: 2px; width: 99%;" maxlength="30" ng-model="novoAnuncio.cidade" name="cidade" required placeholder="Cidade de localização">                
-    </div>
-    <small>Cidade de localização do anúncio.</small>
-
-    <div align="right" style="margin-bottom: 10%;" ng-messages="formulario.cidade.$error" ng-if="formulario.cidade.$dirty">
-       <p ng-message="required">O campo "Cidade" deve ser preenchido!</p>
-   </div>    
-</md-input-container>
 
 <div>    
     <md-input-container md-no-float style="margin-top: -10%;padding-bottom: 10px !important; font-size: 20px">
@@ -266,10 +242,10 @@
        <span>Preço do anúncio</span>
    </div>
    <div>
-       <input style="margin-left: 2px; width: 99%;" ng-model="novoAnuncio.preco" name="preco" required placeholder="Preço R$">
+       <input style="margin-left: 2px; width: 99%;" ng-model="novoAnuncio.valor" name="valor" required placeholder="Preço R$">
    </div>                   
    <small>Preço cobrado pelo aluguel do maquinário.</small>
-   <div style="margin-top: -2%;margin-bottom: 8%;" align="center" ng-messages="formulario.preco.$error" ng-if="formulario.preco.$dirty">
+   <div style="margin-top: -2%;margin-bottom: 8%;" align="center" ng-messages="formulario.valor.$error" ng-if="formulario.valor.$dirty">
      <p  ng-message="required">O campo "Preço do Anúncio" deve ser preenchido!</p>           
  </div>  
 </md-input-container>
