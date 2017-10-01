@@ -2,13 +2,16 @@ angular.module('pagamento', [])
 .controller('pagamentoController', function ($scope, pagamentoFactory, anunciosFactory, toastFactory, popUpFactory, $location, $mdBottomSheet, $ionicHistory) {
 
   $scope.cartoesCadastrados = pagamentoFactory.getAllCartoes();
+  $scope.listaMes = pagamentoFactory.getListaMes();
+  $scope.listaAno = pagamentoFactory.getListaAno();
+
 
   $scope.cadastrarCartao = function (cartao) {
     if (pagamentoFactory.cadastrarCartao(cartao)) {
       toastFactory.mostrarToastEmbaixo('Seu cartão foi cadastrado!');
-      $ionicHistory.goBack();
+      //$ionicHistory.goBack();
       $scope.cartoesCadastrados = pagamentoFactory.getAllCartoes(); 
-      //$location.path('/menu/listagem-cartoes');
+      $location.path('/menu/listagem-cartoes');
     } else {
       popUpFactory.cadastroErro()
     }

@@ -24,7 +24,9 @@
             <div class="" ng-repeat="anuncio in listaDeAnuncios track by $index">
               <!-- <div class="feed-item" ng-click="getAnuncio(anuncio.id)"> -->
               <div class="feed-item" ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)">
-                  <div class="feed-img" style="background-image: url('img/cube_feed_03.png')"></div>
+                  <!--<div class="feed-img" style="background-image: url('img/cube_feed_03.png')"></div>-->
+                  <!-- <div class="toolbar-image-cover" style="background-image: url('{{anuncio.imagem}}')"></div> -->
+                  <div class="toolbar-image-cover" style="background-image: url('{{anuncio.fotos[0]}}')"></div>
                   <div class="feed-content row">
                     <div class="col middle">
                       <h3 style="text-align: center">{{anuncio.nome}}</h3>
@@ -33,7 +35,7 @@
                   <div class="feed-content row" style="font-size: 20px">
                       <div class="col left">
                           <i class="ion-cash"  style="font-size: 20px"></i>
-                          {{anuncio.preco}}
+                          {{anuncio.valor}}
                       </div>
                       <div class="col right">
                           <i class="ion-android-pin"  style="font-size: 20px"></i>

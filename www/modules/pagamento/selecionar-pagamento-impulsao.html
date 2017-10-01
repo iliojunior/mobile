@@ -5,7 +5,7 @@
         </a>
     </ion-nav-buttons>
 
-    <ion-content id="contract-details-content" style="margin-top: 0px">
+    <ion-content id="contract-details-content" style="margin-top: 0px" scroll="false">
       <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium toolbar-in-content">
           <div>
               <h1>
@@ -24,7 +24,7 @@
               <md-radio-button ng-repeat="cartao in cartoesCadastrados" 
                          value="{{cartao.id}}"  class="row credit-card">
                 <i class="ion-card" style="margin-right: 20px; font-size: 30px !important"></i>
-                <span class="card-number" style="font-size: 20px"> XXXX XXXX XXXX {{cartao.numero}}</span>
+                <span class="card-number" style="font-size: 20px"> XXXX XXXX XXXX {{cartao.numeroCartao}}</span>
               </md-radio-button>
             </md-radio-group>
           </div>

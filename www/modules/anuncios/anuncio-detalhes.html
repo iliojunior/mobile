@@ -24,12 +24,15 @@
 
       <md-tab label="Detalhes">
         <md-content id="product-detail-tab-detail">
-          <div class="toolbar-image-cover product" style="background-image: url({{anuncio.imagem}}); background-position-y: -20px; height: 200px !important"></div>
+          <div class="toolbar-image-cover product" style="background-image: url({{anuncio.fotos[0]}}); background-position-y: -20px; height: 200px !important"></div>
+          <!-- <div class="toolbar-image-cover product" style="background-image: url({{anuncio.imagem}}); background-position-y: -20px; height: 200px !important"></div> -->
+          <!--
           <a class="md-button md-accent md-fab fab-toolbar-medium"
              ng-click="sharedProduct($event,product)"
              aria-label="showListBottomSheet">
               <i class="ion-android-share-alt"></i>
           </a>
+        -->
           <div class="detail-form">
             <div class="header">
               <h1>{{anuncio.nome}}</h1>
@@ -38,7 +41,7 @@
             </div>
             <div class="product-detail-price" style="height: 40px">
               <div class="left">
-                <span class="font-hot-sale"> R$ {{anuncio.preco}} </span>
+                <span class="font-hot-sale"> R$ {{anuncio.valor}} </span>
               </div>
               <!--
               <div class="right">
@@ -71,11 +74,12 @@
               </div>
               -->
               <div class="col-50">
-                  <p>Marca : {{anuncio.marca}}</p>
+                  <p>Modelo : {{anuncio.modelo}}</p>
                   <p>Ano : {{anuncio.ano}}</p>
                   <p>Estado : {{anuncio.estado}}</p>
                   <p>Cidade: {{anuncio.cidade}}</p>
-                  <p>Cobrança: {{anuncio.cobranca}}</p>
+                  <p>Contato: {{anuncio.telefone}}</p>
+                  <!--<p>Cobrança: {{anuncio.cobranca}}</p>-->
               </div>
               <!--
               <div class="col-33">
@@ -127,10 +131,10 @@
             </div>
             <div class="row price-detail">
               <div class="col-33 package-name">
-                {{impulsao.tempo}} dias
+                {{impulsao.validade}} dias
               </div>
               <div class="col-33 package-subscribe">
-                R$ {{impulsao.preco}}
+                R$ {{impulsao.valor}}
               </div>
               <div class="col-33 subscribe-button" style="text-align: right" 
                    ng-click="selecionarPlanoDeImpulsao(impulsao.id, anuncio.id)">

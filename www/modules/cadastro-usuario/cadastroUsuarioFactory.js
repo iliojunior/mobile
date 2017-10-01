@@ -1,5 +1,5 @@
 angular.module('cadastroUsuario')
-.factory('cadastroFactory', function () {
+.factory('cadastroUsuarioFactory', function () {
 
     var _validarCadastro = function (usuarioDoFormularioDeCadastro) {
       if (usuarioDoFormularioDeCadastro.senha === usuarioDoFormularioDeCadastro.senhaConfirmada) {

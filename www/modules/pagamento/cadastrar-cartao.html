@@ -19,7 +19,7 @@
             <span>Número do cartão:</span>
             <div>
               <i class="ion-card" style="margin-left: 10px"></i>
-              <input type="tel" limit-char limit="16" ng-model="cartao.numero"
+              <input type="tel" limit-char limit="16" ng-model="cartao.numeroCartao"
                      name="numero" required placeholder="Os dígitos do seu cartão">
             </div>
             <div style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
@@ -33,7 +33,7 @@
             <span>Nome do titular:</span>
             <div>
               <i class="ion-android-people" style="margin-left: 10px"></i>
-              <input type="text" ng-model="cartao.nome" limit-char limit="25" name="nome"
+              <input type="text" ng-model="cartao.nomeTitular" limit-char limit="25" name="nome"
                      required placeholder="Exemplo: João A. da Silva">
             </div>
             <div style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
@@ -43,6 +43,7 @@
             </div>
             <small>O nome contido no cartão.</small>
           </md-input-container>
+          <!--
           <md-input-container md-no-float>
             <span>Validade:</span>
             <div>
@@ -58,6 +59,34 @@
               <p ng-message="required" style="margin-top: 15px">Campo obrigatório</p>
             </div>
           </md-input-container>
+          -->
+          <md-input-container md-no-float>            
+            <span>Mês de validade:</span>
+            <div>
+              <div class="col-50">
+                <i class="ion-ios-calendar-outline" style="margin-left: 10px"></i>
+              </div>
+              <md-select class="col-50" ng-model="cartao.mesValidade" aria-label="md-option"
+                         style="text-align: left; padding: 0; margin-left: 20%">                         
+                <md-option ng-repeat="mes in listaMes" value="{{mes}}">{{mes}}</md-option>
+              </md-select>
+            </div>
+            <small>Selecione o mês de validade do cartão.</small>
+          </md-input-container>
+          <md-input-container md-no-float>            
+            <span>Ano de validade:</span>
+            <div>
+              <div class="col-50">
+                <i class="ion-android-calendar" style="margin-left: 10px"></i>
+              </div>
+              <md-select class="col-50" ng-model="cartao.anoValidade" aria-label="md-option"
+                         style="text-align: left; padding: 0; margin-left: 20%">                         
+                <md-option ng-repeat="ano in listaAno" value="{{ano}}">{{ano}}</md-option>
+              </md-select>
+            </div>
+            <small>Selecione o ano de validade do cartão.</small>
+          </md-input-container>
+          <!--
           <md-input-container md-no-float>
             <span>Código de Segurança:</span>
             <div>
@@ -72,6 +101,7 @@
               <p ng-message="required" style="margin-top: 15px">Campo obrigatório</p>
             </div>
           </md-input-container>
+        -->
           <button type="button" ng-click="cadastrarCartao(cartao)" style="width: 95%; margin-top: -15px"
                   class="md-raised social-button md-button md-default-theme material-background"
                   ng-disabled="formNovoCartao.$invalid">
