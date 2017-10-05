@@ -1,7 +1,7 @@
 angular.module('anuncios')
 .factory('anunciosFactory', function ($http) {
 
-  var URL = "http://10.42.0.1:8081/categorias";
+  var URL = "http://10.42.0.1:8081/";
 
   /*     DADOS ESTÁTICOS     */
 
@@ -20,11 +20,11 @@ angular.module('anuncios')
   ];
   */
   var _anunciosPorSetor = [ // ESTÁTICO
-    {id: 1, nome: 'Trator F700', id_setor: 1, fotos: ['img/anuncios/trator_1.jpg','img/shirt_01.png','img/shirt_02.png'], descricao: 'Trator em ótimo estado, bom para colheitas pequenas, motor poderoso e silencioso!', cidade: 'Maringá', estado: 'PR', valor: 12.50, status: 1, impulsao: 4, modelo: 'Valtra', ano: 2001, cobranca: 'Por Dia', telefone: 44123456789},
-    {id: 2, nome: 'Caminhão VOLVO', id_setor: 2,  fotos: ['img/anuncios/caminhao.jpg','img/shirt_01.png','img/shirt_02.png'], descricao: 'Disponibilizo meu caminhão para realizar diversas entregas, vamos negociar?', cidade: 'Maringá', estado: 'PR', valor: 89.00, status: 0, impulsao: 0, modelo: 'Volvo', ano: 1997, cobranca: 'Por Dia', telefone: 44123456789},
-    {id: 3, nome: 'Secadora Multi-Uso', id_setor: 3,  fotos: ['img/anuncios/secadora.gif','img/shirt_01.png','img/shirt_02.png'], descricao: 'Minha secadora de grãos está parada e preciso de dinheiro', cidade: 'Cianorte', estado: 'PR', valor: 51.50, status: 2, impulsao: 2, modelo: 'Mediza', ano: 2001, cobranca: 'Por Hora', telefone: 44123456789},
-    {id: 4, nome: 'Colheitadeira 50-50', id_setor: 1,  fotos: ['img/anuncios/colheitadeira.jpg','img/shirt_01.png','img/shirt_02.png'], descricao: 'Máquina perfeita para acelerar seu processo, você não pode perder!!!!', cidade: 'Curitiba', estado: 'PR', valor: 159.00, status: 2, impulsao: 0, modelo: 'Massey Ferguson', ano: 2015, cobranca: 'Por Dia', telefone: 44123456789},
-    {id: 5, nome: 'Carriola 50Kg', id_setor: 2,  fotos: ['img/anuncios/carriola.jpg','img/shirt_01.png','img/shirt_02.png'], descricao: 'Carriola novinha aguentando até 50kg, contato por whatsapp', cidade: 'Cianorte', estado: 'PR', valor: 27.10, status: 1, impulsao: 1, modelo: 'Twenga', ano: 2017, cobranca: 'Por Hora', telefone: 44123456789},
+    {id: 1, nome: 'Trator F700', id_setor: 1, fotos: ['img/anuncios/trator_1.jpg','img/shirt_01.png','img/shirt_02.png'], descricao: 'Trator em ótimo estado, bom para colheitas pequenas, motor poderoso e silencioso!', cidade: 'Maringá', estado: 'PR', valor: 12.50, statusAnuncio: 1, impulsao: 4, marca: 'Valtra', ano: 2001, modoCobranca: 'Por Dia', telefone: 44123456789, negociavel: false, },
+    {id: 2, nome: 'Caminhão VOLVO', id_setor: 2,  fotos: ['img/anuncios/caminhao.jpg','img/shirt_01.png','img/shirt_02.png'], descricao: 'Disponibilizo meu caminhão para realizar diversas entregas, vamos negociar?', cidade: 'Maringá', estado: 'PR', valor: 89.00, statusAnuncio: 0, impulsao: 0, marca: 'Volvo', ano: 1997, modoCobranca: 'Por Dia', telefone: 44123456789, negociavel: false, },
+    {id: 3, nome: 'Secadora Multi-Uso', id_setor: 3,  fotos: ['img/anuncios/secadora.gif','img/shirt_01.png','img/shirt_02.png'], descricao: 'Minha secadora de grãos está parada e preciso de dinheiro', cidade: 'Cianorte', estado: 'PR', valor: 51.50, statusAnuncio: 2, impulsao: 2, marca: 'Mediza', ano: 2001, modoCobranca: 'Por Hora', telefone: 44123456789, negociavel: false, },
+    {id: 4, nome: 'Colheitadeira 50-50', id_setor: 1,  fotos: ['img/anuncios/colheitadeira.jpg','img/shirt_01.png','img/shirt_02.png'], descricao: 'Máquina perfeita para acelerar seu processo, você não pode perder!!!!', cidade: 'Curitiba', estado: 'PR', valor: 159.00, statusAnuncio: 2, impulsao: 0, marca: 'Massey Ferguson', ano: 2015, modoCobranca: 'Por Dia', telefone: 44123456789, negociavel: false, },
+    {id: 5, nome: 'Carriola 50Kg', id_setor: 2,  fotos: ['img/anuncios/carriola.jpg','img/shirt_01.png','img/shirt_02.png'], descricao: 'Carriola novinha aguentando até 50kg, contato por whatsapp', cidade: 'Cianorte', estado: 'PR', valor: 27.10, statusAnuncio: 1, impulsao: 1, marca: 'Twenga', ano: 2017, modoCobranca: 'Por Hora', telefone: 44123456789, negociavel: false, },
   ]
 
   var _tiposDeImpulsao = [
@@ -42,7 +42,7 @@ angular.module('anuncios')
   var _getAllSetores = function () {
     // método HTTP
     /*
-    return $http.get(URL)
+    return $http.get(URL + "anuncios/agricola")
       .then( function (response) {
         console.log(response.data)
         return response.data
@@ -113,17 +113,47 @@ angular.module('anuncios')
     */
     var anunciosRetornados = []
     for (var i = 0; i < _anunciosPorSetor.length; i++) {
-      if (_anunciosPorSetor[i].status === status) {
+      if (_anunciosPorSetor[i].statusAnuncio === status) {
         anunciosRetornados.push(_anunciosPorSetor[i])
       }
     }
     return anunciosRetornados;
   }
 
+  var _getMeusAnunciosPublicados = function (idDoCriadorDoAnuncio) {
+    return $http.get(URL + "anuncios/findAllAnunciosPublicados/" + idDoCriadorDoAnuncio)
+      .then( function (response) {
+        return response.data
+      })
+      .catch( function (error) {
+        console.log(error)
+      })    
+  }
+
+  var _getMeusAnunciosAguardandoAprovacao = function (idDoCriadorDoAnuncio) {
+    return $http.get(URL + "anuncios/findAllAnunciosAguardandoAprovacao/" + idDoCriadorDoAnuncio)
+      .then( function (response) {
+        return response.data
+      })
+      .catch( function (error) {
+        console.log(error)
+      })    
+  }
+
+  var _getMeusAnunciosExpirados = function (idDoCriadorDoAnuncio) {
+    return $http.get(URL + "anuncios/findAllAnunciosExpirados/" + idDoCriadorDoAnuncio)
+      .then( function (response) {
+        return response.data
+      })
+      .catch( function (error) {
+        console.log(error)
+      })    
+  }
+
   var _getAnuncioPorId = function (idAnuncio) {
     // Método HTTP
     /*
-    return $http.get(URL + "/" + id)
+    return $http.get(URL + "anuncios/findAnuncioById/" + id)
       .then( function (response) {
         return response.data
       })
@@ -152,7 +182,7 @@ angular.module('anuncios')
   var _excluirAnuncio = function (idAnuncioRemovido) {
     //método HTTP
     /*
-    return $http.delete(URL + "/" + id + "remove")
+    return $http.delete(URL + "anuncios/" + id)
       .then( function (response) {
         console.log(response.data)
       })
@@ -180,13 +210,16 @@ angular.module('anuncios')
       });
     */
     var anuncioPraAtivar = _getAnuncioPorId(idDoAnuncioExpirado);
-    anuncioPraAtivar.status = 2;
+    anuncioPraAtivar.statusAnuncio = 2;
   }
 
   return {
     getAllSetores: _getAllSetores,
     getAnunciosPorSetor: _getAnunciosPorSetor,
     getAnunciosPorStatus: _getAnunciosPorStatus,
+    getMeusAnunciosPublicados: _getMeusAnunciosPublicados,
+    getMeusAnunciosAguardandoAprovacao: _getMeusAnunciosAguardandoAprovacao,
+    getMeusAnunciosExpirados: _getMeusAnunciosExpirados,
     getAnuncioPorId: _getAnuncioPorId,
     getAnunciosFiltrados: _getAnunciosFiltrados,
     getTiposDeImpulsao: _getTiposDeImpulsao,

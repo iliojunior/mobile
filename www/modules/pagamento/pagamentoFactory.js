@@ -1,13 +1,15 @@
 angular.module('pagamento')
 .factory('pagamentoFactory', function () {
 
+  var URL = "http://10.42.0.1:8081/";
+
   var _cartoes = [
-                  {id: 1, nomeTitular: 'João A. da Silva', numeroCartao: 1112223334445556, mesValidade: 11, anoValidade: 2019},
-                  {id: 2, nomeTitular: 'João A. da Silva', numeroCartao: 9998887776665554, mesValidade: 01, anoValidade: 2020}
+                  {id: 1, nomeTitular: 'João A. da Silva', numeroCartao: 1112223334445556, mesValidade: 11, anoValidade: 2019, idPessoa: 1},
+                  {id: 2, nomeTitular: 'João A. da Silva', numeroCartao: 9998887776665554, mesValidade: 01, anoValidade: 2020, idPessoa: 1}
                 ];
 
   var _listaMes = [01,02,03,04,05,06,07,08,09,10,11,12];
-  var _listaAno = [2018,2019,2020,2021,2022,2023,2024,2025];
+  var _listaAno = [2018,2019,2020,2021,2022,2023,2024,2025,2026,2027];
 
   var _compra = {};
 
@@ -43,7 +45,7 @@ angular.module('pagamento')
     _cartoes.push(cartaoObj);
 
     /*
-    return $http.post(urlApi + "/editar", cartaoObj)
+    return $http.post(URL + "cartao/", cartaoObj)
       .then(function (response) {
         //return true;
         return response.data;
@@ -67,12 +69,18 @@ angular.module('pagamento')
         console.log(error)
       })
     */
-    return _formatarUltimosNumeros(_cartoes);
+    console.log(_cartoes)
+    return _formatarUltimosNumeros(_cartoes.filter(filtrarCartoesGambiarraEstatico));
+    //return _formatarUltimosNumeros(_cartoes);
   };
+
+  var filtrarCartoesGambiarraEstatico = function (_cartoes) {
+    return _cartoes.idPessoa == 1;
+  }
 
   var _getCartaoPorId = function (id) {
     /*
-    return $http.get(URL + "/" + id)
+    return $http.get(URL + "cartao/" + id)
       .then( function (response) {
         return response.data
       })
@@ -89,7 +97,7 @@ angular.module('pagamento')
 
   var _excluirCartao = function (idDoCartaoPraRemover) {
     /*
-    return $http.delete(URL + "/" + idDoCartaoPraRemover + "remove")
+    return $http.delete(URL + "/" + idDoCartaoPraRemover)
       .then( function (response) {
         console.log(response.data)
       })
@@ -106,7 +114,7 @@ angular.module('pagamento')
 
   var _setTipoImpulsaoDeAnuncio = function (idDoTipo) {
     /*
-    return $http.put(urlApi + "/editar", idDoTipo)
+    return $http.put(URL + "/editar", idDoTipo)
       .then(function (response) {
         //return true;
         return response.data;
@@ -120,7 +128,7 @@ angular.module('pagamento')
 
   var _setAnuncioParaImpulsionar = function (idDoAnuncio) {
     /*
-    return $http.put(urlApi + "/editar", idDoAnuncio)
+    return $http.put(URL + "/editar", idDoAnuncio)
       .then(function (response) {
         //return true;
         return response.data;
@@ -134,7 +142,7 @@ angular.module('pagamento')
 
   var _setMetodoPagamento = function (idDoCartao) {
     /*
-    return $http.put(urlApi + "/editar", idDoCartao)
+    return $http.put(URL + "/editar", idDoCartao)
       .then(function (response) {
         //return true;
         return response.data;
@@ -162,7 +170,7 @@ angular.module('pagamento')
 
   var _finalizarCompra = function (compra) {
     /*
-    return $http.post(urlApi + "/editar", compra)
+    return $http.post(Api + "/editar", compra)
       .then(function (response) {
         //return true;
         return response.data;
