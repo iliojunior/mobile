@@ -1,6 +1,8 @@
 angular.module('anuncios')
 .factory('anunciosFactory', function ($http, $filter) {
 
+   var URL = "http://10.42.0.1:8081/";
+
   var setores = [
   {id: 1, nome: 'Agrícola', imagem: 'img/setores/agricola.png', frase: ' Maquinários que facilitarão o seu trabalho na lavoura.', subcategorias: [
   {id: 1, nome: 'Trator ABCD'},
@@ -64,15 +66,36 @@ angular.module('anuncios')
 
   var _getAnunciosPorSetor = function (novoAnuncio) {
     // Método HTTP
+    console.log(novoAnuncio);
    _anunciosPorSetor.push(novoAnuncio);  
    return _anunciosPorSetor;
  };
 
+//  var _cadastrarAnuncio = function (objetoAnuncioDoFormulario) {
+//       var params = {fotos: objetoAnuncioDoFormulario.fotos, titulo: objetoAnuncioDoFormulario.titulo, descricao: objetoAnuncioDoFormulario.descricao, 
+//                     telefone: objetoAnuncioDoFormulario.telefone, modelo: objetoAnuncioDoFormulario.modelo, ano: objetoAnuncioDoFormulario.ano,
+//                     categoriaAnuncio: objetoAnuncioDoFormulario.categoria, subCategoriaId: objetoAnuncioDoFormulario.subcategoria,
+//                     valor: objetoAnuncioDoFormulario.valor}
+//       return $http.post(URL + '/anuncios', objetoAnuncioDoFormulario)
+//         .then( function (response) {
+//       console.log("resposta:", response);
+//           if (response.data.valido === "true") {
+//             return true;
+//           } else {
+//             return false;
+//           }
+//         })        
+//         .catch( function (error) {
+//           console.log('error',error)
+//           return false;
+//         })
+// }
 
- var _getAnunciosPorStatus = function (status) {
+
+ var _getAnunciosPorStatus = function (statusAnuncio) {
   var anunciosRetornados = [];
   for (var i = 0; i < _anunciosPorSetor.length; i++) {
-    if (_anunciosPorSetor[i].status === status) {
+    if (_anunciosPorSetor[i].statusAnuncio === statusAnuncio) {
       anunciosRetornados.push(_anunciosPorSetor[i])
     }
   }
@@ -133,6 +156,7 @@ var _getAnuncioPorId = function (idAnuncio) {
     getAllSetores: _getAllSetores,
     editarAnuncio: _editarAnuncio,
     getAnunciosPorSetor: _getAnunciosPorSetor,
+    //cadastrarAnuncio: _cadastrarAnuncio,
     getAnunciosPorStatus: _getAnunciosPorStatus,
     getAnuncioPorId: _getAnuncioPorId,
     getAnunciosFiltrados: _getAnunciosFiltrados,

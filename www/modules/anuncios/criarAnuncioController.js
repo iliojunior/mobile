@@ -33,7 +33,7 @@ $scope.salvarEdicao = function (objetoDoFormulario) {
 
     $scope.salvar = function(novoAnuncio) {
         novoAnuncio.id = Math.floor(Math.random() * 1000000);
-        novoAnuncio.status = 2;
+        novoAnuncio.status = 0;
         anunciosFactory.getAnunciosPorSetor(novoAnuncio);
         console.log(novoAnuncio);
     }

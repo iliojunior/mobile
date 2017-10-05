@@ -34,12 +34,12 @@
           <div class="text-center" ng-if="meusAnunciosAtivos.length <= 0" style="margin-top: 20px">
             <h3>Você não possui anúncios ativos.</h3>
             <span style="font-size: 14px">Verifique as outras abas acima para mais informações.</span>
-            <button type="button" class="md-raised social-button md-button md-default-theme material-background"
-                    ng-click="redirecionar('/menu/novo-anuncio')"
+            <!-- <button type="button" class="md-raised social-button md-button md-default-theme material-background"
+                    ng-click="redirecionar('/menu/criar-anuncio')"
                     style="margin-top: 20px">
                     <i class="fa fa-plus"></i>
                     Criar novo anúncio!
-            </button>
+            </button> -->
           </div>
         </md-content>
       </md-tab>
@@ -89,7 +89,7 @@
                   </button>
               </div>
             </md-card>
-            <div class="text-center"ng-if="meusAnunciosExpirados.length <= 0" style="margin-top: 20px">
+            <div class="text-center" ng-if="meusAnunciosExpirados.length <= 0" style="margin-top: 20px">
               <h4>Você não possui anúncios com a data expirada.</h4>
             </div>
           </md-content>

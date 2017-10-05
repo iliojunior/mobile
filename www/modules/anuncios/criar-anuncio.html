@@ -50,9 +50,9 @@
             margin-bottom: 10%;
         }
 
-        .espacamentoFormaPag{
+        /*.espacamentoFormaPag{
             margin-top: 10%;
-        }
+        }*/
 
         .espacamento2{
             margin-top: -8%;
@@ -110,7 +110,7 @@
                 <md-list>
                     <md-list-item>
                         <a class="md-default-theme md-bottom-sheet-list-item"
-                        ng-click="selectImage(1)" ng-model="anuncio.selImagem" name="selImagem">
+                        ng-click="selectImage(1)" ng-model="novoAnuncio.fotos" name="selImagem">
                         <i style="margin-left: 2px; color: #8bc34a;" class="ion-image"></i>
                         <span class="span1">Selecionar uma imagem.</span>
                     </a>
@@ -118,7 +118,7 @@
 
                 <md-list-item>
                     <a class="md-default-theme md-bottom-sheet-list-item"
-                    ng-click="selectImage(9999)" ng-model="anuncio.selImagem" name="selImagem">
+                    ng-click="selectImage(9999)" ng-model="novoAnuncio.fotos" name="selImagem">
                     <i style="margin-left: 2px; color: #8bc34a;" class="ion-images"></i>
                     <span class="span1">Selecionar várias imagens.</span>
                 </a>
@@ -126,6 +126,8 @@
         </md-list>
     </md-bottom-sheet>
 </script>
+
+<!-- <input style="display: none;" ng-model="novoAnuncio.statusAnuncio" name="statusAnuncio" ng-value="0">     -->
 
 <md-input-container md-no-float>
 
@@ -215,7 +217,7 @@
 
 
 <div>    
-    <md-input-container md-no-float style="margin-top: -10%;padding-bottom: 10px !important; font-size: 20px">
+    <md-input-container md-no-float style="margin-top: 2%;padding-bottom: 10px !important; font-size: 20px">
        <div class="espacamentoFormaPag span1" align="center">
            <span>Selecionar categoria desejada (obrigatório):</span>
        </div>
@@ -229,7 +231,7 @@
             <span>Selecionar categoria desejada (obrigatório):</span>
         </div>
         <md-select ng-model="novoAnuncio.subcategoria" aria-label="md-option" id="subcategoria" name="subcategoria" required>
-            <md-option ng-repeat="subcategoria in getSubcategorias(categorias, novoAnuncio.categoria)" ng-value="subcategoria.nome">{{subcategoria.nome}}                 
+            <md-option ng-repeat="subcategoria in getSubcategorias(categorias, novoAnuncio.categoria)" ng-value="subcategoria.id">{{subcategoria.nome}}                 
             </md-option>
         </md-select>
     </div>
@@ -250,21 +252,6 @@
  </div>  
 </md-input-container>
 
-<div>
-    <div class="espacamentoFormaPag span1" style="margin-top: -2%;" align="center">
-        <span>Selecionar período de pagamento (obrigatório):</span>
-    </div>
-    <div class="row">
-        <div class="btn-radio">
-            <ion-radio name="opcaoPagamento" checked="" value="Por dia" ng-model="novoAnuncio.cobranca" class="ng-pristine ng-untouched ng-valid ng-not-empty" required>Por dia
-            </ion-radio>
-        </div>
-        <div class="btn-radio">
-            <ion-radio name="opcaoPagamento" value="Por hora" ng-model="novoAnuncio.cobranca" class="ng-pristine ng-untouched ng-valid ng-not-empty">Por hora
-            </ion-radio>
-        </div>
-    </div>
-</div>
 <div align="center" style="margin-top: 5%;">
     <a type="button"  ng-disabled="formulario.$invalid" ng-click="confirmarAnuncio(novoAnuncio)" class="button button-block button-outline button-balanced"><span>Finalizar</span></a>    
     

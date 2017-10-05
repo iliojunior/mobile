@@ -90,11 +90,12 @@ $scope.confirmarAnuncio = function(novoAnuncio){
         //anunciosFactory.excluirAnuncio(idDoAnuncio);
         toastFactory.mostrarToastEmbaixo("Anúncio criado, aguardando aprovação!");
         novoAnuncio.id = Math.floor(Math.random() * 1000000);
-        novoAnuncio.status = 2;
+        novoAnuncio.statusAnuncio = 2;
         anunciosFactory.getAnunciosPorSetor(novoAnuncio);
+        //anunciosFactory.cadastrarAnuncio(novoAnuncio);
         console.log(novoAnuncio);
-        //$scope.redirecionar('/menu/meus-anuncios');
-        $ionicHistory.goBack();
+        $scope.redirecionar('/menu/meus-anuncios');
+        //$ionicHistory.goBack();
         atualizarListagemDeAnuncios();  
       }else{
         toastFactory.mostrarToastEmbaixo("Cadastro de anúncio cancelado!");
