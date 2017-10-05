@@ -20,7 +20,7 @@
   </style>
   <ion-content id="product-detail-content" class="has-header">
   <!-- <ion-content id="product-detail-content"> -->
-    <md-tabs md-dynamic-height md-border-bottom>
+    <md-tabs md-dynamic-height md-border-bottom ng-if="anuncio">
 
       <md-tab label="Detalhes">
         <md-content id="product-detail-tab-detail">
@@ -87,8 +87,8 @@
                   <p>Modelo: {{anuncio.modelo}}</p>
                   <p>Ano: {{anuncio.ano}}</p>
                   <p>Estado: {{anuncio.estado}}</p>
-                  <p>Cidade: {{anuncio.cidade}}</p> -->
-                  <!-- <p>Cobrança: {{anuncio.cobranca}}</p> -->
+                  <p>Cidade: {{anuncio.cidade}}</p>
+                  <p>Cobrança: {{anuncio.cobranca}}</p>
                   -->
               </div>
               <!--
@@ -117,13 +117,16 @@
       </md-tab>
 
       <md-tab label="Fotos">
-        <ion-slide-box id="slide-catalog-content" active-slide="0" style="margin-top: -10%">
+        <ion-slide-box id="slide-catalog-content" active-slide="0" style="margin-top: -10%" ng-if="anuncio.fotos">
           <ion-slide  ng-repeat="fotos in anuncio.fotos">
             <div class="pin">
               <img ng-src="{{fotos}}"/>
             </div>
           </ion-slide>
         </ion-slide-box>
+        <div class="text-center" ng-if="!anuncio.fotos" style="margin-top: 20px">
+          <h4>O anúncio não possui fotos.</h4>
+        </div>
       </md-tab>
 
       <md-tab label="Impulsionar" ng-if="anuncio.statusAnuncio == 1">

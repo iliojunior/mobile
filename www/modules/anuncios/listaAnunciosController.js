@@ -12,7 +12,7 @@ angular.module('anuncios', [])
  $scope.meusAnunciosAguardando = {};
  $scope.setores = {};
 
-  //$scope.listaDeAnuncios = anunciosFactory.getAnunciosPorSetor(2);
+  $scope.listaDeAnuncios = anunciosFactory.getAnunciosPorSetor(2);
   $scope.meusAnunciosAtivos = anunciosFactory.getAnunciosPorStatus(1);
   $scope.meusAnunciosExpirados = anunciosFactory.getAnunciosPorStatus(0);
   $scope.meusAnunciosAguardando = anunciosFactory.getAnunciosPorStatus(2);
