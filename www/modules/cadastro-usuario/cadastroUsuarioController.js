@@ -1,5 +1,5 @@
 angular.module("cadastroUsuario", [])
-  .controller('cadastroUsuarioController', function ($scope, Redirecionador, cadastroFactory, popUpFactory) {
+  .controller('cadastroUsuarioController', function ($scope, Redirecionador, cadastroUsuarioFactory, popUpFactory) {
     $scope.usuario = {};
     $scope.mostrarSenha = false;
 
@@ -22,7 +22,7 @@ angular.module("cadastroUsuario", [])
     }
 
     $scope.cadastrar = function (usuarioDoFormularioDeCadastro) {
-      if (cadastroFactory.validarCadastro(usuarioDoFormularioDeCadastro)) {
+      if (cadastroUsuarioFactory.validarCadastro(usuarioDoFormularioDeCadastro)) {
         $scope.formCadastroUsuario.$setPristine();
         $scope.usuario = {};
         $scope.mostrarSenha = false;

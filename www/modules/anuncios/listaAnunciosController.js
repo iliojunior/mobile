@@ -69,9 +69,14 @@ angular.module('anuncios', [])
   }
 
   $scope.ativarAnuncio = function (idDoAnuncioExpirado) {
-    anunciosFactory.ativarAnuncioExpirado(idDoAnuncioExpirado);
-    toastFactory.mostrarToastEmbaixo("Seu anúncio foi reativado!");
-    atualizarListagemDeAnuncios();
+    var popUpConfirmacao = popUpFactory.confirmarAtivacaoDeAnuncioExpirado();
+    popUpConfirmacao.then( function (resposta) {
+      if (resposta) {
+          anunciosFactory.ativarAnuncioExpirado(idDoAnuncioExpirado);
+          toastFactory.mostrarToastEmbaixo("Seu anúncio foi enviado para avaliação!");
+          atualizarListagemDeAnuncios();        
+      }
+    })
   }
 
   function atualizarListagemDeAnuncios () { 

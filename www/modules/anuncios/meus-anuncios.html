@@ -5,11 +5,12 @@
         <md-content>
           <md-card style="width: 45%; display: inline-flex" ng-repeat="anuncio in meusAnunciosAtivos"
                    ng-if="meusAnunciosAtivos.length > 0">
-            <img ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)" ng-src="{{anuncio.imagem}}" class="md-card-image" alt="Card image">
+            <!-- <img ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)" ng-src="{{anuncio.imagem}}" class="md-card-image" alt="Card image"> -->
+            <img ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)" ng-src="{{anuncio.fotos[0]}}" class="md-card-image" alt="Card image">
             <md-card-content class="text-center" ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)"
                              style="padding-bottom: 0px; height: 110px; max-height: 110px; overflow: hidden">
-                <h2 class="md-title">{{anuncio.nome}}</h2>
-                <h4>R$ {{anuncio.preco}}</h4>
+                <h2 class="md-title">{{anuncio.titulo}}</h2>
+                <h4>R$ {{anuncio.valor}}</h4>
             </md-card-content>
             <div class="md-actions" layout="row" layout-align="end center">
                 <!-- <button type="button" class="md-button md-default-theme"
@@ -46,11 +47,11 @@
           <md-content>
             <md-card style="width: 45%; display: inline-flex" ng-repeat="anuncio in meusAnunciosAguardando"
                       ng-if="meusAnunciosAguardando.length > 0">
-              <img ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)" ng-src="{{anuncio.imagem}}" class="md-card-image" alt="Card image">
+              <img ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)" ng-src="{{anuncio.fotos[0]}}" class="md-card-image" alt="Card image">
               <md-card-content class="text-center" ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)"
                                style="padding-bottom: 0px; height: 110px; max-height: 110px; overflow: hidden">
-                  <h2 class="md-title">{{anuncio.nome}}</h2>
-                  <h4>R$ {{anuncio.preco}}</h4>
+                  <h2 class="md-title">{{anuncio.titulo}}</h2>
+                  <h4>R$ {{anuncio.valor}}</h4>
               </md-card-content>
             </md-card>
             <div class="text-center"ng-if="meusAnunciosAguardando.length <= 0" style="margin-top: 20px">
@@ -63,11 +64,11 @@
             <md-card style="width: 45%; display: inline-flex" ng-repeat="anuncio in meusAnunciosExpirados"
                       ng-if="meusAnunciosExpirados.length > 0">
               <img ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)"
-                   ng-src="{{anuncio.imagem}}" class="md-card-image" alt="Card image">
+                   ng-src="{{anuncio.fotos[0]}}" class="md-card-image" alt="Card image">
               <md-card-content class="text-center" ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)"
                                style="padding-bottom: 0px; height: 110px; max-height: 110px; overflow: hidden">
-                  <h2 class="md-title">{{anuncio.nome}}</h2>
-                  <h4>R$ {{anuncio.preco}}</h4>
+                  <h2 class="md-title">{{anuncio.titulo}}</h2>
+                  <h4>R$ {{anuncio.valor}}</h4>
               </md-card-content>
               <div class="md-actions" layout="row" layout-align="end center">
                   <!-- <button type="button" class="md-button md-default-theme" ng-click="ativarAnuncio(anuncio.id)"

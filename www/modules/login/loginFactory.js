@@ -12,8 +12,17 @@ angular.module('login')
     }
   }
 
+  var _separarUsuarioPorId = function (pessoas) {
+    return pessoas.email = "ravizoni@gmail.com"; //retorna pessoas com email ravizoni@gmail.com
+  }
+
     var _validarLogin = function (usuarioDoFormularioDeLogin) {
       var params = {login: usuarioDoFormularioDeLogin.email, senha: usuarioDoFormularioDeLogin.senha}
+      // $http.get(URL + 'pessoas/')
+      //   .then( function (response) {
+      //     var meuArray = response.data;
+      //     return meuArray.filter(_separarUsuarioPorId);
+      //   })
       return $http.post(URL + 'login/logar',params)
         .then( function (response) {
           if (response.data.valido === "true") {
@@ -21,39 +30,23 @@ angular.module('login')
           } else {
             return false;
           }
-          //return true;
         })
-        /*
         .catch( function (error) {
           console.log('error',error)
           return false;
         })
-        */
+
       
-      /* EXEMPLO DE HTTP GET */
-      /*
-      return $http.get('https://jsonplaceholder.typicode.com/posts/1')
-        .then( function (response) {
-          //console.log('factory: ',response.data)
-          return response.data
-        })  
-        .catch( function (error) {
-          console.log('erro: ',error);
-          return false;
-        })
-      */      
-      //var params = {email: usuarioDoFormularioDeLogin.email, senha: usuarioDoFormularioDeLogin.senha};
-      /*
-      return $http.post('http://jsonplaceholder.typicode.com/posts', usuarioDoFormularioDeLogin)
-        .then( function (response) {
-          console.log('dentro do then: ',response.data);
-          return true;
-        })
-        .catch( function (error) {
-          console.log('erro: ',error);
-          return false;
-        })
-        */
+      // return $http.post('http://jsonplaceholder.typicode.com/posts', usuarioDoFormularioDeLogin)
+      //   .then( function (response) {
+      //     console.log('RESPOSTA DE UMA API QUALQUER SÓ PRA EXEMPLO: ',response.data);
+      //     return true;
+      //   })
+      //   .catch( function (error) {
+      //     console.log('erro: ',error);
+      //     return false;
+      //   })
+        
     };
 
   var _logarUsuario = function (usuarioDoFormulario) {
@@ -67,9 +60,9 @@ angular.module('login')
   var _novaSenha = function (emailDeRecuperacao) {
     console.log(emailDeRecuperacao)
     return true;
-    //return $http.get(URL + 'recuperar/' + emailDeRecuperacao)
+    //return $http.get(URL + 'login/recuperarsenha/' + emailDeRecuperacao)
     /*
-    return $http.post(URL + 'recuperar/', {email: emailDeRecuperacao})
+    return $http.post(URL + 'login/recuperarsenha/', {email: emailDeRecuperacao})
       .then( function (response) {
         console.log(response.data)
         return true;
