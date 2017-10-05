@@ -1,4 +1,4 @@
-<ion-view view-title="{{anuncio.titulo}}">
+<ion-view cache-view="false" view-title="{{anuncio.titulo}}">
   <ion-nav-buttons side="left">
       <a ng-click="$ionicGoBack()" class="button back-button buttons button-clear header-item nav-back-btn">
           <i class="ion-android-arrow-back"></i>
@@ -24,7 +24,7 @@
 
       <md-tab label="Detalhes">
         <md-content id="product-detail-tab-detail">
-          <div class="toolbar-image-cover product" style="background-image: url({{anuncio.fotos[0]}}); background-position-y: -20px; height: 200px !important"></div>
+          <div class="toolbar-image-cover product" style="background-image: url({{anuncio.fotos[0]}}); background-position-y: -20px; height: 200px !important" ng-if="anuncio.fotos.length > 0"></div>
           <!-- <div class="toolbar-image-cover product" style="background-image: url({{anuncio.imagem}}); background-position-y: -20px; height: 200px !important"></div> -->
           <!--
           <a class="md-button md-accent md-fab fab-toolbar-medium"
@@ -35,9 +35,9 @@
         -->
           <div class="detail-form">
             <div class="header">
-              <h1>{{anuncio.nome}}</h1>
+              <h1>{{anuncio.titulo}}</h1>
               <!--<p>Plain design shirt. Created by material team.</p>-->
-              <p>{{anuncio.descricao}}</p>
+              <p>Descrição do anúncio: {{anuncio.descricao}}</p>
             </div>
             <div class="product-detail-price" style="height: 40px">
               <div class="left">
@@ -81,6 +81,15 @@
                   <p ng-if="anuncio.estado">Estado : {{anuncio.estado}}</p>
                   <p ng-if="anuncio.cidade">Cidade: {{anuncio.cidade}}</p>
                   <p ng-if="anuncio.modoCobranca">Cobrança: {{anuncio.modoCobranca}}</p>
+                  <!--
+                  <p>Categoria: {{anuncio.categoria}}</p>
+                  <p>Subcategoria: {{anuncio.subcategoria}}</p>
+                  <p>Modelo: {{anuncio.modelo}}</p>
+                  <p>Ano: {{anuncio.ano}}</p>
+                  <p>Estado: {{anuncio.estado}}</p>
+                  <p>Cidade: {{anuncio.cidade}}</p> -->
+                  <!-- <p>Cobrança: {{anuncio.cobranca}}</p> -->
+                  -->
               </div>
               <!--
               <div class="col-33">

@@ -186,4 +186,34 @@ angular.module('app')
     },
   })
 
+  //criar anuncio
+  .state('menu.criar-anuncio', {
+    url: "/criar-anuncio",
+    params: {
+      criaranuncio: null,
+      actionDelete: false
+    },
+    views: {
+      'menuContent': {
+        templateUrl: "modules/anuncios/criar-anuncio.html",
+        controller: 'listaAnunciosController'
+      }
+    }
+  })
+
+  //edtar anuncio
+    .state('menu.edtar-anuncio', {
+    // url: '/lista-anuncios-por-setor/:index',
+    url: '/editar-anuncio/:index',
+    params: {
+      isAnimated: false
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'modules/anuncios/criar-anuncio.html',
+        controller: 'listaAnunciosController'
+      }
+    },
+  })
+
 });

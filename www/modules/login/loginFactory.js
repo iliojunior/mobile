@@ -62,7 +62,7 @@ angular.module('login')
     return true;
     //return $http.get(URL + 'login/recuperarsenha/' + emailDeRecuperacao)
     /*
-    return $http.post(URL + 'login/recuperarsenha/', {email: emailDeRecuperacao})
+    return $http.get(URL + 'login/recuperarsenha/', {email: emailDeRecuperacao})
       .then( function (response) {
         console.log(response.data)
         return true;

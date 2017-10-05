@@ -42,8 +42,8 @@ angular.module('pagamento')
     console.log(objetoCartaoFormulario);
     */
     cartaoObj.id = _cartoes.length+1;
+    cartaoObj.idPessoa = 1;
     _cartoes.push(cartaoObj);
-
     /*
     return $http.post(URL + "cartao/", cartaoObj)
       .then(function (response) {
@@ -69,9 +69,8 @@ angular.module('pagamento')
         console.log(error)
       })
     */
-    console.log(_cartoes)
-    return _formatarUltimosNumeros(_cartoes.filter(filtrarCartoesGambiarraEstatico));
-    //return _formatarUltimosNumeros(_cartoes);
+    //return _formatarUltimosNumeros(_cartoes.filter(filtrarCartoesGambiarraEstatico));
+    return _formatarUltimosNumeros(_cartoes);
   };
 
   var filtrarCartoesGambiarraEstatico = function (_cartoes) {
