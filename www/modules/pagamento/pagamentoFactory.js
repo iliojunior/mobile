@@ -108,20 +108,18 @@ angular.module('pagamento')
   };
 
   var _excluirCartao = function (idDoCartaoPraRemover) {
-    /*
-    return $http.delete(URL + "/" + idDoCartaoPraRemover)
+    return $http.delete(URL + "/cartoes/" + idDoCartaoPraRemover)
       .then( function (response) {
-        console.log(response.data)
+        console.log("Cartão excluído com sucesso!")
       })
       .catch(function (error) {
         console.log(error)
       })
-    */
-    for (var i = 0; i < _cartoes.length; i++) {
+    /*for (var i = 0; i < _cartoes.length; i++) {
       if (_cartoes[i].id === parseInt(idDoCartaoPraRemover)) {
         _cartoes.splice(i,1);
       }
-    }
+    }*/
   }
 
   var _setTipoImpulsaoDeAnuncio = function (idDoTipo) {
