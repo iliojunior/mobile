@@ -1,7 +1,8 @@
 angular.module('pagamento')
-.factory('pagamentoFactory', function () {
+.factory('pagamentoFactory', function ($http) {
 
-  var URL = "http://10.42.0.1:8081/";
+  //var URL = "http://10.42.0.1:8081/";
+  var URL = 'http://back.time02escoladeti.com/';
 
   var _cartoes = [
                   {id: 1, nomeTitular: 'João A. da Silva', numeroCartao: 1112223334445556, mesValidade: 11, anoValidade: 2019, idPessoa: 1},
@@ -25,8 +26,19 @@ angular.module('pagamento')
   }
 
   var _formatarUltimosNumeros = function (arrayDeCartoes) {
-    var retorno = [];
+    /*var retorno = [];
+    console.log("A")
     for (var i = arrayDeCartoes.length - 1; i >= 0; i--) {
+      console.log("B")
+      var numeroDoCartao = arrayDeCartoes[i].numeroCartao.toString();
+      console.log(numeroDoCartao);
+      arrayDeCartoes[i].numeroCartao = numeroDoCartao.substr(numeroDoCartao.length - 4);
+      console.log(arrayDeCartoes[i].numeroCartao)
+    }
+    return arrayDeCartoes*/
+
+    var retorno = [];
+    for (var i = 0; i <= arrayDeCartoes.length - 1; i++) {
       var numeroDoCartao = arrayDeCartoes[i].numeroCartao.toString();
       arrayDeCartoes[i].numeroCartao = numeroDoCartao.substr(numeroDoCartao.length - 4);
     }
@@ -58,19 +70,16 @@ angular.module('pagamento')
     return true;
   };
 
-  var _getAllCartoes = function () {
-    /*
-    return $http.get(URL + "/")
+  var _getAllCartoes = function (idPessoa) {
+    return $http.get(URL + "/cartoes?idPessoa="+idPessoa)
       .then( function (response) {
-        // return _formatarUltimosNumeros(response.data)
-        return response.data
+        return _formatarUltimosNumeros(response.data)
       })
       .catch( function (error) {
         console.log(error)
-      })
-    */
+      })    
     //return _formatarUltimosNumeros(_cartoes.filter(filtrarCartoesGambiarraEstatico));
-    return _formatarUltimosNumeros(_cartoes);
+    //return _formatarUltimosNumeros(_cartoes);
   };
 
   var filtrarCartoesGambiarraEstatico = function (_cartoes) {
@@ -78,20 +87,24 @@ angular.module('pagamento')
   }
 
   var _getCartaoPorId = function (id) {
-    /*
-    return $http.get(URL + "cartao/" + id)
+    return $http.get(URL + "cartoes/" + id)
       .then( function (response) {
+        /* formata o numero */
+        var numeroCartaoCompleto = response.data.numeroCartao.toString();
+        response.data.numeroCartao = numeroCartaoCompleto.substr(numeroCartaoCompleto.length - 4);
+        /* fim formatação */
         return response.data
       })
       .catch( function (error) {
         console.log(error)
       })
-    */
+    /*
     for (var i = 0; i < _cartoes.length; i++) {
       if (_cartoes[i].id === parseInt(id)) {
         return _cartoes[i]
       }
     }
+    */
   };
 
   var _excluirCartao = function (idDoCartaoPraRemover) {

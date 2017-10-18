@@ -1,7 +1,8 @@
 angular.module('login')
 .factory('loginFactory', function ($http) {
 
-  var URL = 'http://10.42.0.1:8081/';
+  //var URL = 'http://10.42.0.1:8081/';
+  var URL = 'http://back.time02escoladeti.com/';
 
   var _validarEmail = function (email) {
     var regularExpression = /^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
@@ -51,6 +52,7 @@ angular.module('login')
 
   var _logarUsuario = function (usuarioDoFormulario) {
     // salvar objeto no local storage
+    console.log(usuarioDoFormulario)
   }
 
   var _deslogar = function (usuarioDoFormularioDeLogin) {

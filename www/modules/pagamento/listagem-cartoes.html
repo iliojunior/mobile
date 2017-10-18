@@ -16,6 +16,12 @@
           </div>
       </md-toolbar>
       <div id="product-checkout-content" style="margin-top:0px">
+        <ion-spinner class="spinner-energized" ng-if="!cartoesCadastrados" style="margin-left: 45%">
+          <!-- Enquanto não houver resultado no $scope.cartoesCadastrados -->
+        </ion-spinner>
+        <h4 ng-if="cartoesCadastrados.length <= 0" style="text-align: center">
+          Você não possui cartões cadastrados.
+        </h4>
         <div class="list">
           <div class="item item-button-right" ng-repeat="cartao in cartoesCadastrados">
             <div ng-click="showListBottomSheet($event, cartao.id)">
