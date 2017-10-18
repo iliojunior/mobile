@@ -9,9 +9,19 @@ angular.module('pagamento')
   
   $scope.compra.nomeAnuncio = _anuncioComprado.titulo;
   $scope.compra.nomePacote = _pacoteComprado.nome;
-  $scope.compra.cartao = pagamentoFactory.getCartaoPorId(retornoCompra.cartao).numeroCartao;
-  console.log(_pacoteComprado)
+  //$scope.compra.cartao = pagamentoFactory.getCartaoPorId(retornoCompra.cartao).numeroCartao;
+  //console.log(pagamentoFactory.getCartaoPorId(retornoCompra.cartao))
   $scope.compra.valor = _pacoteComprado.valor;
+
+  pagamentoFactory.getCartaoPorId(retornoCompra.cartao)
+    .then( function (response) {
+      $scope.compra.cartao = response.numeroCartao;
+    })
+    .catch( function (error) {
+      $scope.cartoesCadastrados = null;
+      // console.log(error)
+  }) 
+
 
   $scope.finalizarCompra = function (compra) {
     if (pagamentoFactory.finalizarCompra(compra)) {

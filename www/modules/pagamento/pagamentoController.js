@@ -1,7 +1,17 @@
 angular.module('pagamento', [])
 .controller('pagamentoController', function ($scope, pagamentoFactory, anunciosFactory, toastFactory, popUpFactory, $location, $mdBottomSheet, $ionicHistory) {
 
-  $scope.cartoesCadastrados = pagamentoFactory.getAllCartoes();
+  //$scope.cartoesCadastrados = pagamentoFactory.getAllCartoes();
+ 
+  pagamentoFactory.getAllCartoes(localStorage.getItem("idPessoa"))
+    .then( function (response) {
+      $scope.cartoesCadastrados = response;
+    })
+    .catch( function (error) {
+      $scope.cartoesCadastrados = null;
+      // console.log(error)
+  })  
+
   $scope.listaMes = pagamentoFactory.getListaMes();
   $scope.listaAno = pagamentoFactory.getListaAno();
 
@@ -36,7 +46,7 @@ angular.module('pagamento', [])
         pagamentoFactory.excluirCartao(idDoCartao);
         toastFactory.mostrarToastEmbaixo("Cartão excluído!");
         // atualiza lista:
-        $scope.cartoesCadastrados = pagamentoFactory.getAllCartoes();
+        $scope.cartoesCadastrados = pagamentoFactory.getAllCartoes(localStorage.getItem("idPessoa"));
       }
     })
   }
