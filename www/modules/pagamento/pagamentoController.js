@@ -9,7 +9,6 @@ angular.module('pagamento', [])
     })
     .catch( function (error) {
       $scope.cartoesCadastrados = null;
-      // console.log(error)
   })  
 
   $scope.listaMes = pagamentoFactory.getListaMes();
@@ -17,14 +16,21 @@ angular.module('pagamento', [])
 
 
   $scope.cadastrarCartao = function (cartao) {
-    if (pagamentoFactory.cadastrarCartao(cartao)) {
-      toastFactory.mostrarToastEmbaixo('Seu cartão foi cadastrado!');
-      //$ionicHistory.goBack();
-      $scope.cartoesCadastrados = pagamentoFactory.getAllCartoes(); 
-      $location.path('/menu/listagem-cartoes');
-    } else {
-      popUpFactory.cadastroErro()
-    }
+    cartao.idPessoa = localStorage.getItem("idPessoa");
+    cartao.mesValidade = parseInt(cartao.mesValidade);
+    cartao.anoValidade = parseInt(cartao.anoValidade);
+    cartao.numeroCartao = parseInt(cartao.numeroCartao);
+    pagamentoFactory.cadastrarCartao(cartao).then(function (response) {
+      if (response) {
+        toastFactory.mostrarToastEmbaixo('Seu cartão foi cadastrado!');
+        pagamentoFactory.getAllCartoes(localStorage.getItem("idPessoa")).then(function (response) {
+          $scope.cartoesCadastrados = response;
+          $location.path('/menu/listagem-cartoes');
+        })
+      } else {
+        popUpFactory.cadastroErro()
+      }
+    })
   }
 
   $scope.showListBottomSheet = function ($event, IDdoCartao) {
@@ -43,10 +49,22 @@ angular.module('pagamento', [])
     var popUpConfirmacao = popUpFactory.excluirCartaoConfirmacao();
     popUpConfirmacao.then( function (resposta) {
       if(resposta) { // se apertar no OK
-        pagamentoFactory.excluirCartao(idDoCartao);
+        /*pagamentoFactory.excluirCartao(idDoCartao);
         toastFactory.mostrarToastEmbaixo("Cartão excluído!");
         // atualiza lista:
-        $scope.cartoesCadastrados = pagamentoFactory.getAllCartoes(localStorage.getItem("idPessoa"));
+        //$scope.cartoesCadastrados = pagamentoFactory.getAllCartoes(localStorage.getItem("idPessoa"));
+        pagamentoFactory.getAllCartoes(localStorage.getItem("idPessoa")).then(function (response) {
+          console.log(response);
+          $scope.cartoesCadastrados = response;
+        })*/
+        // //////////////////
+        pagamentoFactory.excluirCartao(idDoCartao).then( function (response) {
+          toastFactory.mostrarToastEmbaixo("Cartão excluído!");
+          pagamentoFactory.getAllCartoes(localStorage.getItem("idPessoa")).then(function (response) {
+            console.log(response);
+            $scope.cartoesCadastrados = response;
+          })
+        })
       }
     })
   }

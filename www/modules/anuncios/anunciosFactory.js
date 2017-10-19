@@ -1,8 +1,8 @@
 angular.module('anuncios')
 .factory('anunciosFactory', function ($http, $filter) {
 
-   var URL = "http://10.42.0.1:8081/";
-
+  var URL = "http://10.42.0.1:8081/";
+  var URL = 'http://back.time02escoladeti.com/';
   /*     DADOS ESTÁTICOS     */
 
 
@@ -46,18 +46,13 @@ angular.module('anuncios')
   /*   FIM DADOS ESTÁTICOS     */
 
   var _getAllSetores = function () {
-    // método HTTP
-    /*
-    return $http.get(URL + "anuncios/agricola")
+    return $http.get(URL + "categorias")
       .then( function (response) {
-        console.log(response.data)
         return response.data
       })
       .catch( function (error) {
         console.log(error)
       })
-    */
-    return setores;
   };
 
   //codigo do criarAnuncioFactory

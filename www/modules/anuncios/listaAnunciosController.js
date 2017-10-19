@@ -17,6 +17,15 @@ angular.module('anuncios', [])
   $scope.meusAnunciosExpirados = anunciosFactory.getAnunciosPorStatus(0);
   $scope.meusAnunciosAguardando = anunciosFactory.getAnunciosPorStatus(2);
   $scope.setores = anunciosFactory.getAllSetores();
+
+  anunciosFactory.getAllSetores()
+    .then( function (response) {
+      $scope.setores = response;
+    })
+    .catch( function (error) {
+      //
+    })
+
   // O CÓDIGO DE CIMA FICARÁ ASSIM (EMBAIXO):
   /*
     anunciosFactory.getAnunciosPorSetor()

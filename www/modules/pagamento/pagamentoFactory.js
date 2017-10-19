@@ -46,28 +46,22 @@ angular.module('pagamento')
   }
 
   var _cadastrarCartao = function (cartaoObj) {
-    /*
-    var teste = cartaoObj.dataExpiracao.split("/");
-    cartaoObj.mes = teste[0];
-    cartaoObj.ano = teste[1];
-    var objetoCartaoFormulario = {numeroCartao: cartaoObj.numero, mesValidade: cartaoObj.mes, anoValidade: cartaoObj.ano, nomeTitular: cartaoObj.nome}
-    console.log(objetoCartaoFormulario);
-    */
-    cartaoObj.id = _cartoes.length+1;
-    cartaoObj.idPessoa = 1;
-    _cartoes.push(cartaoObj);
-    /*
-    return $http.post(URL + "cartao/", cartaoObj)
+    var params = {
+      url: URL + "cartoes",
+      method:'post',
+      data: cartaoObj,
+      headers: {
+        Accept: 'text/plain'
+      }
+    }
+    return $http(params)
       .then(function (response) {
-        //return true;
-        return response.data;
+        return true;
       })
       .catch(function (error) {
         console.log(error);
+        return false;
       });
-    */
-
-    return true;
   };
 
   var _getAllCartoes = function (idPessoa) {
@@ -110,10 +104,10 @@ angular.module('pagamento')
   var _excluirCartao = function (idDoCartaoPraRemover) {
     return $http.delete(URL + "/cartoes/" + idDoCartaoPraRemover)
       .then( function (response) {
-        console.log("Cartão excluído com sucesso!")
+        return true;
       })
       .catch(function (error) {
-        console.log(error)
+        return false;
       })
     /*for (var i = 0; i < _cartoes.length; i++) {
       if (_cartoes[i].id === parseInt(idDoCartaoPraRemover)) {
