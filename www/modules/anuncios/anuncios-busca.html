@@ -52,8 +52,11 @@
           </div>
         </div>
         <h2 class="text-center" style="margin-top: 10px"><i class="ion-funnel"></i> Filtros Opicionais</h2>
+        <h4 class="text-center" style="margin-left: 12px; margin-right: 12px" ng-if="!pesquisa.setor">
+          Selecione uma categoria antes de pesquisar por outros filtros.
+        </h4>
         <div id="push-notification">
-          <div class="notification-option row">
+          <div class="notification-option row" ng-if="pesquisa.setor">
             <md-input-container md-no-float>
                 <i class="ion-waterdrop" style="font-size: 25px"></i>
                 <span style="font-size: 20px; margin-top: 10px">Filtro 1:</span>
@@ -65,7 +68,7 @@
               </md-select>
             </md-input-container>
           </div>
-          <div class="notification-option row">
+          <!-- <div class="notification-option row">
             <md-input-container md-no-float>
                 <i class="ion-lightbulb" style="font-size: 25px"></i>
                 <span style="font-size: 20px; margin-top: 10px">Filtro 2:</span>
@@ -78,7 +81,7 @@
                   <md-option value="D">Opção D</md-option>
               </md-select>
             </md-input-container>
-          </div>
+          </div> -->
 
           <button type="button" class="md-raised social-button md-button md-default-theme material-background"
              ng-click="pesquisar(pesquisa)" style="font-size: 20px; font-weight: 600; background-color: #8de624 !important"

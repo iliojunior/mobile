@@ -16,7 +16,6 @@ angular.module('anuncios', [])
   $scope.meusAnunciosAtivos = anunciosFactory.getAnunciosPorStatus(1);
   $scope.meusAnunciosExpirados = anunciosFactory.getAnunciosPorStatus(0);
   $scope.meusAnunciosAguardando = anunciosFactory.getAnunciosPorStatus(2);
-  $scope.setores = anunciosFactory.getAllSetores();
 
   anunciosFactory.getAllSetores()
     .then( function (response) {
