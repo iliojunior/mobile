@@ -1,16 +1,71 @@
 angular.module('cadastroUsuario')
-.factory('cadastroUsuarioFactory', function () {
+.factory('cadastroUsuarioFactory', function ($http) {
 
-    var _validarCadastro = function (usuarioDoFormularioDeCadastro) {
-      if (usuarioDoFormularioDeCadastro.senha === usuarioDoFormularioDeCadastro.senhaConfirmada) {
-        return true;
-      } else {
-        return false;
+  var URL = 'http://back.time02escoladeti.com/';
+
+  var _validarCadastro = function (usuarioDoFormularioDeCadastro) {
+    if (usuarioDoFormularioDeCadastro.senha === usuarioDoFormularioDeCadastro.senhaConfirmada) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  var _cadastrarPessoaFisica = function (pessoaFisica) {
+    var params = {
+      url: URL + "pessoas/fisica",
+      method:'post',
+      data: pessoaFisica,
+      headers: {
+        Accept: 'text/plain'
       }
     }
+    return $http(params)
+            .then(function (response) {
+              console.log(response.data)
+              return response.data;
+            })
+            .catch( function (error) {
+              console.log(error);
+            })
+    /*return $http.post(URL+"pessoas/fisica",pessoaFisica)
+              .then(function (response) {
+                console.log("C")
+                console.log(response.data)
+              })*/
+  }
 
-    return {
-      validarCadastro: _validarCadastro
+  var _cadastrarPessoaJuridica = function (pessoaJuridica) {
+    var params = {
+      url: URL + "pessoas/juridica",
+      method:'post',
+      data: pessoaJuridica,
+      headers: {
+        Accept: 'text/plain'
+      }
     }
+    return $http(params)
+            .then(function (response) {
+              console.log(response.data)
+            })
+  }
+
+  var _cadastrarUsuario = function (usuario) {
+    return $http.post(URL+"usuarios",usuario)
+      .then( function (response) {
+        console.log("cadastrar usuario: ");
+        console.log(response);
+      })
+      .catch( function (error) {
+        console.log(error);
+      })
+  }
+
+  return {
+    validarCadastro: _validarCadastro,
+    cadastrarPessoaFisica: _cadastrarPessoaFisica,
+    cadastrarPessoaJuridica: _cadastrarPessoaJuridica,
+    cadastrarUsuario: _cadastrarUsuario,
+  }
 
 })

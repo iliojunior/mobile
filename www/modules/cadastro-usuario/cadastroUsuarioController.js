@@ -22,16 +22,83 @@ angular.module("cadastroUsuario", [])
     }
 
     $scope.cadastrar = function (usuarioDoFormularioDeCadastro) {
-      if (cadastroUsuarioFactory.validarCadastro(usuarioDoFormularioDeCadastro)) {
+      console.log(usuarioDoFormularioDeCadastro)
+      /*if (cadastroUsuarioFactory.validarCadastro(usuarioDoFormularioDeCadastro)) {
         $scope.formCadastroUsuario.$setPristine();
         $scope.usuario = {};
         $scope.mostrarSenha = false;
-        // document.getElementById("checkBoxMostrarSenha").classList.remove('md-checked');
         popUpFactory.cadastroSucesso().then( function (resposta) {
           $scope.redirecionar('/menu/home');
         })
       } else {
         popUpFactory.cadastroErro();
+      }*/
+      var pessoaObjeto = {     // teve q fazer novo objeto para não enviar informação a mais (senha)
+        tipoPessoa: usuarioDoFormularioDeCadastro.tipoPessoa,
+        nome: usuarioDoFormularioDeCadastro.nome,
+        email: usuarioDoFormularioDeCadastro.email
+      }
+      if (usuarioDoFormularioDeCadastro.tipoPessoa === "fisica") {
+        console.log("A");
+        _cadastrarPessoaFisica(pessoaObjeto, usuarioDoFormularioDeCadastro.senha)
+
+      } else {
+        _cadastrarPessoaJuridica(pessoaObjeto, usuarioDoFormularioDeCadastro.senha)
       }
     }
+
+    var _cadastrarPessoaFisica = function (objetoDaPessoaFisica, senha) {
+      cadastroUsuarioFactory.cadastrarPessoaFisica(objetoDaPessoaFisica)
+        .then( function (response) {
+          var usuarioObjeto = {
+            email: objetoDaPessoaFisica.email,
+            senha: senha,
+            idPessoa: response
+          }
+          _limparFormulario();
+          localStorage.setItem("tipoPessoa",objetoDaPessoaFisica.tipoPessoa)
+          console.log("usuario: ",usuarioObjeto)
+          _cadastrarUsuario(usuarioObjeto);
+        })
+        .catch( function (error) {    // catch se não conseguir cadastrar na classe PESSOA
+          console.log(error);
+          popUpFactory.cadastroErro();
+        })
+    }
+
+    var _cadastrarPessoaJuridica = function (objetoDaPessoaJuridica, senha) {
+      cadastroUsuarioFactory.cadastrarPessoaJuridica(objetoDaPessoaJuridica)
+        .then( function (response) {
+          var usuarioObjeto = {
+            email: objetoDaPessoaJuridica.email,
+            senha: senha,
+            idPessoa: response.data
+          }
+          _limparFormulario();
+          _cadastrarUsuario(usuarioObjeto);
+        })
+        .catch( function (error) {    // catch se não conseguir cadastrar na classe PESSOA
+          console.log(error);
+          popUpFactory.cadastroErro();
+        })
+    }
+
+    var _cadastrarUsuario = function (usuarioObjeto) {
+      cadastroUsuarioFactory.cadastrarUsuario(usuarioObjeto)
+        .then( function (responseCadastroUsuario) {
+          popUpFactory.cadastroSucesso().then( function (resposta) {
+            $scope.redirecionar('/menu/home');
+          })
+        })
+        .catch( function (error) {
+          popUpFactory.cadastroErro();
+        })
+    }
+
+    var _limparFormulario = function () {
+      $scope.formCadastroUsuario.$setPristine();
+      $scope.usuario = {};
+      $scope.mostrarSenha = false;
+    }
+
   })
