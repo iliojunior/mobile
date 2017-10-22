@@ -20,19 +20,12 @@ angular.module('cadastroUsuario')
         Accept: 'text/plain'
       }
     }
-    return $http(params)
-            .then(function (response) {
-              console.log(response.data)
-              return response.data;
-            })
-            .catch( function (error) {
-              console.log(error);
-            })
-    /*return $http.post(URL+"pessoas/fisica",pessoaFisica)
-              .then(function (response) {
-                console.log("C")
-                console.log(response.data)
-              })*/
+    return $http(params).then(function (response) {
+        return response.data;
+      })
+      .catch( function (error) {
+        console.log(error);
+      })
   }
 
   var _cadastrarPessoaJuridica = function (pessoaJuridica) {
@@ -44,21 +37,38 @@ angular.module('cadastroUsuario')
         Accept: 'text/plain'
       }
     }
-    return $http(params)
-            .then(function (response) {
-              console.log(response.data)
-            })
+    return $http(params).then(function (response) {
+        return(response.data)
+      })
+      .catch( function (error) {
+        console.log(error);
+      })
   }
 
   var _cadastrarUsuario = function (usuario) {
-    return $http.post(URL+"usuarios",usuario)
+    var params = {
+      url: URL + "usuarios",
+      method:'post',
+      data: usuario,
+      headers: {
+        Accept: 'text/plain'
+      }
+    }
+    return $http(params)
+      .then( function (response) {
+        return response;
+      })
+      .catch( function (error) {
+        console.log(error);
+      })
+    /*return $http.post(URL+"usuarios",usuario)
       .then( function (response) {
         console.log("cadastrar usuario: ");
         console.log(response);
       })
       .catch( function (error) {
         console.log(error);
-      })
+      })*/
   }
 
   return {

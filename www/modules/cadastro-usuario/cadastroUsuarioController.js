@@ -22,7 +22,6 @@ angular.module("cadastroUsuario", [])
     }
 
     $scope.cadastrar = function (usuarioDoFormularioDeCadastro) {
-      console.log(usuarioDoFormularioDeCadastro)
       /*if (cadastroUsuarioFactory.validarCadastro(usuarioDoFormularioDeCadastro)) {
         $scope.formCadastroUsuario.$setPristine();
         $scope.usuario = {};
@@ -39,9 +38,7 @@ angular.module("cadastroUsuario", [])
         email: usuarioDoFormularioDeCadastro.email
       }
       if (usuarioDoFormularioDeCadastro.tipoPessoa === "fisica") {
-        console.log("A");
         _cadastrarPessoaFisica(pessoaObjeto, usuarioDoFormularioDeCadastro.senha)
-
       } else {
         _cadastrarPessoaJuridica(pessoaObjeto, usuarioDoFormularioDeCadastro.senha)
       }
@@ -57,7 +54,6 @@ angular.module("cadastroUsuario", [])
           }
           _limparFormulario();
           localStorage.setItem("tipoPessoa",objetoDaPessoaFisica.tipoPessoa)
-          console.log("usuario: ",usuarioObjeto)
           _cadastrarUsuario(usuarioObjeto);
         })
         .catch( function (error) {    // catch se não conseguir cadastrar na classe PESSOA
@@ -67,8 +63,10 @@ angular.module("cadastroUsuario", [])
     }
 
     var _cadastrarPessoaJuridica = function (objetoDaPessoaJuridica, senha) {
+      console.log("pj: ", objetoDaPessoaJuridica)
       cadastroUsuarioFactory.cadastrarPessoaJuridica(objetoDaPessoaJuridica)
         .then( function (response) {
+          console.log("resposta pj: ", response)
           var usuarioObjeto = {
             email: objetoDaPessoaJuridica.email,
             senha: senha,
@@ -86,9 +84,13 @@ angular.module("cadastroUsuario", [])
     var _cadastrarUsuario = function (usuarioObjeto) {
       cadastroUsuarioFactory.cadastrarUsuario(usuarioObjeto)
         .then( function (responseCadastroUsuario) {
-          popUpFactory.cadastroSucesso().then( function (resposta) {
-            $scope.redirecionar('/menu/home');
-          })
+          if(responseCadastroUsuario.data) {
+            popUpFactory.cadastroSucesso().then( function (resposta) {
+              $scope.redirecionar('/menu/home');
+            })
+          } else {
+            popUpFactory.cadastroErro();
+          }          
         })
         .catch( function (error) {
           popUpFactory.cadastroErro();
