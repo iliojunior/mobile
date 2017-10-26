@@ -1,7 +1,6 @@
 angular.module('anuncios')
 .factory('anunciosFactory', function ($http, $filter) {
 
-  var URL = "http://10.42.0.1:8081/";
   var URL = 'http://back.time02escoladeti.com/';
   /*     DADOS ESTÁTICOS     */
 
@@ -54,6 +53,15 @@ angular.module('anuncios')
         console.log(error)
       })
   };
+
+  var _getFotoDaCategoriaPorId = function (idDaCategoria) {
+    return $http.get(URL + "fotos/"+idDaCategoria)
+        .then(function (response) {
+          //console.log(response.data);
+          //console.log("http://files.time02escoladeti.com/"+response.data.nomeFoto);
+          return "http://files.time02escoladeti.com/"+response.data.nomeFoto;
+        })
+  }
 
   //codigo do criarAnuncioFactory
   var _getSubcategorias = function(setores, categoriaSelecionada) {
@@ -281,6 +289,7 @@ angular.module('anuncios')
 
   return {
     getAllSetores: _getAllSetores,
+    getFotoDaCategoriaPorId: _getFotoDaCategoriaPorId,
     editarAnuncio: _editarAnuncio,
     getAnunciosPorSetor: _getAnunciosPorSetor,
     cadastrarAnuncio: _cadastrarAnuncio,
