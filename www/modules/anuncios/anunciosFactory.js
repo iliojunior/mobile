@@ -1,7 +1,7 @@
 angular.module('anuncios')
 .factory('anunciosFactory', function ($http, $filter) {
 
-  var URL = "http://10.42.0.1:8081/";
+  //var URL = "http://10.42.0.1:8081/";
   var URL = 'http://back.time02escoladeti.com/';
   /*     DADOS ESTÁTICOS     */
 

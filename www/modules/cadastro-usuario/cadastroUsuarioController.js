@@ -50,7 +50,7 @@ angular.module("cadastroUsuario", [])
           var usuarioObjeto = {
             email: objetoDaPessoaFisica.email,
             senha: senha,
-            idPessoa: response
+            idPessoa: response.idGerado
           }
           _limparFormulario();
           localStorage.setItem("tipoPessoa",objetoDaPessoaFisica.tipoPessoa)
@@ -70,9 +70,10 @@ angular.module("cadastroUsuario", [])
           var usuarioObjeto = {
             email: objetoDaPessoaJuridica.email,
             senha: senha,
-            idPessoa: response.data
+            idPessoa: response.idGerado
           }
           _limparFormulario();
+          localStorage.setItem("tipoPessoa",objetoDaPessoaFisica.tipoPessoa)
           _cadastrarUsuario(usuarioObjeto);
         })
         .catch( function (error) {    // catch se não conseguir cadastrar na classe PESSOA

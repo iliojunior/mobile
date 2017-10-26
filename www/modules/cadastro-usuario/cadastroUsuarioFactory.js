@@ -12,7 +12,7 @@ angular.module('cadastroUsuario')
   }
 
   var _cadastrarPessoaFisica = function (pessoaFisica) {
-    var params = {
+    /*var params = {
       url: URL + "pessoas/fisica",
       method:'post',
       data: pessoaFisica,
@@ -21,15 +21,22 @@ angular.module('cadastroUsuario')
       }
     }
     return $http(params).then(function (response) {
+      console.log(response.data)
         return response.data;
       })
       .catch( function (error) {
         console.log(error);
-      })
+      })*/
+    return $http.post(URL + "pessoas/fisica", pessoaFisica)
+            .then(function (response) {
+              console.log("resposta:", response.data.idGerado);
+              return response.data
+            })    
+
   }
 
   var _cadastrarPessoaJuridica = function (pessoaJuridica) {
-    var params = {
+    /*var params = {
       url: URL + "pessoas/juridica",
       method:'post',
       data: pessoaJuridica,
@@ -42,7 +49,14 @@ angular.module('cadastroUsuario')
       })
       .catch( function (error) {
         console.log(error);
-      })
+      })*/
+      return $http.post(URL+"pessoas/juridica")
+        .then( function (response) {
+          return response.data;
+        })
+        .catch( function (error) {
+          console.log(error)
+        })
   }
 
   var _cadastrarUsuario = function (usuario) {
