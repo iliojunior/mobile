@@ -2,6 +2,7 @@ angular.module("cadastroUsuario", [])
   .controller('cadastroUsuarioController', function ($scope, Redirecionador, cadastroUsuarioFactory, popUpFactory) {
     $scope.usuario = {};
     $scope.mostrarSenha = false;
+    $scope.isLoading = false;
 
     $scope.redirecionar = function (rota) {
       Redirecionador.irPara(rota);
@@ -45,39 +46,47 @@ angular.module("cadastroUsuario", [])
     }
 
     var _cadastrarPessoaFisica = function (objetoDaPessoaFisica, senha) {
+      $scope.isLoading = true;
       cadastroUsuarioFactory.cadastrarPessoaFisica(objetoDaPessoaFisica)
         .then( function (response) {
+          $scope.isLoading = false;
           var usuarioObjeto = {
-            email: objetoDaPessoaFisica.email,
+            login: objetoDaPessoaFisica.email,
             senha: senha,
             idPessoa: response.idGerado
           }
           _limparFormulario();
-          localStorage.setItem("tipoPessoa",objetoDaPessoaFisica.tipoPessoa)
+          localStorage.setItem("tipoPessoa",objetoDaPessoaFisica.tipoPessoa)          
+          localStorage.setItem("idPessoa",response.idGerado)
           _cadastrarUsuario(usuarioObjeto);
         })
         .catch( function (error) {    // catch se não conseguir cadastrar na classe PESSOA
           console.log(error);
+          $scope.isLoading = false;
           popUpFactory.cadastroErro();
         })
     }
 
     var _cadastrarPessoaJuridica = function (objetoDaPessoaJuridica, senha) {
+      $scope.isLoading = true;
       console.log("pj: ", objetoDaPessoaJuridica)
       cadastroUsuarioFactory.cadastrarPessoaJuridica(objetoDaPessoaJuridica)
         .then( function (response) {
+          $scope.isLoading = false;
           console.log("resposta pj: ", response)
           var usuarioObjeto = {
-            email: objetoDaPessoaJuridica.email,
+            login: objetoDaPessoaJuridica.email,
             senha: senha,
             idPessoa: response.idGerado
           }
           _limparFormulario();
-          localStorage.setItem("tipoPessoa",objetoDaPessoaFisica.tipoPessoa)
+          localStorage.setItem("tipoPessoa",objetoDaPessoaJuridica.tipoPessoa)
+          localStorage.setItem("idPessoa",response.idGerado)
           _cadastrarUsuario(usuarioObjeto);
         })
         .catch( function (error) {    // catch se não conseguir cadastrar na classe PESSOA
           console.log(error);
+          $scope.isLoading = false;
           popUpFactory.cadastroErro();
         })
     }
@@ -85,15 +94,18 @@ angular.module("cadastroUsuario", [])
     var _cadastrarUsuario = function (usuarioObjeto) {
       cadastroUsuarioFactory.cadastrarUsuario(usuarioObjeto)
         .then( function (responseCadastroUsuario) {
-          if(responseCadastroUsuario.data) {
+          console.log('CTRL',responseCadastroUsuario)
+          if(responseCadastroUsuario) {
             popUpFactory.cadastroSucesso().then( function (resposta) {
               $scope.redirecionar('/menu/home');
             })
           } else {
+            console.log("else then");
             popUpFactory.cadastroErro();
           }          
         })
         .catch( function (error) {
+            console.log("catch");
           popUpFactory.cadastroErro();
         })
     }

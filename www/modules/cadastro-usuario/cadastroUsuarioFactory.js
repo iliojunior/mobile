@@ -50,7 +50,7 @@ angular.module('cadastroUsuario')
       .catch( function (error) {
         console.log(error);
       })*/
-      return $http.post(URL+"pessoas/juridica")
+      return $http.post(URL+"pessoas/juridica",pessoaJuridica)
         .then( function (response) {
           return response.data;
         })
@@ -60,7 +60,7 @@ angular.module('cadastroUsuario')
   }
 
   var _cadastrarUsuario = function (usuario) {
-    var params = {
+    /*var params = {
       url: URL + "usuarios",
       method:'post',
       data: usuario,
@@ -74,15 +74,16 @@ angular.module('cadastroUsuario')
       })
       .catch( function (error) {
         console.log(error);
-      })
-    /*return $http.post(URL+"usuarios",usuario)
-      .then( function (response) {
-        console.log("cadastrar usuario: ");
-        console.log(response);
-      })
-      .catch( function (error) {
-        console.log(error);
       })*/
+      return $http.post(URL+"usuarios",usuario)
+        .then( function (response) {
+          console.log("cadastrar usuario: ");
+          console.log(response);
+          return response.data
+        })
+        .catch( function (error) {
+          console.log(error);
+        })
   }
 
   return {
