@@ -1,6 +1,6 @@
 angular.module("login", [])
 
-.controller("loginController", function ($scope, Redirecionador, loginFactory, popUpFactory, $ionicPopup, toastFactory) {
+.controller("loginController", function ($scope, Redirecionador, loginFactory, popUpFactory, $ionicPopup, toastFactory, loadingFactory) {
   $scope.usuario = {};
 
   $scope.redirecionar = function (rota) {
@@ -9,21 +9,13 @@ angular.module("login", [])
 
 
   $scope.logar = function (usuarioDoFormularioDeLogin) {
-    /*
-    loginFactory.validarLogin(usuarioDoFormularioDeLogin)
-      .then(function (response) {
-        console.log(response);
-        $scope.usuario = {}
-        $scope.redirecionar('/menu/home');
-        toastFactory.mostrarToastEmbaixo('Seja Bem vindo!');
-      })  
-      */
-    /* AQUI EM BAIXO!!! */
+    loadingFactory.showDefaultLoading()
     loginFactory.validarLogin(usuarioDoFormularioDeLogin)
       .then( function (response) {
-        if (response) {          
-          loginFactory.logarUsuario(usuarioDoFormularioDeLogin);
-          $scope.usuario = {}
+        loadingFactory.hide();
+        if (response) { // response é o idPessoa daquele login e senha
+          loginFactory.logarUsuario(response);
+          $scope.usuario = {};
           $scope.redirecionar('/menu/home');
           toastFactory.mostrarToastEmbaixo('Seja Bem vindo!');
         } else {
@@ -31,7 +23,7 @@ angular.module("login", [])
         }
       })
       .catch( function (error) {
-
+        loadingFactory.hide();
       })
     
   }

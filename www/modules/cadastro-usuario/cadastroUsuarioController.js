@@ -1,5 +1,5 @@
 angular.module("cadastroUsuario", [])
-  .controller('cadastroUsuarioController', function ($scope, Redirecionador, cadastroUsuarioFactory, popUpFactory) {
+  .controller('cadastroUsuarioController', function ($scope, Redirecionador, cadastroUsuarioFactory, popUpFactory, loadingFactory) {
     $scope.usuario = {};
     $scope.mostrarSenha = false;
     $scope.isLoading = false;
@@ -46,47 +46,43 @@ angular.module("cadastroUsuario", [])
     }
 
     var _cadastrarPessoaFisica = function (objetoDaPessoaFisica, senha) {
-      $scope.isLoading = true;
+      loadingFactory.showDefaultLoading()
       cadastroUsuarioFactory.cadastrarPessoaFisica(objetoDaPessoaFisica)
         .then( function (response) {
-          $scope.isLoading = false;
           var usuarioObjeto = {
             login: objetoDaPessoaFisica.email,
             senha: senha,
             idPessoa: response.idGerado
           }
           _limparFormulario();
-          localStorage.setItem("tipoPessoa",objetoDaPessoaFisica.tipoPessoa)          
+          //localStorage.setItem("tipoPessoa",objetoDaPessoaFisica.tipoPessoa)          
           localStorage.setItem("idPessoa",response.idGerado)
           _cadastrarUsuario(usuarioObjeto);
         })
         .catch( function (error) {    // catch se não conseguir cadastrar na classe PESSOA
           console.log(error);
-          $scope.isLoading = false;
+          loadingFactory.hide();
           popUpFactory.cadastroErro();
         })
     }
 
     var _cadastrarPessoaJuridica = function (objetoDaPessoaJuridica, senha) {
-      $scope.isLoading = true;
-      console.log("pj: ", objetoDaPessoaJuridica)
+      loadingFactory.showDefaultLoading();
       cadastroUsuarioFactory.cadastrarPessoaJuridica(objetoDaPessoaJuridica)
         .then( function (response) {
-          $scope.isLoading = false;
-          console.log("resposta pj: ", response)
           var usuarioObjeto = {
             login: objetoDaPessoaJuridica.email,
             senha: senha,
             idPessoa: response.idGerado
           }
           _limparFormulario();
-          localStorage.setItem("tipoPessoa",objetoDaPessoaJuridica.tipoPessoa)
+          //localStorage.setItem("tipoPessoa",objetoDaPessoaJuridica.tipoPessoa)
           localStorage.setItem("idPessoa",response.idGerado)
           _cadastrarUsuario(usuarioObjeto);
         })
         .catch( function (error) {    // catch se não conseguir cadastrar na classe PESSOA
           console.log(error);
-          $scope.isLoading = false;
+          loadingFactory.hide();
           popUpFactory.cadastroErro();
         })
     }
@@ -94,18 +90,18 @@ angular.module("cadastroUsuario", [])
     var _cadastrarUsuario = function (usuarioObjeto) {
       cadastroUsuarioFactory.cadastrarUsuario(usuarioObjeto)
         .then( function (responseCadastroUsuario) {
-          console.log('CTRL',responseCadastroUsuario)
           if(responseCadastroUsuario) {
+            loadingFactory.hide();
             popUpFactory.cadastroSucesso().then( function (resposta) {
               $scope.redirecionar('/menu/home');
             })
           } else {
-            console.log("else then");
+            loadingFactory.hide();
             popUpFactory.cadastroErro();
           }          
         })
         .catch( function (error) {
-            console.log("catch");
+          loadingFactory.hide();
           popUpFactory.cadastroErro();
         })
     }

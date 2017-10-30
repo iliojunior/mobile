@@ -32,7 +32,7 @@ window.globalVariable = {
 */
 angular.module('app', ['ionic','ngIOS9UIWebViewPatch', 'ngMaterial', 'ngMessages', 'ngCordova', 'nzTour',
                       'exemplo', 'util', 'login', 'home', 'cadastroUsuario', 'anuncios', 'pagamento',
-                      'configuracao'])
+                      'configuracao', 'loadingModule'])
 
 .run(function($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state, $mdDialog, $mdBottomSheet) {
 

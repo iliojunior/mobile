@@ -18,16 +18,14 @@ angular.module('login')
   }
 
     var _validarLogin = function (usuarioDoFormularioDeLogin) {
-      var params = {login: usuarioDoFormularioDeLogin.email, senha: usuarioDoFormularioDeLogin.senha}
-      // $http.get(URL + 'pessoas/')
-      //   .then( function (response) {
-      //     var meuArray = response.data;
-      //     return meuArray.filter(_separarUsuarioPorId);
-      //   })
+      var params = {
+        login: usuarioDoFormularioDeLogin.email,
+        senha: usuarioDoFormularioDeLogin.senha
+      }
       return $http.post(URL + 'login/logar',params)
         .then( function (response) {
-          if (response.data.valido === "true") {
-            return true;
+          if (response.data.idPessoa) {
+            return response.data.idPessoa;
           } else {
             return false;
           }
@@ -36,23 +34,11 @@ angular.module('login')
           console.log('error',error)
           return false;
         })
-
-      
-      // return $http.post('http://jsonplaceholder.typicode.com/posts', usuarioDoFormularioDeLogin)
-      //   .then( function (response) {
-      //     console.log('RESPOSTA DE UMA API QUALQUER SÓ PRA EXEMPLO: ',response.data);
-      //     return true;
-      //   })
-      //   .catch( function (error) {
-      //     console.log('erro: ',error);
-      //     return false;
-      //   })
-        
     };
 
-  var _logarUsuario = function (usuarioDoFormulario) {
+  var _logarUsuario = function (idPessoaDoLogin) {
     // salvar objeto no local storage
-    console.log(usuarioDoFormulario)
+    localStorage.setItem("idPessoa", idPessoaDoLogin)
   }
 
   var _deslogar = function (usuarioDoFormularioDeLogin) {
