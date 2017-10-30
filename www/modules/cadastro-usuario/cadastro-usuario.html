@@ -11,12 +11,32 @@
       </ion-nav-buttons>
     </ion-nav-bar>
 
-
-    <ion-content id="social-sign-up-content" class="has-header" style="margin-top: 10%" scroll="false">
+    <ion-content id="social-sign-up-content" class="has-header" style="margin-top: 10%" scroll="true">
       <form name="formCadastroUsuario" ng-controller="cadastroUsuarioController">
-        <div class="app-icon">
+        <div class="app-icon" style="margin: 0px;">
             <img src="img/app_icon.png" class="md-card-image" style="width: 150px; margin-bottom: 20px">
         </div>
+        <md-input-container md-no-float="">
+            <span>Qual é o seu perfil?</span>
+            <div class="radio-container" style="border-bottom-style: unset">
+                <md-radio-group ng-model="usuario.tipoPessoa">
+                    <md-radio-button value="fisica">Sou pessoa Física</md-radio-button>
+                    <md-radio-button value="juridica">Sou pessoa Jurídica</md-radio-button>
+                </md-radio-group>
+            </div>
+        </md-input-container>
+        <md-input-container md-no-float="" style="margin-top: -20px">
+            <span>Nome</span>
+            <div>
+                <input type="text" class="user-name" placeholder="Seu nome completo" name="nome"
+                       ng-model="usuario.nome" required>
+            </div>
+            <div style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
+                  ng-messages="formCadastroUsuario.nome.$error"
+                  ng-if="formCadastroUsuario.nome.$dirty">
+              <p ng-message="required">Campo obrigatório</p>
+            </div>
+        </md-input-container>
         <md-input-container md-no-float="">
             <span>Email</span>
             <div>
@@ -77,8 +97,9 @@
             ng-disabled="formCadastroUsuario.$invalid" style="width: 95%">
             Cadastrar
         </a> -->
+        <ion-spinner class="spinner-energized" ng-if="isLoading" style="margin-left: 45%">        </ion-spinner>
         <button type="button" ng-click="cadastrar(usuario)" class="md-raised social-button md-button md-default-theme material-background"
-            ng-disabled="formCadastroUsuario.$invalid" style="width: 95%">
+            ng-disabled="formCadastroUsuario.$invalid || isLoading" style="width: 95%">
             Cadastrar
         </button>
       </form>

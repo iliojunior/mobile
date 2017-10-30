@@ -24,6 +24,12 @@
     </ul>
     <!-- exemplo de diretiva abaixo -->
     <botao-exemplo btn1="Vermelho" btn2="Verde"></botao-exemplo>
+    <button class="button button-full button-dark" ng-click="addImage()"> Tirar Foto </button>
+    <ion-spinner class="spinner-energized" ng-show="!imagem" style="margin-left: 45%">
+      <!-- Enquanto não carregar o base 64 da imagem -->
+    </ion-spinner>
+    <h4 class="text-center" ng-if="!imagem">Carregando Foto</h4>
+    <h4 class="text-center" ng-if="enviado">Enviou foto</h4>
   </ion-content>
 
 </ion-view>

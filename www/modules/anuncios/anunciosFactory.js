@@ -1,6 +1,7 @@
 angular.module('anuncios')
 .factory('anunciosFactory', function ($http, $filter) {
 
+
   var URL = 'http://back.time02escoladeti.com/';
   /*     DADOS ESTÁTICOS     */
 

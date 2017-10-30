@@ -46,7 +46,7 @@ angular.module('pagamento')
   }
 
   var _cadastrarCartao = function (cartaoObj) {
-    var params = {
+    /*var params = {
       url: URL + "cartoes",
       method:'post',
       data: cartaoObj,
@@ -61,7 +61,15 @@ angular.module('pagamento')
       .catch(function (error) {
         console.log(error);
         return false;
-      });
+      });*/
+      return $http.post(URL + "/cartoes",cartaoObj)
+      .then( function (response) {
+        return true;
+      })
+      .catch( function (error) {
+        console.log(error)
+        return false;
+      }) 
   };
 
   var _getAllCartoes = function (idPessoa) {
