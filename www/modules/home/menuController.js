@@ -1,7 +1,7 @@
 angular.module('app')
 .controller('menuController', function ($scope, $timeout, $mdUtil, $mdSidenav, $log, $ionicHistory,
                                          $state, $ionicPlatform, $mdDialog, $mdBottomSheet,
-                                         $mdMenu, $mdSelect, tourFactory) {
+                                         $mdMenu, $mdSelect, tourFactory, homeFactory) {
   $scope.toggleLeft = buildToggler('left');
 
   /*$timeout(function () {
@@ -16,6 +16,12 @@ angular.module('app')
       tourFactory.iniciarTour()
     }
   },1500);
+
+  
+  homeFactory.getPessoaById(localStorage.getItem("idPessoa"))
+    .then(function (response) {
+      $scope.nomePessoa = response.nome;
+    })
 
 
 
