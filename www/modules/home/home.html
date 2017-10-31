@@ -10,7 +10,7 @@
           <!-- <div class="location-item" ng-repeat="setor in listaDeSetores track by $index" ng-click="redirecionar('/teste/'+setor.id)"> -->
           <div class="location-item" ng-repeat="setor in listaDeSetores track by $index" 
               ng-click="redirecionar('/menu/anuncios-por-setor/'+setor.id)">
-            <ion-spinner class="spinner-energized" ng-show="!setor.imagem" style="margin-left: 45%">
+            <ion-spinner class="spinner-energized" ng-if="isLoadingPhoto" style="margin-left: 45%">
               <!-- Enquanto não carregar a imagem do setor -->
             </ion-spinner>
             <div class="location-img" style="background-image:url({{setor.imagem}})" ng-if="setor.imagem"></div>
