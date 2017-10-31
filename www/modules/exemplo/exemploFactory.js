@@ -1,7 +1,7 @@
 angular.module("exemplo") /* Não precisa por a array de dependência pois ela já foi declarada em alguma outra chamada do módulo "exemplo" (ver controller)*/
 .factory("exemploFactory", exemploFactoryFunction)  /* Factory com o nome 'exmeploFactory' que é a função 'exemploFactoryFunction' (descrita abaixo) */
 
-function exemploFactoryFunction ($http) {
+function exemploFactoryFunction ($http,$cordovaFileTransfer) {
 
   var listaDeCores = [];
 
@@ -20,25 +20,23 @@ function exemploFactoryFunction ($http) {
   }
 
   var _sendImage = function (imagem) {
-    var formData = new FormData();
-    //formData.append('file',imagem.foto);
-    //formData.append('file',imagem.foto);
-    formData.append('foto',imagem.foto);
-    alert('data: '+formData);
-    return $http.post(URL+ "/categorias/de08521c-fdff-43a1-886e-8295ca41b866",formData,{
-        headers: {'Content-Type': undefined }}
-        )
-    //return $http.post(URL+ "/categorias/de08521c-fdff-43a1-886e-8295ca41b866",imagem)
-    .then( function (response) {
-      alert("factory sucesso");
-      //alert(response.data);
-      return response;
-    })
-    .catch( function (error) {
-      alert("factory error");
-      alert(error.status + " : " +error.data.message)
-      return error;
-    })
+    var finalURL = URL+"categorias/de08521c-fdff-43a1-886e-8295ca41b866";
+    var options = {
+      fileKey: "foto",    // vai pegar esse atributo
+      httpMethod: "POST",
+      mimeType: "image/jpeg",
+      //params: {myDescription: "bla bla", rating: 5}, 
+      chunkedMode: true
+      // chunkedMode: false
+    }
+
+    return $cordovaFileTransfer.upload(finalURL, imagem, options, true)
+      .then(function(response){
+        return response;
+      })
+      .catch(function(error) {
+        return false;
+      })
   }
 
 

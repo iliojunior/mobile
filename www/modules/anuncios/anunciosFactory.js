@@ -58,8 +58,8 @@ angular.module('anuncios')
   var _getFotoDaCategoriaPorId = function (idDaCategoria) {
     return $http.get(URL + "fotos/"+idDaCategoria)
         .then(function (response) {
-          //console.log(response.data);
           //console.log("http://files.time02escoladeti.com/"+response.data.nomeFoto);
+          // return "http://files.time02escoladeti.com/"+response.data.nomeFoto;
           return "http://files.time02escoladeti.com/"+response.data.nomeFoto;
         })
   }

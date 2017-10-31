@@ -16,7 +16,7 @@ function exemploControllerFunction ($scope, Redirecionador, exemploFactory, $cor
     Redirecionador.irPara(rota);
   }
 
-  $scope.addImage = function () {
+  /*$scope.addImage = function () {
     var options = {
       quality: 50,
       destinationType : Camera.DestinationType.FILE_URI,
@@ -86,21 +86,91 @@ function exemploControllerFunction ($scope, Redirecionador, exemploFactory, $cor
     }, function(err) {
       console.log(err);
     });
+  }*/
+
+  $scope.addImage = function () {
+    var options = {
+      quality: 50,
+      destinationType : Camera.DestinationType.FILE_URI,
+      //destinationType : Camera.DestinationType.DATA_URL,
+      sourceType : Camera.PictureSourceType.CAMERA, // Camera.PictureSourceType.PHOTOLIBRARY
+      allowEdit : false,
+      encodingType: Camera.EncodingType.JPEG,
+      popoverOptions: CameraPopoverOptions,
+      correctOrientation: true,
+      allowEdit: true,
+    };
+
+    // 3
+    $cordovaCamera.getPicture(options).then(function(imageData) {
+      $scope.imagem = false;
+      //enviarImagem(imageData);
+
+
+      // 4
+      onImageSuccess(imageData);
+
+      function onImageSuccess(fileURI) {
+        createFileEntry(fileURI);
+      }
+   
+      function createFileEntry(fileURI) {
+        window.resolveLocalFileSystemURL(fileURI, copyFile, fail);
+      }
+   
+      // 5
+      function copyFile(fileEntry) {
+        var name = fileEntry.fullPath.substr(fileEntry.fullPath.lastIndexOf('/') + 1);
+        var newName = makeid() + name;
+   
+        window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(fileSystem2) {
+          fileEntry.copyTo(
+            fileSystem2,
+            newName,
+            onCopySuccess,
+            fail
+          );
+        },
+        fail);
+      }
+      
+      // 6
+      function onCopySuccess(entry) {
+        $scope.$apply(function () {
+          alert("url nativa: "+entry.nativeURL);
+          enviarImagem(entry.nativeURL)
+        });
+      }
+   
+      function fail(error) {
+        console.log("fail: " + error.code);
+      }
+   
+      function makeid() {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+   
+        for (var i=0; i < 5; i++) {
+          text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        return text;
+      }
+   
+    }, function(err) {
+      console.log(err);
+    });
   }
+
 
   function enviarImagem (imagem) {
     $scope.imagem = false;
-    var meuobj = {
-      foto: imagem
-    }
-    exemploFactory.sendImage(meuobj)
+    exemploFactory.sendImage(imagem)
       .then(function (response) {
         $scope.enviado = true;
         $scope.imagem = true;
-        alert("enviou")
       })
       .catch(function (error) {
-        alert("ctrl: "+error);
+        
       })
   }
 
