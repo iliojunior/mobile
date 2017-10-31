@@ -6,21 +6,18 @@ angular.module("home", [])
   	}
 
 	$scope.listaDeSetores = [];
+	$scope.isLoadingPhoto = false;
 
 	anunciosFactory.getAllSetores().then( function (response) {
 		$scope.listaDeSetores = response;
+		$scope.isLoadingPhoto = true;
 		for (var i = 0; i < $scope.listaDeSetores.length; i++) {
 			anunciosFactory.getFotoDaCategoriaPorId($scope.listaDeSetores[i].idFoto)
 				.then(function (respostaDaFoto) {
-					console.log("resposta controller: ",respostaDaFoto)
-					$scope.listaDeSetores[0].imagem = respostaDaFoto
+					$scope.listaDeSetores[0].imagem = respostaDaFoto;
+					$scope.isLoadingPhoto = false;
 				})
 		}
-		/*anunciosFactory.getFotoDaCategoriaPorId($scope.listaDeSetores[0].idFoto)
-				.then(function (respostaDaFoto) {
-					console.log("resposta controller: ",respostaDaFoto)
-					$scope.listaDeSetores[0].imagem = respostaDaFoto
-				})*/
 	})
   	
 

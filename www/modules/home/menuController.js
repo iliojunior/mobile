@@ -4,10 +4,12 @@ angular.module('app')
                                          $mdMenu, $mdSelect, tourFactory, homeFactory) {
   $scope.toggleLeft = buildToggler('left');
 
-  /*$timeout(function () {
-    $scope.toggleLeft();
-  });
-  */
+  homeFactory.getPessoaById(localStorage.getItem("idPessoa"))
+    .then(function (response) {
+      $scope.nomePessoa = response.nome;
+    })
+
+    
   $timeout(function () {
     if (localStorage.getItem('tourFinalizado') === "false") {
       $scope.toggleLeft();
@@ -16,16 +18,6 @@ angular.module('app')
       tourFactory.iniciarTour()
     }
   },1500);
-
-  
-  homeFactory.getPessoaById(localStorage.getItem("idPessoa"))
-    .then(function (response) {
-      $scope.nomePessoa = response.nome;
-    })
-
-
-
-
 
   // buildToggler is for create menu toggle.
   // Parameter :

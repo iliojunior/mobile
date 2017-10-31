@@ -22,9 +22,10 @@
         <div class="material-background" id="toggle-menu-left-header">
             <!--menu header section-->
             <div class="menu-left-header">
-                <img class="user-img" src="img/profileAvatar.jpg">
+                <!-- <img class="user-img" src="img/profileAvatar.jpg"> -->
+                <!-- <img src="img/app_icon.png" style="width: 90px; margin-bottom: 10px"/> -->
                 <p>
-                    <span class="title">{{nomePessoa}}</span>
+                    <span class="title" style="font-size: 26px">{{nomePessoa}}</span>
                     <br/>
                     <!-- <span class="sub-title">Pessoa Física</span> -->
                 </p>
@@ -72,6 +73,15 @@
                     </div>
                     <div class="col-66">
                         <span>Meus Cartões</span>
+                    </div>
+                </div>
+                <div class="row menu-item"  ng-click="navigateTo('perfil-usuario')"
+                        id="menuMinhasInfoTour">
+                    <div class="col-33">
+                        <i class="ion-android-person"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>Minhas informações</span>
                     </div>
                 </div>
                 <!--
