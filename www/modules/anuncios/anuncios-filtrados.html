@@ -1,0 +1,47 @@
+<ion-view cache-view="false">
+    <ion-nav-buttons side="left" style="background-color: #48a04c">
+        <a ng-click="$ionicGoBack()" class="button back-button buttons button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+    </ion-nav-buttons>
+
+    <ion-content id="cube-feed-content">
+
+      <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium toolbar-in-content" style="background-color: #48a04c">
+          <div>
+              <h1>RESULTADO - {{listaDeAnuncios.length}}</h1>
+              <h2>Estes são os resultados da sua pesquisa!</h2>
+              <h2>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+              </h2>
+          </div>
+      </md-toolbar>
+      <div class="feed-list row col" >
+          <div class="" ng-repeat="anuncio in listaDeAnuncios track by $index">
+            <div class="feed-item" ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)">
+                <div class="feed-img" style="background-image: url('img/cube_feed_03.png')"></div>
+                <div class="feed-content row">
+                  <div class="col middle">
+                    <h3 style="text-align: center">{{anuncio.titulo}}</h3>
+                  </div>
+                </div>
+                <div class="feed-content row" style="font-size: 25px">
+                    <div class="col left">
+                        <i class="ion-cash"  style="font-size: 25px"></i>
+                        {{anuncio.valor}}
+                    </div>
+                    <div class="col right">
+                        <i class="ion-android-pin"  style="font-size: 25px"></i>
+                        {{anuncio.cidade}}
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+    </ion-content>
+</ion-view>

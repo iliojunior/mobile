@@ -1,0 +1,98 @@
+<ion-view view-title="Pesquisar por anúncio">
+
+  <ion-nav-buttons side="left">
+      <a ng-click="$ionicGoBack()" class="button back-button buttons button-clear header-item nav-back-btn">
+          <i class="ion-android-arrow-back"></i>
+      </a>
+  </ion-nav-buttons>
+
+  <ion-content id="cloth-shop-content" scroll="false">
+
+    <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium toolbar-in-content">
+        <div>
+            <h1>PESQUISA</h1>
+            <h2>Os filtros são opcionais que podem facilitar a sua busca!</h2>
+            <!-- <h2>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+            </h2> -->
+        </div>
+    </md-toolbar>
+
+    <div class="has-header" style="background-color: #f6f6f6" id="contract-details-content">
+      <form name="formPesquisa">
+        <div style="border: 3px solid #1c561d">
+          <h4 class="text-center" style="color: #29467d" ng-show="formPesquisa.pesquisaTexto.$untouched && formPesquisa.setorId.$untouched">
+            <i class="fa fa-info-circle"></i> Os dois campos abaixo são obrigatórios!
+          </h4>
+          <md-input-container md-no-float style="padding-bottom: 10px !important">
+              <i class="ion-search" style="font-size: 30px"></i>
+              <input ng-model="pesquisa.texto" name="pesquisaTexto" required placeholder="O que você procura?"
+                      style="font-size: 30px" required>
+          </md-input-container>
+          <small style="margin-left: 8%">Por exemplo: Trator, Colheitadeira, Caminhão</small>
+          <h4 style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px;margin-left: 8%"
+                ng-show="formPesquisa.pesquisaTexto.$dirty && formPesquisa.pesquisaTexto.$invalid">
+                <i class="fa fa-exclamation-triangle"></i> Você precisa pesquisar por um texto!</h4>
+          <div id="push-notification">
+            <div class="notification-option row">
+              <md-input-container md-no-float style="padding-bottom: 10px !important">
+                  <i class="ion-erlenmeyer-flask" style="font-size: 30px"></i>
+                  <span style="font-size: 22px; margin-top: 10px; margin-left: 45px">Categoria:</span>
+              </md-input-container>
+              <md-input-container md-no-float="" class="col-50" style="padding-bottom: 10px !important; font-size: 20px">
+                <md-select ng-model="pesquisa.setor" aria-label="md-option" style="text-align: left" name="setor" required>
+                    <md-option ng-repeat="setor in setores track by $index" value="{{setor.id}}">{{setor.nome}}</md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+          </div>
+        </div>
+        <h2 class="text-center" style="margin-top: 10px"><i class="ion-funnel"></i> Filtros Opicionais</h2>
+        <h4 class="text-center" style="margin-left: 12px; margin-right: 12px" ng-if="!pesquisa.setor">
+          Selecione uma categoria antes de pesquisar por outros filtros.
+        </h4>
+        <div id="push-notification">
+          <div class="notification-option row" ng-if="pesquisa.setor">
+            <md-input-container md-no-float>
+                <i class="ion-waterdrop" style="font-size: 25px"></i>
+                <span style="font-size: 20px; margin-top: 10px">Filtro 1:</span>
+            </md-input-container>
+            <md-input-container md-no-float="" class="col-50">
+              <md-select ng-model="pesquisa.filtro1" aria-label="md-option" style="text-align: left">
+                  <md-option value="1">Opção 1</md-option>
+                  <md-option value="2">Opção 2</md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <!-- <div class="notification-option row">
+            <md-input-container md-no-float>
+                <i class="ion-lightbulb" style="font-size: 25px"></i>
+                <span style="font-size: 20px; margin-top: 10px">Filtro 2:</span>
+            </md-input-container>
+            <md-input-container md-no-float="" class="col-50">
+              <md-select ng-model="pesquisa.filtro2" aria-label="md-option" style="text-align: left">
+                  <md-option value="A">Opção A</md-option>
+                  <md-option value="B">Opção B</md-option>
+                  <md-option value="C">Opção C</md-option>
+                  <md-option value="D">Opção D</md-option>
+              </md-select>
+            </md-input-container>
+          </div> -->
+
+          <button type="button" class="md-raised social-button md-button md-default-theme material-background"
+             ng-click="pesquisar(pesquisa)" style="font-size: 20px; font-weight: 600; background-color: #8de624 !important"
+             ng-disabled="formPesquisa.$invalid">
+              Pesquisar!
+          </button>
+
+        </div>
+      </form>
+    </div>
+
+  </ion-content>
+
+</ion-view>

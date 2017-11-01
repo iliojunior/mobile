@@ -1,0 +1,35 @@
+<ion-view>
+  <ion-content scroll="false">
+    <h1 class="text-center"> Tela de Exemplo </h1>
+    <button class="button button-full button-royal" ng-click="redirecionar('/')">Ir para Aplicação</button>
+    <h3 class="text-center"> Cadastro de Exemplo </h3>
+    <form ng-submit="add(cor)">
+      <div class="list">
+        <label class="item item-input">
+          <input type="text" placeholder="ID Cor" ng-model="cor.id">
+        </label>
+        <label class="item item-input">
+          <input type="text" placeholder="Nome Cor" ng-model="cor.nome">
+        </label>
+      </div>
+      <button class="button button-full button-balanced" type="submit">Adicionar</button>
+      <!-- o botão não tem NG-CLICK pois com o atributo 'type = submit' ele entende que ao ser clicado,
+      ele envia algo (ativa a função que está no ng-submit no começo do form)-->
+    </form>
+    <ul class="list">
+      <li class="item" ng-repeat="item in cores track by $index">
+        <span style="float: left">{{item.id}}: {{item.nome}}</span>
+        <button class="button button-assertive" style="float: right" ng-click="delete($index)">Excluir</button>
+      </li>
+    </ul>
+    <!-- exemplo de diretiva abaixo -->
+    <botao-exemplo btn1="Vermelho" btn2="Verde"></botao-exemplo>
+    <button class="button button-full button-dark" ng-click="addImage()"> Tirar Foto </button>
+    <ion-spinner class="spinner-energized" ng-show="!imagem" style="margin-left: 45%">
+      <!-- Enquanto não carregar o base 64 da imagem -->
+    </ion-spinner>
+    <h4 class="text-center" ng-if="!imagem">Carregando Foto</h4>
+    <h4 class="text-center" ng-if="enviado">Enviou foto</h4>
+  </ion-content>
+
+</ion-view>

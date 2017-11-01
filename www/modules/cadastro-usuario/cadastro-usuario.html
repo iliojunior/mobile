@@ -1,0 +1,107 @@
+<ion-view cache-view="false" title="Cadastro de Usuário">
+    <!--left button on navigation bar-->
+    <ion-nav-bar class="bar-balanced  material-background-nav-bar nav-bar-container">
+      <ion-nav-buttons side="left">
+          <!-- <a href="/" class="button back-button buttons button-clear header-item nav-back-btn">
+              <i class="ion-android-arrow-back"></i>
+          </a> -->
+          <a ng-click="$ionicGoBack()" class="button back-button buttons button-clear header-item nav-back-btn">
+              <i class="ion-android-arrow-back"></i>
+          </a>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-content id="social-sign-up-content" class="has-header" style="margin-top: 10%" scroll="true">
+      <form name="formCadastroUsuario" ng-controller="cadastroUsuarioController">
+        <div class="app-icon" style="margin: 0px;">
+            <img src="img/app_icon.png" class="md-card-image" style="width: 150px; margin-bottom: 20px">
+        </div>
+        <md-input-container md-no-float="">
+            <span>Qual é o seu perfil?</span>
+            <div class="radio-container" style="border-bottom-style: unset">
+                <md-radio-group ng-model="usuario.tipoPessoa">
+                    <md-radio-button value="fisica">Sou pessoa Física</md-radio-button>
+                    <md-radio-button value="juridica">Sou pessoa Jurídica</md-radio-button>
+                </md-radio-group>
+            </div>
+        </md-input-container>
+        <md-input-container md-no-float="" style="margin-top: -20px">
+            <span>Nome</span>
+            <div>
+                <input type="text" class="user-name" placeholder="Seu nome completo" name="nome"
+                       ng-model="usuario.nome" required>
+            </div>
+            <div style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
+                  ng-messages="formCadastroUsuario.nome.$error"
+                  ng-if="formCadastroUsuario.nome.$dirty">
+              <p ng-message="required">Campo obrigatório</p>
+            </div>
+        </md-input-container>
+        <md-input-container md-no-float="">
+            <span>Email</span>
+            <div>
+                <input type="email" class="user-name" placeholder="Seu e-mail para entrar" name="email"
+                       ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
+                       ng-model="usuario.email" required>
+            </div>
+            <!-- <span style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
+                  ng-show="formCadastroUsuario.email.$touched && formCadastroUsuario.email.$invalid">
+                 E-mail Inválido!
+            </span> -->
+            <div style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
+                  ng-messages="formCadastroUsuario.email.$error"
+                  ng-if="formCadastroUsuario.email.$dirty">
+              <p ng-message="required">Campo obrigatório</p>
+              <p ng-message="pattern">E-mail Inválido</p>
+            </div>
+        </md-input-container>
+        <md-input-container md-no-float="">
+          <span>Senha</span>
+            <div>
+              <input type="password" class="user-name" placeholder="Crie uma senha" name="senha" ng-model="usuario.senha"
+                     id="senha" ng-minlength="6" limit-char limit="10" password-verify="{{usuario.senhaConfirmada}}" required>
+              <div style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
+                    ng-messages="formCadastroUsuario.senha.$error"
+                    ng-if="formCadastroUsuario.senha.$dirty">
+                <p ng-message="required" style="margin-top: 15px">Campo obrigatório</p>
+                <p ng-message="minlength" style="margin-top: 15px">Sua senha deve ter no mínimo 6 caracteres</p>
+                <!-- <p ng-message="maxlength" style="margin-top: 15px">Sua senha deve ter no máximo 10 caracteres</p> -->
+                <!-- <p ng-message="passwordVerify" ng-if="formCadastroUsuario.senhaConfirmada.$dirty"  style="margin-top: 15px">Senhas diferentes!</p> -->
+              </div>
+            </div>
+            <small>Sua senha deve ter de 6 a 10 caracteres.</small>
+        </md-input-container>
+        <md-input-container md-no-float="">
+            <div>
+              <input type="password" class="user-name" placeholder="Repita a senha digitada" name="senhaConfirmada" ng-model="usuario.senhaConfirmada"
+                     id="senhaConfirmada" ng-minlength="6" limit-char limit="10" password-verify="{{usuario.senha}}" required>
+              <div style="color: #ff0000; font-weight: 600; font-size: 15px; margin-top: 5px"
+                    ng-messages="formCadastroUsuario.senhaConfirmada.$error"
+                    ng-if="formCadastroUsuario.senhaConfirmada.$dirty">
+                <p ng-message="required" style="margin-top: 15px">Campo obrigatório</p>
+                <!-- <p ng-message="minlength" style="margin-top: 15px">Sua senha deve ter no mínimo 6 caracteres</p> -->
+                <!-- <p ng-message="maxlength" style="margin-top: 15px">Sua senha deve ter no máximo 10 caracteres</p> -->
+                <!-- <p ng-message="passwordVerify" style="margin-top: 15px">Senhas diferentes!</p> -->
+                <p ng-message="passwordVerify" ng-if="formCadastroUsuario.senha.$dirty" style="margin-top: 15px">Senhas diferentes!</p>
+              </div>
+            </div>
+            <small>Sua senha deve corresponder a anterior.</small>
+        </md-input-container>
+
+        <md-checkbox aria-label="mostrarSenhaCheckBox" name="mostrar" ng-model="mostrarSenha"
+                      ng-click="mostrarEsconderSenha()" id="checkBoxMostrarSenha" ng-checked="mostrarSenha === true">
+          Mostrar Senhas
+        </md-checkbox>
+
+        <!-- <a ng-click="cadastrar(usuario)" class="md-raised social-button md-button md-default-theme material-background"
+            ng-disabled="formCadastroUsuario.$invalid" style="width: 95%">
+            Cadastrar
+        </a> -->
+       <!--  <ion-spinner class="spinner-energized" ng-if="isLoading" style="margin-left: 45%">        </ion-spinner> -->
+        <button type="button" ng-click="cadastrar(usuario)" class="md-raised social-button md-button md-default-theme material-background"
+            ng-disabled="formCadastroUsuario.$invalid || isLoading" style="width: 95%">
+            Cadastrar
+        </button>
+      </form>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,107 @@
+<ion-view cache-view="false" view-title="Meus Anúncios">
+  <ion-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Ativos">
+        <md-content>
+          <md-card style="width: 45%; display: inline-flex" ng-repeat="anuncio in meusAnunciosAtivos"
+                   ng-if="meusAnunciosAtivos.length > 0">
+            <!-- <img ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)" ng-src="{{anuncio.imagem}}" class="md-card-image" alt="Card image"> -->
+            <img ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)" ng-src="{{anuncio.fotos[0]}}" class="md-card-image" ng-if="anuncio.fotos.length > 0">
+
+            <md-card-content class="text-center" ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)"
+                             style="padding-bottom: 0px; height: 110px; max-height: 110px; overflow: hidden">
+                <h2 class="md-title">{{anuncio.titulo}}</h2>
+                <h4>R$ {{anuncio.valor}}</h4>
+            </md-card-content>
+            <div class="md-actions" layout="row" layout-align="end center">
+                <!-- <button type="button" class="md-button md-default-theme"
+                   style="color: #2246ff; border: 3px solid #2246ff; font-weight: 700">
+                   Editar
+                </buton> -->
+                <button type="button" ng-click="redirecionar('/menu/editar-anuncio/'+anuncio.id)" class="md-button md-default-theme"
+                   style="color: #2246ff; font-weight: 700; font-size: 18px">
+                   Editar
+                </buton>
+                <!-- <button type="button" class="md-button md-default-theme" ng-click="excluirAnuncio(anuncio.id)"
+                   style="margin-left: -15px; color: #f00; font-weight: 700; text-decoration: underline">
+                   Excluir
+                 </button> -->
+                <button type="button" class="md-button md-default-theme" ng-click="excluirAnuncio(anuncio.id)"
+                   style="margin-left: -15px; color: #f00; font-weight: 700; text-decoration: underline; margin-right: 0px">
+                   Excluir
+                </button>
+            </div>
+          </md-card>          
+          <div class="text-center" ng-if="meusAnunciosAtivos.length <= 0" style="margin-top: 20px">
+            <h3>Você não possui anúncios ativos.</h3>
+            <span style="font-size: 14px">Verifique as outras abas acima para mais informações.</span>
+            <!-- <button type="button" class="md-raised social-button md-button md-default-theme material-background"
+                    ng-click="redirecionar('/menu/criar-anuncio')"
+                    style="margin-top: 20px">
+                    <i class="fa fa-plus"></i>
+                    Criar novo anúncio!
+            </button> -->
+          </div>
+        </md-content>
+      </md-tab>
+      <md-tab label="Aguardando">
+          <md-content>
+            <md-card style="width: 45%; display: inline-flex" ng-repeat="anuncio in meusAnunciosAguardando"
+                      ng-if="meusAnunciosAguardando.length > 0">
+              <img ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)" ng-src="{{anuncio.fotos[0]}}" class="md-card-image" ng-if="anuncio.fotos.length > 0">
+              <md-card-content class="text-center" ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)"
+                               style="padding-bottom: 0px; height: 110px; max-height: 110px; overflow: hidden">
+                  <h2 class="md-title">{{anuncio.titulo}}</h2>
+                  <h4>R$ {{anuncio.valor}}</h4>
+              </md-card-content>
+            </md-card>
+            <div class="text-center" ng-if="meusAnunciosAguardando.length <= 0" style="margin-top: 20px">
+              <h3>Você não possui anúncios aguardando aprovação.</h3>
+            </div>
+          </md-content>
+      </md-tab>
+      <md-tab label="Expirados">
+          <md-content>
+            <md-card style="width: 45%; display: inline-flex" ng-repeat="anuncio in meusAnunciosExpirados"
+                      ng-if="meusAnunciosExpirados.length > 0">
+              <img ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)"
+                   ng-src="{{anuncio.fotos[0]}}" class="md-card-image" alt="Card image">
+              <md-card-content class="text-center" ng-click="redirecionar('/menu/anuncio-detalhes/'+anuncio.id)"
+                               style="padding-bottom: 0px; height: 110px; max-height: 110px; overflow: hidden">
+                  <h2 class="md-title">{{anuncio.titulo}}</h2>
+                  <h4>R$ {{anuncio.valor}}</h4>
+              </md-card-content>
+              <div class="md-actions" layout="row" layout-align="end center">
+                  <!-- <button type="button" class="md-button md-default-theme" ng-click="ativarAnuncio(anuncio.id)"
+                          style="color: #1c6b0e; border: 3px solid #1c6b0e; font-weight: 800">
+                     Ativar
+                  </button> -->
+                  <button type="button" class="md-button md-default-theme" ng-click="ativarAnuncio(anuncio.id)"
+                          style="color: #1c6b0e; font-weight: 800; font-size: 18px">
+                     Ativar
+                  </button>
+                  <!-- <button type="button" class="md-button md-default-theme" ng-click="excluirAnuncio(anuncio.id)"
+                          style="margin-left: -15px; color: #f00; font-weight: 700; text-decoration: underline">
+                    Excluir
+                  </button> -->
+                  <button type="button" class="md-button md-default-theme" ng-click="excluirAnuncio(anuncio.id)"
+                     style="margin-left: -15px; color: #f00; font-weight: 700; text-decoration: underline; margin-right: 0px">
+                     Excluir
+                  </button>
+              </div>
+            </md-card>
+            <div class="text-center" ng-if="meusAnunciosExpirados.length <= 0" style="margin-top: 20px">
+              <h4>Você não possui anúncios com a data expirada.</h4>
+            </div>
+          </md-content>
+      </md-tab>
+    </md-tabs>
+  </ion-content>
+
+<div class="footer-fab-bar">
+        <a style="background-color: #8bc34a;" class="md-button md-accent md-fab fab-footer" aria-label="Add" ng-click="redirecionar('/menu/criar-anuncio')">
+            <i class="ion ion-plus"></i>
+        </a>
+    </div>
+
+</ion-nav-view>

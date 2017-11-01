@@ -1,0 +1,183 @@
+<ion-view cache-view="false" view-title="{{anuncio.titulo}}">
+  <ion-nav-buttons side="left">
+      <a ng-click="$ionicGoBack()" class="button back-button buttons button-clear header-item nav-back-btn">
+          <i class="ion-android-arrow-back"></i>
+      </a>
+  </ion-nav-buttons>
+  <style>
+    .impulsionarBronze {
+      color: #c38d4a !important;
+    }
+    .impulsionarPrata {
+      color: #b4b7b2 !important;
+    }
+    .impulsionarOuro {
+      color: #e2cc2d !important;
+    }
+    .impulsionarDiamante {
+      color: #2de2b0 !important;
+    }
+  </style>
+  <ion-content id="product-detail-content" class="has-header">
+  <!-- <ion-content id="product-detail-content"> -->
+    <md-tabs md-dynamic-height md-border-bottom ng-if="anuncio">
+
+      <md-tab label="Detalhes">
+        <md-content id="product-detail-tab-detail">
+          <div class="toolbar-image-cover product" style="background-image: url({{anuncio.fotos[0]}}); background-position-y: -20px; height: 200px !important" ng-if="anuncio.fotos.length > 0"></div>
+          <!-- <div class="toolbar-image-cover product" style="background-image: url({{anuncio.imagem}}); background-position-y: -20px; height: 200px !important"></div> -->
+          <!--
+          <a class="md-button md-accent md-fab fab-toolbar-medium"
+             ng-click="sharedProduct($event,product)"
+             aria-label="showListBottomSheet">
+              <i class="ion-android-share-alt"></i>
+          </a>
+        -->
+          <div class="detail-form">
+            <div class="header">
+              <h1>{{anuncio.titulo}}</h1>
+              <!--<p>Plain design shirt. Created by material team.</p>-->
+              <p>Descrição do anúncio: {{anuncio.descricao}}</p>
+            </div>
+            <div class="product-detail-price" style="height: 40px">
+              <div class="left">
+                <span class="font-hot-sale" style="font-weight: 700;">Valor:  R$ {{anuncio.valor}} </span>         
+                <p class="font-hot-sale" style="font-weight: 700; margin-top: 10px; font-size: 25px; color: #000">  Telefone: {{anuncio.telefone}}
+                </p>
+              </div>
+              <!--
+              <div class="right">
+                <a class="md-raised md-warn md-button md-default-theme" ng-click="addToCart()" style="margin-top: 0px">
+                  ADD TO CART
+                </a>
+              </div>
+              -->
+            </div>
+            <!--
+            <div class="product-detail-review">
+              <p>Best Seller :
+                <span>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </span>
+              </p>
+            </div>
+            -->
+            <div class="product-detail-shipping row">
+            <!--
+              <div class="col-67">
+                  <p>Item : MT098541A</p>
+                  <p>Coupon : PR34221</p>
+                  <p>Shipping : Free</p>
+                  <p>Money Back : 30 Day</p>
+              </div>
+              -->              
+              <div class="col-50">
+                  <p ng-if="anuncio.marca">Marca : {{anuncio.marca}}</p>
+                  <p ng-if="anuncio.ano">Ano : {{anuncio.ano}}</p>
+                  <p ng-if="anuncio.estado">Estado : {{anuncio.estado}}</p>
+                  <p ng-if="anuncio.cidade">Cidade: {{anuncio.cidade}}</p>
+                  <p ng-if="anuncio.modoCobranca">Cobrança: {{anuncio.modoCobranca}}</p>
+                  <!--
+                  <p>Categoria: {{anuncio.categoria}}</p>
+                  <p>Subcategoria: {{anuncio.subcategoria}}</p>
+                  <p>Modelo: {{anuncio.modelo}}</p>
+                  <p>Ano: {{anuncio.ano}}</p>
+                  <p>Estado: {{anuncio.estado}}</p>
+                  <p>Cidade: {{anuncio.cidade}}</p>
+                  <p>Cobrança: {{anuncio.cobranca}}</p>
+                  -->
+              </div>
+              <!--
+              <div class="col-33">
+                  <p>In Stock</p>
+                  <p><i class="fa fa-cube"></i></p>
+              </div>
+              -->
+              <div class="col-50 text-center" 
+                    ng-class="{impulsionarBronze: anuncio.impulsao == 1,
+                              impulsionarPrata: anuncio.impulsao == 2,
+                              impulsionarOuro: anuncio.impulsao == 3,
+                              impulsionarDiamante: anuncio.impulsao == 4}"
+                    ng-show="anuncio.impulsao > 0">
+                  <p style="font-size: 20px; font-weight: 600">Impulsionado!</p>
+                  <p><i class="ion-ribbon-a" style="font-size: 60px"></i></p>
+              </div>
+            </div>
+            
+            <!-- <div class="product-detail-note">
+              <p>Negociável: Sim</p>
+            </div> -->
+            
+          </div>
+        </md-content>
+      </md-tab>
+
+      <md-tab label="Fotos">
+        <ion-slide-box id="slide-catalog-content" active-slide="0" style="margin-top: -10%" ng-if="anuncio.fotos">
+          <ion-slide  ng-repeat="fotos in anuncio.fotos">
+            <div class="pin">
+              <img ng-src="{{fotos}}"/>
+            </div>
+          </ion-slide>
+        </ion-slide-box>
+        <div class="text-center" ng-if="!anuncio.fotos" style="margin-top: 20px">
+          <h4>O anúncio não possui fotos.</h4>
+        </div>
+      </md-tab>
+
+      <md-tab label="Impulsionar" ng-if="anuncio.statusAnuncio == 1">
+        <md-content  id="pricing-content">
+          <h4 class="text-center price-detail">Impulsione seu anúncio para atingir novos clientes! Confira nossos pacotes:</h4>
+          <hr/>
+          <div  ng-repeat="impulsao in tiposDeImpulsao">
+            <div class="row price-header">
+              <div class="col header-name" style="color: {{impulsao.cor}}; font-weight: 600">
+                {{impulsao.nome}}
+              </div>
+              <div class="col header-more" ng-click="showListBottomSheet($event, impulsao.id)">
+                Ver Detalhes <i class="fa fa-angle-right"></i>
+              </div>
+            </div>
+            <div class="row price-detail">
+              <div class="col-33 package-name">
+                {{impulsao.validade}} dias
+              </div>
+              <div class="col-33 package-subscribe">
+                R$ {{impulsao.valor}}
+              </div>
+              <div class="col-33 subscribe-button" style="text-align: right" 
+                   ng-click="selecionarPlanoDeImpulsao(impulsao.id, anuncio.id)">
+                <a class="md-raised md-button md-default-theme material-background" style="background-color: {{impulsao.cor}} !important">
+                  ADQUIRIR
+                </a>
+              </div>
+            </div>
+            <hr/>
+          </div>
+        </md-content>
+      </md-tab>
+
+    </md-tabs>
+
+    <!-- ESTE SCRIPT INJETA A CAIXINHA DE TEXTO EMBAIXO DA TELA DO USUÁRIO AO CLICAR EM 'VER DETALHES' -->
+    <script type="text/ng-template" id="ui-list-bottom-sheet-template">
+      <md-bottom-sheet class="md-list md-has-header" id="ui-list-bottom-sheet-template">
+        <h1 class="md-bottom-sheet-header"> <i class="icon ion-checkmark-round"></i> Anúncio {{detalhesDoTipoDeImpulsao.nome}}</h1>
+        <div id="online-course">
+          <div id="online-course-content">
+            <div class="course-list ">
+              <div class="course-item">
+                <p style="margin-top: 34px">{{detalhesDoTipoDeImpulsao.descricao}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </md-bottom-sheet>
+    </script>
+
+  </ion-content>
+</ion-view>

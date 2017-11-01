@@ -1,0 +1,75 @@
+<ion-view view-title="Finalizar compra">
+    <ion-nav-buttons side="left">
+        <a ng-click="$ionicGoBack()" class="button back-button buttons  button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+    </ion-nav-buttons>
+
+    <ion-content id="contract-details-content" style="margin-top: 0px">
+      <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium toolbar-in-content">
+          <div>
+              <h1>
+                  <i class="ion-card"></i>
+              </h1>
+              <h3>Resumo da Compra</h3>
+          </div>
+      </md-toolbar>
+      <div id="product-checkout-content" style="margin-top:0px">
+        <!--
+        <div class="col total-summary">
+          Confira os itens da sua compra:
+        </div>
+        -->
+        <div>
+          <md-list id="device-information-content">
+            <md-list-item class="row">
+                <div class="col-25 title" style="font-weight: 700">
+                    Anúncio :
+                </div>
+                <div class="col-75">
+                    {{compra.nomeAnuncio}}
+                </div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item class="row"> 
+                <div class="col-25 title"style="font-weight: 700">
+                    Pacote :
+                </div>
+                <div class="col-75">
+                    {{compra.nomePacote}}
+                </div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item class="row">
+                <div class="col-25 title" style="font-weight: 700">
+                    Cartão :
+                </div>
+                <div class="col-75">
+                     XXXX XXXX XXXX {{compra.cartao}}
+                </div>
+            </md-list-item>            <md-divider></md-divider>
+            <md-list-item class="row">
+                <div class="col-25 title" style="font-weight: 700">
+                    Preço :
+                </div>
+                <div class="col-75">
+                    {{compra.valor}}
+                </div>
+            </md-list-item>
+            <md-divider></md-divider>            
+            <md-divider></md-divider>
+          </md-list>
+        </div>
+        <a class="md-raised social-button md-button md-default-theme material-background"
+           ng-click="finalizarCompra(compra)" style="width: 100%; font-size: 20px; background-color: #469c22 !important">
+           Finalizar Compra <i class="ion-checkmark-round" style="margin-left: 5px"></i>
+        </a>
+        <hr/>
+        <a class="md-raised social-button md-button md-default-theme material-background"
+           href="#/menu/meus-anuncios" style="width: 80%; font-size: 20px; background-color: #e04646 !important; margin-left: 10%">
+           Cancelar Compra <i class="ion-close-round" style="margin-left: 5px"></i>
+        </a>
+      </div>
+    </ion-content>
+
+</ion-view>

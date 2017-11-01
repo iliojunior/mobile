@@ -1,0 +1,262 @@
+<ion-view cache-view="false" title="Criar Anúncio">
+    <!--left button on navigation bar-->
+    <ion-nav-buttons side="left">
+        <a ng-click="$ionicGoBack()" class="button back-button buttons  button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+    </ion-nav-buttons> <!--end left button on navigation bar-->
+    <style type="text/css">
+
+        a.md-button.md-accent.md-raised, a.md-button.md-accent.md-fab, .md-button.md-accent.md-raised, .md-button.md-accent.md-fab{                        
+            background-color: #8bc34a;
+        }
+
+        .btn-radio{
+            width: 50%;              
+        }
+
+        .btn-radio-setor{
+            margin-left: 2px;
+            width: 98.5%;                
+        }
+
+        .help-block{
+            color: red;
+            font-size: 12px;
+        }
+
+        md-select .md-select-label{
+            width: 100%;
+            color: #8bc34a;
+            font-size: 18px;
+        }
+        
+
+        #btn-escolher-setor{
+            color: #8bc34a;
+            height: 3%;            
+            border-color: #8bc34a;
+        }
+
+        .span1{
+            color: #8bc34a;
+            font-size: 20px;
+            margin-left: 2px;
+            margin-top: -2%
+        }
+
+        .espacamento{
+            margin-top: -8%;
+            margin-bottom: 10%;
+        }
+
+        /*.espacamentoFormaPag{
+            margin-top: 10%;
+        }*/
+
+        .espacamento2{
+            margin-top: -8%;
+            
+        }
+
+        .small-tit-des{
+            margin-top: -5.5%;
+            margin-left: 2px;
+        }
+
+        .font16px{
+            font-size: 16px;
+        }
+
+        .radio-content{
+            color: #8bc34a;
+        }
+
+        .h4{
+            color: #8bc34a;
+        }
+    </style>
+    <!--contract detail section-->
+    <div >
+        <form name="formulario">
+            <ion-content id="contract-details-content">
+                <div align="center">
+                  <h4 class="h4">Adicionar Imagem</h4>
+              </div>
+              <div style="margin-bottom: 5%;" align="center">
+
+                  <a class="md-button md-accent md-fab fab-toolbar-large"
+                  ng-click="showListBottomSheet($event)"
+                  aria-label="showListBottomSheet">
+                  <i class="fa fa-picture-o"></i>
+              </a>
+              <ion-content style="background-color: white;" id="image-picker-content">
+                <!--list section-->
+                <md-list>
+                    <md-card ng-repeat="image in imageList">
+                        <img ng-src="{{image}}" class="md-card-image" alt="image{{$index+1}}">
+                        <md-card-content>
+                            <h2 class="md-title">Image {{$index+1}}</h2>
+                        </md-card-content>
+                    </md-card>
+                </md-list>  <!--end list section-->
+            </ion-content>
+        </div>
+
+        <script type="text/ng-template" id="image-picker-actions-template">
+            <md-bottom-sheet class="md-list md-has-header">
+                <h1 class="md-bottom-sheet-header">Selecionar imagem do anúncio</h1>
+                <!--list section-->
+                <md-list>
+                    <md-list-item>
+                        <a class="md-default-theme md-bottom-sheet-list-item"
+                        ng-click="selectImage(1)" ng-model="novoAnuncio.fotos" name="selImagem">
+                        <i style="margin-left: 2px; color: #8bc34a;" class="ion-image"></i>
+                        <span class="span1">Selecionar uma imagem.</span>
+                    </a>
+                </md-list-item>
+
+                <md-list-item>
+                    <a class="md-default-theme md-bottom-sheet-list-item"
+                    ng-click="selectImage(9999)" ng-model="novoAnuncio.fotos" name="selImagem">
+                    <i style="margin-left: 2px; color: #8bc34a;" class="ion-images"></i>
+                    <span class="span1">Selecionar várias imagens.</span>
+                </a>
+            </md-list-item>
+        </md-list>
+    </md-bottom-sheet>
+</script>
+
+<!-- <input style="display: none;" ng-model="novoAnuncio.statusAnuncio" name="statusAnuncio" ng-value="0">     -->
+
+<md-input-container md-no-float>
+
+    <!-- ng-class="{'has-error': formulario.titulo.$invalid && !formulario.titulo.$pristine}"   -->
+    <div class="span1">
+        <span>Título do Anúncio</span>  
+    </div>
+    <div>
+        <input style="margin-left: 2px; width: 99%;" maxlength="40" ng-model="novoAnuncio.titulo" name="titulo" required placeholder="Nome que será exibido no anúncio">                
+    </div>
+    <div style="margin-right: 5px; color: #8bc34a;" align="right">
+       <span>
+           {{(novoAnuncio.titulo.length > 0 ? novoAnuncio.titulo.length :0) | json}}/40
+       </span>        
+   </div> 
+   <small class="small-tit-des">Nome que será exibido no anúncio.</small>
+
+   <div align="right" style="margin-bottom: 10%;" ng-messages="formulario.titulo.$error" ng-if="formulario.titulo.$dirty">
+       <p ng-message="required">O campo "Título do Anúncio" deve ser preenchido!</p>
+   </div>    
+</md-input-container>
+
+<md-input-container md-no-float>
+   <div class="span1">
+       <span>Descrição do Anúncio</span>
+   </div>
+   <div>
+      <input style="margin-left: 2px; width: 99%;" ng-model="novoAnuncio.descricao" maxlength="250" name="descricao" required placeholder="Detalhes importantes do anúncio">
+      <div style="margin-right: 5px; color: #8bc34a;" align="right">
+       <span>
+        {{(novoAnuncio.descricao.length > 0 ? novoAnuncio.descricao.length :0) | json}}/250
+    </span>        
+</div>    
+
+</div>
+<small class="small-tit-des">Detalhes do maquinário importantes para o cliente.</small>
+<div align="center" style="margin-top: -2%;margin-bottom: 8%;" ng-messages="formulario.descricao.$error" ng-if="formulario.descricao.$dirty">
+ <p  ng-message="required">O campo "Descrição do Anúncio" deve ser preenchido!</p>
+</div> 
+</md-input-container>
+
+<!-- Telefone -->
+<md-input-container md-no-float>
+    <div class="span1">
+        <span>Telefone/Celular</span>  
+    </div>
+    <div>
+        <input style="margin-left: 2px; width: 99%;" maxlength="15" minlength="10" ng-model="novoAnuncio.telefone" name="telefone" required placeholder="(DDD) Número de Telefone/Celular">
+    </div>
+    <small>Inserir número de telefone. Exemplo: (44) 4444-4444</small>
+
+    <div align="right" style="margin-bottom: 10%;" ng-messages="formulario.telefone.$error" ng-if="formulario.telefone.$dirty">
+       <p ng-message="required">O campo "Telefone/Celular" deve ser preenchido!</p>
+       <p ng-message="minlength">O campo "Telefone/Celular" deve conter no mínimo 10 caracteres!</p>
+   </div>    
+</md-input-container>
+
+<!-- Marca -->
+<md-input-container md-no-float>
+    <div class="span1">
+        <span>Marca</span>  
+    </div>
+    <div>
+        <input style="margin-left: 2px; width: 99%;" maxlength="40" ng-model="novoAnuncio.marca" name="marca" required placeholder="Marca do maquinário">                
+    </div>
+    <small>Inserir marca do maquinário.</small>
+
+    <div align="right" style="margin-bottom: 10%;" ng-messages="formulario.marca.$error" ng-if="formulario.marca.$dirty">
+       <p ng-message="required">O campo "Marca" deve ser preenchido!</p>
+   </div>    
+</md-input-container>
+
+<!-- Ano -->
+<md-input-container md-no-float>
+    <div class="span1">
+        <span>Ano</span>  
+    </div>
+    <div>
+        <input style="margin-left: 2px; width: 99%;" maxlength="4" minlength="4" ng-model="novoAnuncio.ano" name="ano" required placeholder="Ano do maquinário">                
+    </div>
+    <small>Inserir ano do maquinário.</small>
+    <div align="right" style="margin-bottom: 10%;" ng-messages="formulario.ano.$error" ng-if="formulario.ano.$dirty">
+       <p ng-message="required">O campo "Ano" deve ser preenchido!</p>
+       <p ng-message="minlength">O campo "Ano" deve conter 4 caracteres!</p>
+   </div>      
+</md-input-container>
+
+
+<div>    
+    <md-input-container md-no-float style="margin-top: 2%;padding-bottom: 10px !important; font-size: 20px">
+       <div class="espacamentoFormaPag span1" align="center">
+           <span>Selecionar categoria desejada (obrigatório):</span>
+       </div>
+       <md-select ng-model="novoAnuncio.categoria" id="categoria" aria-label="md-option" name="categoria" required>
+
+        <md-option ng-repeat="categoria in categorias track by $index" ng-value="categoria.nome">{{categoria.nome}}                 
+        </md-option>
+    </md-select>
+    <div ng-if="novoAnuncio.categoria">
+        <div class="espacamentoFormaPag span1" style="margin-top: -2%;" align="center">
+            <span>Selecionar categoria desejada (obrigatório):</span>
+        </div>
+        <md-select ng-model="novoAnuncio.subcategoria" aria-label="md-option" id="subcategoria" name="subcategoria" required>
+            <md-option ng-repeat="subcategoria in getSubcategorias(categorias, novoAnuncio.categoria)" ng-value="subcategoria.id">{{subcategoria.nome}}                 
+            </md-option>
+        </md-select>
+    </div>
+</md-input-container>
+</div>
+
+
+<md-input-container md-no-float> 
+    <div class="span1" style="margin-top: 5%">
+       <span>Preço do anúncio</span>
+   </div>
+   <div>
+       <input style="margin-left: 2px; width: 99%;" ng-model="novoAnuncio.valor" name="valor" required placeholder="Preço R$">
+   </div>                   
+   <small>Preço cobrado pelo aluguel do maquinário.</small>
+   <div style="margin-top: -2%;margin-bottom: 8%;" align="center" ng-messages="formulario.valor.$error" ng-if="formulario.valor.$dirty">
+     <p  ng-message="required">O campo "Preço do Anúncio" deve ser preenchido!</p>           
+ </div>  
+</md-input-container>
+
+<div align="center" style="margin-top: 5%;">
+    <a type="button"  ng-disabled="formulario.$invalid" ng-click="confirmarAnuncio(novoAnuncio)" class="button button-block button-outline button-balanced"><span>Finalizar</span></a>    
+    
+</div> 
+</ion-content>
+</form><!--end contract detail section-->
+</div>
+</ion-view>

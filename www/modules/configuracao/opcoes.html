@@ -1,0 +1,31 @@
+<ion-view cache-view="false" view-title="Opções">
+    <ion-nav-buttons side="left">
+        <a ng-click="redirecionar('/menu/home')" class="button back-button buttons  button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a> 
+        <!--<a ng-click="$ionicGoBack()" class="button back-button buttons  button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>-->
+    </ion-nav-buttons>
+
+    <ion-content id="contract-details-content" style="margin-top: 0px">
+      <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium toolbar-in-content">
+        <div>
+          <h1> <i class="ion-clipboard"></i> </h1>
+          <h3>Opções</h3>
+        </div>
+      </md-toolbar>
+      <div class="switch-container">
+                <!--
+                <md-switch ng-model="opcoes.tourFinalizado" aria-label="Switch" class="md-warn" ng-change="mostrarTour(opcoes.tourFinalizado)">
+                    Mostrar Tour
+                </md-switch>
+                -->
+                <md-checkbox aria-label="mostrarSenhaCheckBox" name="mostrar" ng-model="opcoes.tourFinalizadoBoolean"
+                      ng-click="mostrarTour()"">
+                    Tutorial completo!
+                </md-checkbox>
+            </div>
+    </ion-content>
+
+</ion-view>

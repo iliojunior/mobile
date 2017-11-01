@@ -1,0 +1,63 @@
+<ion-view cache-view="false">
+  <ion-content id="social-login" class="bg-white" scroll="false">
+      <form class="fakeLogin-form" name="formLogin">
+          <div>
+              <img src="img/app_icon.png" style="width: 150px; margin-bottom: 20px"/>
+          </div>
+          <div class="sub-header" style="font-size: 24px">Já possui uma conta?</div>
+          <div class="sub-header" style="font-size: 16px; margin-top: 15px">Entre com seu e-mail e senha</div>
+
+          <div id="fakeLogin">
+              <md-input-container md-no-float="">
+                <span style="margin: 20px 0px -10px; text-align: initial">Email:</span>
+                  <input type="email" placeholder="Seu e-mail de acesso" name="email" ng-model="usuario.email"
+                         class="user-name" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required>
+              </md-input-container>
+              </md-input-container>
+              <div ng-messages="formLogin.email.$error">
+                <small style="color: #ff0000; font-weight: 600; margin-left: -40px" ng-message="pattern">
+                  O formato do e-mail está inválido!
+                </small>
+              </div>
+              <hr/>
+              <md-input-container md-no-float="">
+                <span style="text-align: initial">Senha:</span>
+                  <input type="password" placeholder="Sua senha de acesso" name="senha" ng-model="usuario.senha"
+                         class="user-password" required>
+              </md-input-container>
+              <div>
+                Esqueceu sua senha?
+                <a ng-click="requisitarNovaSenha()"> Redefinir senha</a>
+              </div>
+          </div>
+          <div style="margin-top: 3%">
+              <button type="button" ng-click="logar(usuario)" ng-disabled="formLogin.$invalid"
+                      class="md-raised social-button md-button md-default-theme material-background">
+                  Entrar
+              </button>
+          </div>
+          <!-- <div>
+              <a href="#/menu/busca"class="md-raised social-button md-button md-default-theme material-background">
+                  Busca
+              </a>
+          </div>
+          <div>
+              <a href="#/cadastro-usuario"class="md-raised social-button md-button md-default-theme material-background">
+                  Cadastrar
+              </a>
+          </div>
+          <div>
+              <a href="#/exemplo"class="md-raised social-button md-button md-default-theme material-background">
+                  Exemplo
+              </a>
+          </div> -->
+      </form>
+
+      <div class="row" style="padding-left: 16%; margin-top: 8%; font-size: 18px">
+        <div> Não tem uma conta?</div>
+        <a href="#/cadastro-usuario" style="margin-left: 3%"> Cadastre-se</a>
+      </div>
+        <a href="#/exemplo" style="margin-left: 3%; font-size: 20px"> EXEMPLO</a>
+
+  </ion-content>
+</ion-view>

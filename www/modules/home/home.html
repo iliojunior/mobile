@@ -1,0 +1,32 @@
+<ion-view cache-view="false" view-title="HOME">
+    <ion-content id="location-feed-content" style="background-color: #e8e8e8">
+        <h1 style="font-size: 30px; font-weight: 400; text-align: center; margin: 10px 0 10px 0">
+          Qual a categoria?
+        </h1>
+        <h4 style="font-weight: 400; text-align: center; margin: 0 0 25px 0; font-size: 15px">
+          Selecione a categoria do maquinário desejado para ver todos os anúncios daquela área.
+        </h4>
+        <div class="location-list">
+          <!-- <div class="location-item" ng-repeat="setor in listaDeSetores track by $index" ng-click="redirecionar('/teste/'+setor.id)"> -->
+          <div class="location-item" ng-repeat="setor in listaDeSetores track by $index" 
+              ng-click="redirecionar('/menu/anuncios-por-setor/'+setor.id)">
+            <ion-spinner class="spinner-energized" ng-if="isLoadingPhoto" style="margin-left: 45%">
+              <!-- Enquanto não carregar a imagem do setor -->
+            </ion-spinner>
+            <div class="location-img" style="background-image:url({{setor.imagem}})" ng-if="setor.imagem"></div>
+            <!-- <div class="location-img" style="background-image:url({{setor.imagem}})"></div> -->
+            <div class="location-content row">
+              <div class="col-90">
+                  <h1 style="font-size: 20px" ng-class="{'text-center': !setor.imagem}">{{setor.nome}}</h1>
+                  <p ng-if="setor.descricao">
+                      <i class="fa fa-flag"></i>{{setor.descricao}}
+                  </p>
+              </div>
+              <div class="col-10">
+                  <span class="text-add" ng-if="setor.quantidade">{{setor.quantidade}}+</span>
+              </div>
+            </div>
+          </div>
+        </div>
+    </ion-content>
+</ion-view>

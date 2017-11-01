@@ -1,0 +1,59 @@
+<ion-view view-title="Formas de pagamento">
+    <ion-nav-buttons side="left">
+        <a ng-click="$ionicGoBack()" class="button back-button buttons  button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+    </ion-nav-buttons>
+
+    <ion-content id="contract-details-content" style="margin-top: 0px" scroll="false">
+      <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium toolbar-in-content">
+          <div>
+              <h1>
+                  <i class="ion-card"></i>
+              </h1>
+              <h3>Pagamento</h3>
+          </div>
+      </md-toolbar>
+      <div id="product-checkout-content" style="margin-top:0px">
+        <div class="col total-summary" ng-if="cartoesCadastrados.length >= 1">
+          Cartões de Crédito Cadastrado:
+        </div>
+        <h4 ng-if="cartoesCadastrados.length <= 0 || !cartoesCadastrados" style="text-align: center">
+          Você não tem cartões cadastrados!
+        </h4>
+        <form name="selecionarPagamentoForm">
+          <div>
+            <md-radio-group ng-model="cartao.id">
+              <md-radio-button ng-repeat="cartao in cartoesCadastrados" 
+                         value="{{cartao.id}}"  class="row credit-card">
+                <i class="ion-card" style="margin-right: 20px; font-size: 30px !important"></i>
+                <span class="card-number" style="font-size: 20px"> XXXX XXXX XXXX {{cartao.numeroCartao}}</span>
+              </md-radio-button>
+            </md-radio-group>
+          </div>
+          <!--<a class="md-raised social-button md-button md-default-theme material-background"
+             href="#/menu/finalizar-pagamento" style="width: 100%; font-size: 20px; background-color: #469c22 !important">
+             Confirmar compra <i class="ion-arrow-right-a" style="margin-left: 5px"></i>
+          </a>-->
+          <a class="md-raised social-button md-button md-default-theme material-background"
+              ng-click="selecionarCartao(cartao.id)" ng-if="cartoesCadastrados.length >= 1"
+              style="width: 100%; font-size: 20px; background-color: #469c22 !important">
+             Confirmar compra <i class="ion-arrow-right-a" style="margin-left: 5px"></i>
+          </a>
+        </form>
+        <hr/>
+        <div class="text-center">
+          <a class="md-raised social-button md-button md-default-theme material-background"
+             style="width: 50%; font-size: 20px" href="#/menu/cadastrar-cartao">
+             Adicionar novo cartão <i class="ion-plus-round" style="margin-left: 5px"></i>
+          </a>
+        </div>
+        <!-- <a class="md-raised social-button md-button md-default-theme material-background"
+           style="width: 100%; font-size: 20px" ng-click="mostrarFormularioNovoCartao()">
+           {{mostrarEsconderTexto}} <i class="ion-plus-round" style="margin-left: 5px" ng-if="!mostrarFormulario"></i>
+        </a> -->
+        <hr/>
+      </div>
+    </ion-content>
+
+</ion-view>
